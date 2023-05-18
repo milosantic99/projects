@@ -1,0 +1,6 @@
+[submodule "QuicklyToTheLocation/mobile"]
+	path = QuicklyToTheLocation/mobile
+	url = https://github.com/milosantic99/mobile.git
+[submodule "QuicklyToTheLocation/server"]
+	path = QuicklyToTheLocation/server
+	url = https://github.com/milosantic99/server.git
