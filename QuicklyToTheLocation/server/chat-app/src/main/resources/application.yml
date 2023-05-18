@@ -1,0 +1,56 @@
+app:
+  name: Chat
+  description:
+  version:
+
+springdoc:
+  swagger-ui:
+    path: /docs
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jazzberry
+    username: jazzberry
+    password: kalendar2020
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: false
+        enable_lazy_load_no_trans: true
+        event:
+          merge:
+            entity_copy_observer: allow
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+log4j:
+  logger:
+    org:
+      hibernate: debug
+
+server:
+  address: localhost
+  port: 10003
+  error:
+    include-message: always
+    include-binding-errors: always
+
+endpoints:
+  auth-server:
+    base-url: localhost:10000
+    claims:
+      extract: /api/v1/auth/claims
+  stomp:
+    prefix: /ws
+  application-destination:
+    prefix: /app
+  inbox: # rename to subscription
+    private:
+      prefix: /users
+      postfix: /queue
+    group:
+      prefix: /chatrooms
+      postfix: /queue
+    invite: /invite
