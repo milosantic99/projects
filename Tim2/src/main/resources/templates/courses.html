@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Studentska sluzba</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" href="../static/css/data-style.css" th:href="@{/css/data-style.css}"/>
+	<script type="text/javascript" language="Javascript" src="../static/js/loader.js" th:src="@{/js/loader.js}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,600,800' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" language="Javascript" src="../static/js/token.js" th:src="@{/js/token.js}"></script>
+	<script type="text/javascript" language="Javascript" src="../static/js/ui.js" th:src="@{/js/ui.js}"></script>
+	<script type="text/javascript" language="Javascript" src="../static/js/filters.js" th:src="@{/js/filters.js}"></script>
+	<script type="text/javascript" language="Javascript" src="../static/js/redirect.js" th:src="@{/js/redirect.js}"></script>
+</head>
+<body onload="checkRedirect(); setDataType('subject', 'subjectId', 1, 1); loaderInit(); displayUsername(); addTokenToForm('search'); addTokenToForm('newform'); addTokenToForm('updateform'); submitSearch(); 
+	makeRequest('/get_subject_filters',[], function(data){
+		addOptionsToFilter('lect-options', data[0], true, 1, true);
+		addOptionsToFilter('major-options', data[1], true, 1, true);
+		addOptionsToFilter('new-lect-options', data[0], false, 0, true);
+		addOptionsToFilter('new-major-options', data[1], false, 0, true);
+		addOptionsToFilter('update-lect-options', data[0], false, 0, true);
+		addOptionsToFilter('update-major-options', data[1], false, 0, true);
+		initDropDowns();
+	});">
+	<div id="background"></div>
+	<div id="wrapper">
+		<header>
+			<h1><a href="admin" class="tokenify">Admin</a> / Predmeti</h1>
+			<div id="user">
+				<p id="user-name"></p>
+				<img src="../images/user-img.bmp" id="user-img">
+				<div id="user-options">
+					<button type="button" onclick="toggleElementById('update-self');">Edit user</button>
+					<button type="button" onclick="makeRequest('/logout_req', [], function(){window.location.replace('/login');});">Log out</button>
+				</div>
+			</div>
+		</header>
+		<div id="content">
+			<div id="content-header">
+				<form action="/get_subjects" id="search" method="post" target="@dataframe">
+					<input type="text" id="searchbar" value="" placeholder="Search..." oninput="fillTable();">
+
+					<div class="form-element">
+						<label class="select-label">Godina:</label>
+	    				<div class="dropdown multiselect">
+							<input name="year" value="all" readonly>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options">
+								<div class="flex-row">
+									<label for="year-options-0">Sve</label>
+									<input type="checkbox" id="year-options-0" value="all" checked>
+								</div>
+								<div class="flex-row">
+									<label for="year-options-1">Prva</label>
+									<input type="checkbox" id="year-options-1" value="1" checked>
+								</div>
+								<div class="flex-row">
+									<label for="year-options-2">Druga</label>
+									<input type="checkbox" id="year-options-2" value="2" checked>
+								</div>
+								<div class="flex-row">
+									<label for="year-options-3">Treca</label>
+									<input type="checkbox" id="year-options-3" value="3" checked>
+								</div>
+								<div class="flex-row">
+									<label for="year-options-4">Cetvrta</label>
+									<input type="checkbox" id="year-options-4" value="4" checked>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-element">
+						<label class="select-label">Predavač:</label>
+	    				<div class="dropdown multiselect">
+							<input name="lect_name" value="all" readonly>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="lect-options">
+								<div class="flex-row">
+									<label for="lect-options-0">Svi</label>
+									<input type="checkbox" id="lect-options-0" value="all" checked>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-element">
+						<label class="select-label">Smer:</label>
+	    				<div class="dropdown multiselect">
+							<input name="major_name" value="all" readonly>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="major-options">
+								<div class="flex-row">
+									<label for="major-options-0">Svi</label>
+									<input type="checkbox" id="major-options-0" value="all" checked>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-element">
+						<label class="select-label" for="order_by">Sortiraj po:</label>
+						<div class="dropdown">
+							<input name="order_by" value="subj_id" readonly>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options">
+								<option value="subj_id">ID</option>
+								<option value="subj_name">Ime</option>
+								<option value="year">Godina</option>
+								<option value="espb">ESPB</option>
+								<option value="major_name">Smer</option>
+								<option value="lect_id">Predavač</option>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-element">
+						<label class="select-label">Rastući poredak:</label>
+						<input type="checkbox" class="labeled" oninput="changeOrder(this.checked);" checked>
+					</div>
+
+					<div class="form-element end">
+						<button  type="button" onclick="toggleElementById('new-element');" id="new-button">+</button>
+					</div>
+				</form>
+			</div>
+			<table id="data">
+				<tr>
+					<th>Ime</th><th>Prezime</th><th>Indeks</th>
+				</tr>
+				<tr>
+					<td>Ime</td><td>Prezime</td><td>Indeks</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="new-element" class="popup-fixed">
+			<div class="flex-col size-max">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<br>
+				<form action="/add_subject" id="newform" method="post" target="@sendframe" class="pad-medium wide new-grid">
+					<label for="name">Ime:</label><input type="text" name="name" required>
+					<label for="espb">ESPB:</label><input type="number" min="0" name="espb" required>
+					<label for="year">Godina:</label><input type="number" min="1" max="4" name="year" required>
+
+					<label for="lect_id">Predavač</label>
+					<div class="dropdown no-auto-submit">
+							<input name="lect_id" value=""  minlength="1" readonly required>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="new-lect-options">
+							</div>
+						</div>
+
+					<label for="major_id">Smer</label>
+					<div class="dropdown no-auto-submit">
+							<input name="major_id" value="" minlength="1" readonly required>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="new-major-options">
+							</div>
+						</div>
+
+					<label for="points_req">Broj poena:</label><input type="number" min="0" name="points_req" required>
+				</form>
+				<div class="flex-row wide pad-medium">
+					<button type="submit" form="newform">Submit</button>
+					<button type="reset" form="newform">Clear</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="update-element" class="popup-fixed">
+			<div class="flex-col size-max">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<br>
+				<form action="/update_subject" id="updateform" method="post" target="@sendframe" class="pad-medium wide new-grid">
+					<label for="new-subjectId">ID:</label><input type="text" name="new-subjectId" required>
+					<label for="subjectName">Ime:</label><input type="text" name="subjectName" required>
+					<label for="espb">ESPB:</label><input type="number" min="0" name="espb" required>
+					<label for="year">Godina:</label><input type="number" min="1" max="4" name="year" required>
+
+					<label for="lectid">Predavač</label>
+					<div class="dropdown no-auto-submit">
+							<input name="lectid" value=""  minlength="1" readonly required>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="update-lect-options">
+							</div>
+						</div>
+
+					<label for="majorid">Smer</label>
+					<div class="dropdown no-auto-submit">
+							<input name="majorid" value="" minlength="1" readonly required>
+							<div class="dropdown-preview"></div>
+							<div class="dd-options" id="update-major-options">
+							</div>
+						</div>
+
+					<label for="points_required">Broj poena:</label><input type="number" min="0" name="points_required" required>
+
+					<input type="hidden" name="" id="updated_id" required>
+				</form>
+				<div class="flex-row wide pad-medium">
+					<button type="submit" form="updateform" onsubmit="toggleElement(this.parentNode.parentNode.parentNode);">Submit</button>
+					<button type="reset" form="updateform">Clear</button>
+				</div>
+			</div>
+		</div>
+		<div id="update-self">
+			<div class="flex-center">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<form id="userform" action="/update_user" target="@sendframe" method="post" class="grid" onsubmit="toggleElement(this.parentNode.parentNode); updateUName();">
+					<h2>Update user:</h2><br>
+					<input type="hidden" name="username" id="update-uname">
+					<label for="new-username">Change username:</label>
+					<input type="text" name="new_username">
+					<label for="new-password">Change password:</label>
+					<input type="password" name="new_password">
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<iframe src="" name="@sendframe" id="@sendframe"></iframe>
+		<iframe src="" name="@dataframe" id="@dataframe" onload="parseData();"></iframe>
+	</div>
+</body>
+</html>

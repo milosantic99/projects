@@ -1,0 +1,456 @@
+:root {
+	--element-size: 35px;
+	--select-size: 30px;
+
+	--table-even: #393762;
+	--table-odd: #302e52;
+}
+
+#content {
+	position: absolute;
+	left: 50px;
+	right: 50px;
+	margin: auto;
+	padding: 10px;
+}
+
+#content-header {
+	width: 100%;
+	background-color: var(--color-dark);
+	border-radius: 5px;
+	display: flex;
+	position: relative;
+}
+
+#search {
+	padding: 10px;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+#searchbar {
+	width: 150px;
+}
+
+* {
+	color: white;
+}
+
+a {
+	color: var(--color-highlight);
+}
+
+table {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+tr>* {
+	color: var(--color-text);
+	padding-left: 15px;
+	height: 24px;
+	border-left: 1px solid var(--color-highlight2);
+	border-right: 1px solid var(--color-highlight2);
+}
+
+tr>th {
+	text-align: center;
+	padding-left: 0px !important;
+}
+
+tr:first-child>*{
+	border-top: 1px solid var(--color-highlight2);
+}
+
+tr:first-child>*, table {
+	border-bottom: 1px solid var(--color-highlight2);
+}
+
+tr:nth-child(even)>* {
+	background-color: var(--table-even);
+}
+
+tr:nth-child(odd)>* {
+	background-color: var(--table-odd);
+}
+
+table:not(.table-static)>tr:hover>td {
+	cursor: pointer;
+	background-color: var(--color-highlight);
+}
+
+select {
+	height: var(--select-size);
+	background-color: var(--color-highlight);
+	border: none;
+	-webkit-appearance: none;
+  	-moz-appearance: none;
+  	border-radius: 3px;
+}
+
+select:hover {
+	color: var(--color-highlight);
+	background-color: var(--color-highlight2);
+}
+
+.select-label {
+	font-size: 14px;
+	padding-bottom: 2px;
+	margin-top: -2px;
+	text-align: center;
+	color: var(--color-highlight2);
+}
+
+#search {
+	display: flex;
+}
+
+#searchbar {
+	margin-right: 5px; 
+	padding: 7px;
+}
+
+#multiselect-1{
+	height: 20px;
+}
+
+.form-element {
+	height: var(--element-size);
+	background-color: var(--color-highlight);
+	margin: 0px 5px 0px 0px;
+	border: 2px solid var(--color-highlight2);
+	display: flex;
+	flex-direction: column;
+	padding: 7px;
+}
+
+.option-label {
+	height: 25px;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	position: relative;
+	background-color: var(--color-highlight2);
+}
+
+input, button {
+    background-color: var(--color-darker);
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px;
+}
+
+input {
+    padding: 3px;
+}
+
+.input-none {
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: white;
+    border-radius: 0px;
+}
+
+.dropdown {
+	position: relative;
+}
+
+.dd-options {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	min-width: 100%;
+	height: auto;
+	background-color: var(--color-highlight2);
+	display: none;
+	padding: 0px;
+	margin: 0px;
+
+	outline: 1px solid grey;
+
+	font-family: Century Gothic, Arial, sans-serif;
+	font-weight: 500;
+	font-size: 80%;
+
+	z-index: 4;
+}
+
+.dd-options:hover, .dd-options>*:hover, .dd-options>*>*:hover  {
+	cursor: pointer;
+}
+
+.dd-options>*{
+	min-width: 90%;
+	width: auto;
+	height: auto;
+	background-color: var(--color-highlight2);
+	color: var(--color-darker);
+	margin: 0px;
+	padding: 6px;
+	flex-grow: 1;
+	overflow-wrap: normal;
+}
+
+.dd-options>*>*:first-child {
+	width: auto;
+	height: auto;
+	flex-grow: 1;
+	color: var(--color-darker);
+	overflow-wrap: break-word;
+}
+
+
+.dd-options>*>*:last-child {
+	width: auto;
+	height: auto;
+	color: var(--color-darker);
+	margin-left: 4px;
+}
+
+.dd-options>*:hover{
+	background-color: #3399ff;
+}
+
+.size-max {
+    width: 100%;
+    height: 100%;
+}
+
+#search>*, #new-button {
+    height: var(--element-size);
+}
+
+.pad-light {
+    padding: 5px;
+}
+
+.pad-medium {
+    padding: 15px;
+}
+
+button {
+    width: 120px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-row-stretch {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-row-stretch>* {
+	width: 33%;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.end {
+	position: absolute;
+	right: 0;
+}
+
+.wide {
+    width: 90%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.labeled {
+	margin-top: 5px;
+}
+
+.button-delete {
+	visibility: hidden;
+	position: absolute;
+	right: 25px;
+	font-size: 95%;
+	margin-top: 3px;
+
+	height: 14px;
+	padding: 0px 4px 4px 4px;
+
+	text-transform: uppercase;
+	text-align: center;
+
+	color: var(--color-highlight2);
+	border-style: solid;
+	border-width: 1px;
+	background-color: var(--color-highlight2);
+	border-color: var(--color-highlight);
+
+	box-shadow: 0px 0px 3px black;
+}
+
+.button-delete:hover {
+	cursor: pointer;
+	color: red;
+	background-color: var(--color-dark);
+	border-color: red;
+}
+
+tr:hover>.button-delete {
+	visibility: visible !important;
+}
+
+.no-auto-submit>input {
+	width: 95%;
+	
+	background-color: var(--color-darker);
+	border: inset;
+	border-width: 2px;
+	border-radius: 4px;
+
+	float:right;
+	position: relative;
+
+	z-index: 6;
+}
+
+.no-auto-submit>* {
+	position: absolute;
+	z-index: 7;
+}
+
+.new-grid {
+	display: inline-grid;
+	grid-template-columns: auto auto;
+	grid-row-gap: 20px;
+}
+
+input[type=number]{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px; 
+}
+
+.add-row {
+	text-align: center;
+	background-color: var(--color-light) !important;
+}
+
+.add-row:hover {
+	color: black;
+	cursor: pointer;
+	background-color: var(--color-highlight2) !important;
+}
+
+.popup-fixed {
+    background-color: var(--color-darker);
+    width: 400px;
+    height: 550px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    margin-left: -200px;
+    margin-top: -250px;
+    border-radius: 25px;
+    border: 2px solid var(--color-highlight2);
+    display: none;
+
+    z-index: 4;
+}
+
+.popup-fixed>* {
+	z-index: 5;
+}
+
+.popup-fixed>*>* {
+
+}
+
+.popup-fixed:before {
+	content: "";
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-color: black;
+	opacity: 0.3;
+	z-index: -1;
+}
+
+.popup-fixed:after {
+	position: absolute;
+	top: 30px; left: 100px;
+
+	font-family: "Century Gothic", arial, sans-serif;
+	font-size: 24px;
+	color: var(--color-highlight2);
+
+	z-index: 5;
+}
+
+#new-element:after {
+	content: "Novi element:";
+}
+
+#update-element:after {
+	content: "Ažuriraj element:";
+}
+
+#new-button {
+	height: var(--element-size);
+	width: var(--element-size);
+	border-radius: 50%;
+	padding: 0px;
+	margin: 0px;
+	font-weight: 900;
+}
+
+.dropdown-preview {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 80%;
+	pointer-events: none;
+	text-align: center;
+	background-color: transparent;
+	color: white;
+	padding-top: 3%; 
+	font-size: 12px;
+	font-family: Century Gothic, arial, sans-serif;
+	z-index: 3;
+
+	white-space: nowrap;
+  	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.dropdown-preview:hover {
+	color: var(--color-darker);
+}
+
+.dropdown>input, .dropdown>input:hover {
+	color: transparent;
+	visibility: hidden;
+}
+
+.dropdown>input {
+	background-color: inherit;
+	text-align: center;
+	border: none;
+	border-radius: 5px;
+}
+
+.dropdown:hover>* {
+	background-color: var(--color-highlight2);
+	color: var(--color-highlight);
+}

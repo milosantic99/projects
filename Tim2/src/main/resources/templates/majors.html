@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Studentska sluzba</title>
+	<link rel="icon" type="image/x-icon" href="../static/favicon.ico" th:href="@{/favicon.ico}">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" href="../static/css/data-style.css" th:href="@{/css/data-style.css}"/>
+	<script type="text/javascript" language="Javascript" src="../static/js/loader.js" th:src="@{/js/loader.js}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,600,800' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" language="Javascript" src="../static/js/token.js" th:src="@{/js/token.js}"></script>
+	<script type="text/javascript" language="Javascript" src="../static/js/ui.js" th:src="@{/js/ui.js}"></script>
+	<script type="text/javascript" language="Javascript" src="../static/js/redirect.js" th:src="@{/js/redirect.js}"></script>
+</head>
+<body onload="checkRedirect(); setDataType('major', 'id', 0, 0); loaderInit(); displayUsername(); addTokenToForm('search'); addTokenToForm('newform'); addTokenToForm('updateform'); submitSearch();">
+	<div id="background"></div>
+	<div id="wrapper">
+		<header>
+			<h1><a href="admin" class="tokenify">Admin</a> / Smerovi</h1>
+			<div id="user">
+				<p id="user-name"></p>
+				<img src="../images/user-img.bmp" id="user-img">
+				<div id="user-options">
+					<button type="button" onclick="toggleElementById('update-self');">Edit user</button>
+					<button type="button" onclick="makeRequest('/logout_req', [], function(){window.location.replace('/login');});">Log out</button>
+				</div>
+			</div>
+		</header>
+		<div id="content">
+			<div id="content-header">
+				<form action="/get_all_majors" id="search" method="post" target="@dataframe">
+					<input type="text" id="searchbar" value="" placeholder="Search..." oninput="fillTable();">
+
+					<div class="form-element">
+						<label class="select-label">Rastući poredak:</label>
+						<input type="checkbox" class="labeled" oninput="changeOrder(this.checked);" checked>
+					</div>
+
+					<div class="form-element end">
+						<button  type="button" onclick="toggleElementById('new-element');" id="new-button">+</button>
+					</div>
+				</form>
+			</div>
+			<table id="data">
+				<tr>
+					<th>Ime</th><th>Prezime</th><th>Indeks</th>
+				</tr>
+				<tr>
+					<td>Ime</td><td>Prezime</td><td>Indeks</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="new-element" class="popup-fixed" style="height: 200px; padding-top: 50px;">
+			<div class="flex-col size-max">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<br>
+				<form action="/add_major" id="newform" method="post" target="@sendframe" class="pad-medium wide new-grid">
+					<label for="name">Ime:</label><input type="text" name="name" required>
+				</form>
+				<div class="flex-row wide pad-medium">
+					<button type="submit" form="newform">Submit</button>
+					<button type="reset" form="newform">Clear</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="update-element" class="popup-fixed" style="height: 200px; padding-top: 50px;">
+			<div class="flex-col size-max">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<br>
+				<form action="/update_major" id="updateform" method="post" target="@sendframe" class="pad-medium wide new-grid">
+					<label for="new-id">ID:</label><input type="text" name="new-id" required>
+					<label for="name">Ime:</label><input type="text" name="name" required>
+					<input type="hidden" name="" id="updated_id" required>
+				</form>
+				<div class="flex-row wide pad-medium">
+					<button type="submit" form="updateform">Submit</button>
+					<button type="reset" form="updateform">Clear</button>
+				</div>
+			</div>
+		</div>
+		<div id="update-self">
+			<div class="flex-center">
+				<div class="quit" onclick="toggleElement(this.parentNode.parentNode);">&#x00D7;</div>
+				<form id="userform" action="/update_user" target="@sendframe" method="post" class="grid" onsubmit="toggleElement(this.parentNode.parentNode); updateUName();">
+					<h2>Update user:</h2><br>
+					<input type="hidden" name="username" id="update-uname">
+					<label for="new-username">Change username:</label>
+					<input type="text" name="new_username">
+					<label for="new-password">Change password:</label>
+					<input type="password" name="new_password">
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<iframe src="" name="@sendframe" id="@sendframe"></iframe>
+		<iframe src="" name="@dataframe" id="@dataframe" onload="parseData();"></iframe>
+	</div>
+</body>
+</html>
