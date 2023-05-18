@@ -1,0 +1,201 @@
+<img src="./not_exists" (error)="getAllModels()" onerror="this.style.display='none'">
+
+<div class="above" style="width: 80%; margin:auto">
+
+
+    <mat-horizontal-stepper #stepper5 class="above" linear >
+
+        <mat-step label="My Models" completed={{checker}}>
+
+            <div  *ngIf="myModels?.length">
+                
+            <input style="margin-bottom:10px" type="text" placeholder="Search model or csv file" [(ngModel)]="model_search">
+               
+            <table class="table-striped table-dark big-table">
+                <tr>
+                    <th>Model name</th>
+                    <th>Problem name</th>
+                    <th>Create time</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                
+                <tr *ngFor="let file of myModels; let i = index">
+                    <ng-container *ngIf="searchModels(i)">
+                        <td>{{file}}</td>
+                        <td>{{modelsCSV[i]}}</td>
+                        <td>{{dates[i]}}</td>
+                        <td style="width:7%"><button matStepperNext class="btn btn-info" (click)="readModel(i)" style="width:100%;"><i class="glyphicon glyphicon-ok"></i> Use Model</button></td>
+                        <td style="width:7%"><button class="btn btn-danger" (click)="deleteModel(i)" style="width:100%;"> <i class="glyphicon glyphicon-trash"></i> Delete Model</button></td>
+                    </ng-container>
+                </tr>
+            </table>
+        </div>
+
+    </mat-step>
+
+    <mat-step label="Model Info">
+        <div style="color:whitesmoke">
+
+            <table class="table-striped table-dark big-table">
+                <tr>
+                    <th>Name</th><th>Value</th>
+                </tr>
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Problem type</td><td style="text-align: left !important; width: 70%">{{problem_type}}</td>
+                </tr>
+
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Input features</td><td style="text-align: left !important; width: 70%">{{inputs}}</td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Output feature</td><td style="text-align: left !important; width: 70%">{{output}}</td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Number of hidden layers</td><td style="text-align: left !important; width: 70%">{{hiddenLayerCounter}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left !important; width:400px">Number of neurons in hidden layers respectively</td><td style="text-align: left !important; width: 70%">{{neuronArray}}</td>
+                </tr>
+
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Activation function</td><td style="text-align: left !important; width: 70%">{{activation_type}}</td>
+                </tr>
+                
+                <tr>
+                    <td style="text-align: left !important; width:400px">Number of epoches</td><td style="text-align: left !important; width: 70%">{{epoch}}</td>
+                </tr>
+                
+                
+                <tr>
+                    <td style="text-align: left !important; width:400px">Learning rate</td><td style="text-align: left !important; width: 70%">{{learning_rate}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left !important; width:400px">Loss type</td><td style="text-align: left !important; width: 70%">{{loss_type}}</td>
+                </tr>
+
+                
+
+                
+
+                <tr>
+                    <td style="text-align: left !important; width:400px">Optimizer type</td><td style="text-align: left !important; width: 70%">{{optimizer_type}}</td>
+                </tr>
+                
+                
+                <tr>
+                    <td style="text-align: left !important; width:400px">Regularization rate</td><td style="text-align: left !important; width: 70%">{{regularization_rate}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left !important; width:400px">Regularization type</td><td style="text-align: left !important; width: 70%">{{regularization_type}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left !important; width:400px">Test dataset ratio</td><td style="text-align: left !important; width: 70%">{{train_validation_ratio}}</td>
+                </tr>
+
+                <!-- <tr>
+                    <td style="text-align: left !important; width:400px">Encode type</td><td style="text-align: left !important; width: 70%">{{encode_type}}</td>
+                </tr> -->
+                
+            </table>
+            
+            
+        </div>
+
+
+        
+
+
+        <div style="float:left" id="divChart" class="box above">
+            <canvas id="chart-one" class="above user-chart"></canvas>
+        </div>
+
+        <div style="float:left" id="divChart" class="box above">
+            <canvas id="chart-two" class="above user-chart"></canvas>
+        </div>
+
+        <div style="clear:both"></div>
+
+        <div style="float:left" id="divChart" class="box above">
+            <canvas id="chart-three" class="above user-chart"></canvas>
+        </div>
+
+        <div style="float:left" id="divChart" class="box above">
+            <canvas id="chart-four" class="above user-chart"></canvas>
+        </div>
+
+        <div style="float:right; margin-right:80px;">
+            <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+            <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+        </div>
+            
+    </mat-step>
+
+    <mat-step label="Prediction">
+        <div style="color:whitesmoke">
+
+            <table class="table-striped table-dark fixed big-table">
+
+                <tr><th>Feature</th><th>Value</th></tr>
+
+                
+                <ng-container *ngFor="let n of numerics; let i = index">
+                    
+                    <tr>
+                        <td>
+                            
+                            {{n["headerName"]}}
+                        </td>
+                        
+                        <td>
+
+                            <input style="width:100%" type="number" [ngModel]="values[i]" (ngModelChange)="changeValue($event, i)">
+                        </td>
+                        
+                    </tr>
+                </ng-container>
+                
+                
+                <ng-container *ngFor="let n of categories; let i = index">
+
+                    <tr>
+                        <td>
+
+                            {{n["headerName"]}}
+                        </td>
+                        
+                        <td>
+
+                            <select style="width:100%" [ngModel]="values[i +  numerics.length]" (ngModelChange)="changeValue($event, i +  numerics.length)">
+                                <option *ngFor="let enc of n['values']; let j = index" [ngValue]="n['values'][j]">
+                                    {{enc}}
+                                </option>
+                            </select>
+                            
+                        </td>
+                        
+                    </tr>
+                    
+                </ng-container>
+
+            </table>
+
+            <div style="width:20%;margin:auto;margin-top:50px;">
+                <button class="btn back-button" style="margin-right:50px" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                <button class="btn next-button" (click)="doPrediction()"><span>Predict</span></button>
+            </div>
+            
+            
+        </div>
+    </mat-step>
+
+    
+
+
+    </mat-horizontal-stepper>
+</div>

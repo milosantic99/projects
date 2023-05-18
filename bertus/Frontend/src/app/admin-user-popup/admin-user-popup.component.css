@@ -1,0 +1,114 @@
+
+
+.body
+{
+    padding: 50px;
+    color: #fff;
+    margin: 100px;
+    width: 300px;
+}
+
+::ng-deep .col-md-12
+{
+    width: 750px;
+}
+
+::ng-deep #wrap
+{
+    background-color: #343a40 !important;
+}
+
+input {
+	width: 100%; 
+	margin-bottom: 10px; 
+	background: rgba(0,0,0,0.3);
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 23px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+}
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+
+  ::ng-deep .mat-dialog-container 
+  {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #573c5e !important ;
+  }
+  
+  .ng-tns-c76-0 ng-trigger ng-trigger-dialogContainer ng-star-inserted 
+  {
+      background-color: #333333;
+  }
+  
+  .body
+  {
+      background-color: #333333;
+  }
+  
+  #wrap
+  {
+      text-align: center;
+      padding: 30px;
+      background-color : #343a40  ;
+  }
+  
+  #warning-title
+  {
+      padding: 5px;
+      padding-bottom: 0px;
+      background-color: #821818;
+      color: white;
+  }
+  
+  .btn-danger 
+  {
+      text-align: center;
+      --btn-color: white;
+      font-size: 20px;
+      --btn-bg: var(--danger-color);
+      --btn-border: 1px solid var(--btn-bg);
+  }
+  
+  #cancel{
+      background-color: #343a40;
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+  #cancel:hover{
+      background-color: #5d5c5c;
+  }
+  
+  #yes{
+      margin-top: 10px;
+  }
+  #yes:hover{
+      background-color: #821818;
+  }
+
+  #formAdmin
+  {
+      padding: 50px;
+      color: #fff;
+      background-color : #343a40;
+      border-radius: 10px;
+  }
+
+  ::ng-deep .btn-primary btn-block
+  {
+    background-color: rgb(77, 14, 135) !important;
+  }
+
+

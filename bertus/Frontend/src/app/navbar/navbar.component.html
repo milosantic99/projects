@@ -1,0 +1,94 @@
+<div id="app">
+
+  <nav style="position: relative; z-index: 9999 !important;" class="navbar navbar-expand navbar-dark bg-dark">
+    <a routerLink="welcome-page" class="navbar-brand">igrANNonica</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      
+      <!-- <li class="nav-item">
+        <a routerLink="welcome-page" href="/welcome-page" class="nav-link">Welcome</a>
+      </li> -->
+      <li class="nav-item">
+        <a routerLink="home" class="nav-link">Home </a>
+      </li>
+       
+      <li class="nav-item">
+        <!-- <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a> -->
+        <a class="nav-link" *ngIf="isLoggedIn" routerLink="user-profile">User</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a  class="nav-link" routerLink="mymodels">My Models</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      
+      <!-- <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li> -->
+
+      <li style="margin-right: 20px;">
+        <div style="border-radius: 5px;" id="user-dropdown-menu" class="dropdown_show">
+          
+          <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+            <img style="width: 35px;" src="assets/images/user.png" >
+            <br>
+            <span> @{{usernameProfile}} </span>
+            <!-- <br>
+            <span class="typicons-user icon"> My Profile </span> -->
+          </a>
+
+          <div style="margin-right: 100px;" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <!-- <a class="dropdown-item" href="#">Action</a> -->
+
+            <!-- <a href="#" class="dropdown-item"> -->
+            <a routerLink="user-profile" class="dropdown-item">
+              <span class="mr-3">
+                <i class="fa fa-user"></i>
+              </span> Edit profile</a>
+
+            <!-- <a href="#" class="dropdown-item"><span class="mr-3"><i class="fa fa-exclamation-circle"></i></span> Report a Problem</a> -->
+              
+            <!-- <a href="#" class="dropdown-item" (click)="delete()">
+              <span class="mr-3" >
+                <i class="fa fa-exclamation-circle"></i>
+              </span> Delete Profile
+            </a> -->
+
+            <a class="dropdown-item" (click)="logout()">
+              <span class="mr-3">
+                <i class="fa fa-power-off"></i>
+              </span> Logout
+            </a>
+
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <span style="list-style-type: none; color: transparent;">
+          xxxxx      
+        </span>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="container">
+   
+  </div>
+
+</div>

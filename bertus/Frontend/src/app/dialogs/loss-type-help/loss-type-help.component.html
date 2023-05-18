@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Loss function types</title>
+  <link rel="stylesheet" href="./loss-type-help.component.css">
+
+</head>
+<body>
+<h1>Loss function types</h1>
+<div id="div1">
+  <ul style="list-style-type:square;">
+    <li><b>Categorical cross entropy</b><br><br>
+      <ul style="list-style-type:none;">
+        <li>
+          Categorical crossentropy is a loss function that is used in multi-class classification tasks. These are tasks where an example can only belong to one out of many possible categories, and the model must decide which one. Formally, it is designed to quantify the difference between two probability distributions.
+        </li>
+      </ul>
+    </li>
+    <br>
+    
+    <li><b>Binary cross entropy</b><br><br>
+      <ul style="list-style-type:none;">
+        <li>
+          Binary cross entropy compares each of the predicted probabilities to actual class output which can be either 0 or 1. It then calculates the score that penalizes the probabilities based on the distance from the expected value. That means how close or far from the actual value.
+        </li>
+      </ul>
+    </li>
+    <br>
+    <li><b>Mean Squared Error(MSE)</b><br><br>
+      <ul style="list-style-type:none;">
+        <li>
+          The Mean Squared Error (MSE) is perhaps the simplest and most common loss function, often taught in introductory Machine Learning courses. To calculate the MSE, you take the difference between your model's predictions and the ground truth, square it, and average it out across the whole dataset.
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+
+</body>
+</html>

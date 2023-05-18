@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Outlier detection types</title>
+  <link rel="stylesheet" href="./outlier-help.component.css">
+
+</head>
+<body>
+<h1>Outlier detection types</h1>
+
+<div id = "div1">
+  
+  <ul style="list-style-type:square;">
+    <li><b>Support Vector Machine (SVM) </b><br>
+      <ul style="list-style-type:none;">
+        <li>
+          One-class SVM uses nu as a hyperparameter which is used to define what portion of data should be classified as outliers. nu = 0.03 means that the algorithm will designate 3% data as outliers.
+        </li>
+      </ul>
+    </li>
+    <br><br>
+    <li><b>Minimum covariance determinant (MCD)</b><br>
+      <ul style="list-style-type:none;">
+        <li>
+          The minimum covariance determinant (MCD) estimator is one of the first affine equivariant and highly robust estimators of multivariate location and scatter. Being resistant to outlying observations makes the MCD very useful for outlier detection.
+        </li>
+      </ul>
+    </li>
+    <br><br>
+    <li><b>Local Outlier Factor (LOF) </b>
+      <ul style="list-style-type:none;">
+        <li>
+          The Local Outlier Factor (LOF) algorithm is an unsupervised anomaly detection method which computes the local density deviation of a given data point with respect to its neighbors. It considers as outliers the samples that have a substantially lower density than their neighbors.
+        </li>
+      </ul>
+    </li>
+    <br><br>
+    <li><b>Isolation forest </b><br>
+      <ul style="list-style-type:none;">
+        <li>
+          Isolation forest is a machine learning algorithm for anomaly detection. It's an unsupervised learning algorithm that identifies anomaly by isolating outliers in the data. Isolation Forest is based on the Decision Tree algorithm.  
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+
+</body>
+</html>

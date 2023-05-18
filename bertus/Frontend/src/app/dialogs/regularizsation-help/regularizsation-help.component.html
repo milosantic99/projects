@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Regularization types</title>
+  <link rel="stylesheet" href="./regularizsation-help.component.css">
+
+</head>
+<body>
+<h1>Regularization types</h1>
+<div id="div1">
+  
+  Regularization is a set of techniques that can prevent overfitting in neural networks and thus improve the accuracy of a Deep Learning model when facing completely new data from the problem domain.
+  As aforementioned, adding the regularization component will drive the values of the weight matrix down. This will effectively decorrelate the neural network. By reducing the values in the weight matrix, z will also be reduced, which in turns decreases the effect of the activation function.
+
+  <br><br>
+<ul style="list-style-type:square;">
+  <li><b>L1</b><br>
+    <ul style="list-style-type:none;">
+      <li>
+      
+        L1 regularization forces the weights of uninformative features to be zero by substracting a small amount from the weight at each iteration and thus making the weight zero, eventually. L1 regularization penalizes |weight|. 
+      </li>
+    </ul>
+  </li>
+  <br>
+  <br>
+  <li><b>L2</b><br>
+    <ul style="list-style-type:none;">
+      <li>
+        L2 regularization acts like a force that removes a small percentage of weights at each iteration. Therefore, weights will never be equal to zero. L2 regularization penalizes (weight)² There is an additional parameter to tune the L2 regularization term which is called regularization rate (lambda).
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+</body>
+</html>

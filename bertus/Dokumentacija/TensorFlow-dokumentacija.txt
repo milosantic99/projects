@@ -1,0 +1,42 @@
+Uvod
+
+TensorFlow je besplatna open-source bilblioteka za mašinsko učenje I veštačku inteligenciju. Može se koristiti za rešavanje različitih problema koji se fokusiraju na treniranje I učenje neuronskih mreža. Upotrebljava se u više programskih jezika od kojih su najviše zastupljeni Python, JavaScript, C++ i Java. Za naše potrebe ćemo koristiti programski jezik Python. 
+
+Instalacija 
+
+Da biste instalirali TensorFlow na vašem računaru, pre svega je potrebno instalirati Python. Zatim u komandnoj liniji pokrenuti sledeću komandu:
+install tensorflow pip
+U random okruženju kreirati fajl sa ekstenzijom py. Zatim na početku programa uključiti u rad biblioteku tensorflow naredbom import tensorflow as tf.
+
+“Tensor”
+
+Tensor je generalizacija vektora I matrica koje mogu biti velikih dimenzija. TensorFlow predstavlja tensor-e kao n-dimenzionalne nizove osnovnih tipova podataka. Oni su glavni objekti koji se prosleđuju i njima se manipuliše kroz program. Svaki tenzor predstavlja delimično definisano izračunavanje koje će na kraju proizvesti vrednost. TensorFlow programi rade tako što prave graf tensor objekata koji detaljno opisuje kako su tenzori povezani. Pokretanje različitih delova grafikona omogućava generisanje rezultata. Svaki tensor može biti tipa float32, int32, string… 
+
+Kreiranje tensor-a
+
+Prilikom kreiranja tensor-a navodi se njegova vrednost I tip. 
+Primeri kreiranja tensor-a:
+string = tf.Variable("this is a string", tf.string) 
+number = tf.Variable(324, tf.int16)
+floating = tf.Variable(3.567, tf.float64)
+
+Stepen tensor-a
+
+Stepen tensor-a je broj dimenzija uključenih u tenzor. Ono što smo kreirali iznad je tenzor ranga 0, takođe poznat kao skalar.
+Primeri tensor-a većeg stepena:
+rank1_tensor = tf.Variable(["Test"], tf.string) 
+rank2_tensor = tf.Variable([["test", "ok"], ["test", "yes"]], tf.string)
+
+Za određivanje stepena tensor-a koristi se sledeća komanda:
+tf.rank(rank2_tensor)
+
+Rang tenzora je direktno povezan sa najdubljim nivoom ugnežđenih lista. U prvom primeru možete videti da je ["Test"] tenzor ranga 1, jer je najdublji nivo ugnežđenja 1. Gde je u drugom primeru [["test", "ok"], ["test", "da" ]] je tenzor ranga 2 jer je najdublji nivo ugnežđenja 2.
+
+Tipovi tensor-a
+
+Postoji više različitih tipova tensor-a, ali su najviše u upotrebi sledeći:
+•	 Variable
+•	Constant
+•	Placeholder
+•	SparseTensor
+Sa izuzetkom tipa variable, svi ovi tensor-i su nepromenljivi, što znači da se njihova vrednost možda neće promeniti tokom izvršavanja.

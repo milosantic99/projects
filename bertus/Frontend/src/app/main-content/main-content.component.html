@@ -1,0 +1,1125 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato|Quicksand'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style>
+
+</style>
+
+<div style="color:whitesmoke; width:70%; margin:auto">
+    <h1 class="main-title above"><span class="thin">igrANNonica</span></h1>
+    <br/><br/>
+
+    <!-- <p *ngIf="username != null" style="color:red" class="above">ulogovan : {{username}}</p> -->
+
+
+    <mat-horizontal-stepper #stepper2 class="above" linear style="margin: auto;">
+
+
+
+
+        <mat-step label="Data preprocessing">
+
+            <mat-horizontal-stepper #stepper3 class="above" linear>
+                <mat-step label="Upload CSV" completed={{phases[0].is_completed}}>
+
+                    <div>
+                        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+                            <div class="button-wrap">
+                                <label class="new-button" for="upload">Upload csv</label>
+                                <input type="file" id="upload" class="above" style="color:whitesmoke" name="profile" (change)="onFileSelect($event)" accept=".csv" />
+                            </div>
+                        </form>
+                    </div>
+
+                    <div *ngIf="totalLength>0">
+                        <p class="above">You have successfully loaded csv file.</p>
+                        <button class="btn next-button above" mat-button matStepperNext>Next</button>
+                    </div>
+
+                </mat-step>
+
+
+                <mat-step label="Table" optional>
+
+                    <div class="above">
+
+
+
+                        <p class="above" style="color:whitesmoke">Click on name of column to sort table or click on cell to change its value.</p>
+
+                        <div class="scrollit-x scrollit-y">
+                            <table class="table-striped table-dark fixed big-table hover-cell" matSort (matSortChange)="sortData($event)">
+                                <tr>
+                                    <th scope="col" style="text-align: center;" *ngFor="let header of lines[0];let i = index" mat-sort-header={{header}}>{{header}}</th>
+                                </tr>
+
+                                <tr *ngFor="let item of linesR[0] | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalLength }; let i = index">
+                                    <td scope="row" *ngFor="let itemm of lines[0]; let j = index" (click)="openDialog(i,j)">
+                                        {{item[j]}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="background-color: #2c3e50; padding-bottom:10px; padding-top: 7px;" class="col-auto above" *ngIf="totalLength>0">
+                            <div style=" margin: auto; width: 70%;">
+
+
+                                <!-- <pagination-controls style="color:red" class="my-pagination above" (pageChange)="page = $event" (ngModelChange)="showTable()" style="float: left;"></pagination-controls> -->
+                                <pagination-controls style="color:red" class="my-pagination above" (pageChange)="page = $event" style="float: left;"></pagination-controls>
+
+
+                                <select style="background-color: #2a4b6d" [ngModel]="pageSize" (ngModelChange)="changeRowsNumber($event)" name="sel2">
+                                <option [value]="10">10</option>
+                                <option [value]="50">50</option>
+                                <option [value]="100">100</option>
+                            </select>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="above" style="clear: both;"></div>
+                        <div>
+                            <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                            <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                        </div>
+
+                    </div>
+
+                </mat-step>
+
+                <mat-step label="Data types" optional>
+
+                    <div>
+
+                        <table class="table-striped table-dark fixed big-table">
+
+                            <tr>
+                                <th>Feature</th>
+                                <th>Data type</th>
+                            </tr>
+
+                            <ng-container *ngFor="let item of lines[0]; let i = index">
+                                <tr>
+                                    <ng-container>
+
+                                        <td>
+
+                                            <span>
+                                            {{lines[0][i]}}
+                                            </span>
+
+                                        </td>
+
+                                        
+
+                                        <td *ngIf="trueClass[i]==false">
+
+                                            <select style="width: 100%;" [ngModel]="dataTypes[i]" (ngModelChange)="changeDataType($event, i)">
+                                                <option *ngFor="let out of dataTypeKeys()" [ngValue]="dataTypeValues[out]">
+                                                    {{out}}
+                                                </option>
+                                            </select>
+
+                                        </td>
+
+                                     
+
+                                        <td *ngIf="trueClass[i]==true">
+                                            <b>Categorical</b>
+                                        </td>
+
+                                        
+
+                                       
+
+                                    </ng-container>
+                                </tr>
+
+                            </ng-container>
+
+                        </table>
+
+                    </div>
+
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+
+
+                </mat-step>
+
+                <mat-step label="Statistics" optional>
+                    <p style="margin-left: 20px;">Numerical statistics</p>
+                    <div>
+                        <table style="border: 1px solid black; width: 100%;" class="matrixTable">
+                            <tr *ngFor="let row of numStat; let i = index" style="border: 1px solid black; ">
+
+                                <ng-container *ngIf="i==0">
+                                    <ng-container  *ngFor="let col of row; let j = index">
+                                        <ng-container *ngIf="j==0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="j!=0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+                                        
+                                    </ng-container>
+                                </ng-container>
+                                
+
+                                <ng-container *ngIf="i!=0">
+                                    <ng-container *ngFor="let col of row; let j = index">
+                                        <ng-container *ngIf="j==0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="j!=0">
+                                            <th style="border: 1px solid white; background-color: #1f3b55;">{{col}}</th>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <p style="margin-left: 20px;">Categorical statistics</p>
+                    <div>
+                        <table style="border: 1px solid black; width: 100%;" >
+                            <tr *ngFor="let row of catStat;let i = index;" style="border: 1px solid black; ">
+
+
+
+                                <ng-container *ngIf="i==0">
+                                    <ng-container  *ngFor="let col of row; let j = index">
+                                        <ng-container *ngIf="j==0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="j!=0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+                                        
+                                    </ng-container>
+                                </ng-container>
+                                
+
+                                <ng-container *ngIf="i!=0">
+                                    <ng-container *ngFor="let col of row; let j = index">
+                                        <ng-container *ngIf="j==0">
+                                            <th style="border: 1px solid white; background-color: #121f2c;">{{col}}</th>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="j!=0">
+                                            <th style="border: 1px solid white; background-color: #1f3b55;">{{col}}</th>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                    <hr>
+
+                    <div class="above" style="clear:both;"></div>
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+
+
+
+                </mat-step>
+
+                <mat-step label="Missing values" optional>
+                    <ng-container *ngFor="let header of lines[0]; let i = index">
+                        <ng-container *ngIf="nanArray[i]>0">
+                            
+                            <span style="float:left; padding:5px">There are {{nanArray[i]}} missing values in  
+                                column {{header}}. 
+                            </span>
+
+                            <span style="float:right; margin-right: 300px; padding:5px">
+
+                                <span *ngIf="dataTypes[i]==1">       
+                                    <select style="width: 200px;" [ngModel]='replaceMissing[i]' (ngModelChange)='changeReplaceMissing($event,i, "class")'>
+                                        <option *ngFor="let c of replaceCatKeys();let i = index" [ngValue]="replaceCat[i]">
+                                            {{c}}
+                                        </option>
+                                    </select>
+                                </span>
+
+                                <span *ngIf="dataTypes[i]==0">
+                                    <select style="width: 200px;" [ngModel]='replaceMissing[i]' (ngModelChange)='changeReplaceMissing($event,i,"numeric")'>
+                                        <option *ngFor="let m of replaceNumberKeys(); let i = index" [ngValue]="replaceNumbers[i]">
+                                            {{m}}
+                                        </option>
+                                    </select>  
+                                </span>
+
+                            </span>
+                            <br>
+                        </ng-container>
+
+                        <div style="clear:both"></div>
+
+                    </ng-container>
+
+
+                    <ng-container *ngIf="missingBool == false">
+
+                        <p>There are no missing values</p>
+
+                    </ng-container>
+
+
+
+
+
+
+
+
+
+                    <div style="clear:both"></div>
+
+                    <hr>
+
+                    <div style="clear:both"></div>
+
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+
+                </mat-step>
+
+                <mat-step label="Save problem">
+
+                    <span>
+                        
+                        <select style="float:right;padding:3px; margin:5px; width: 150px;" [ngModel]="data_cleaning" (ngModelChange)="changeDataCleaning($event)">
+                            <option *ngFor="let dc of dataCleaningKeys()" [ngValue]="dataCleaningValues[dc]">
+                                {{dc}}
+                            </option>
+                        </select>
+
+                        <p style="float:right;padding:5px;">Data cleaning <span><button id="buttonHelps" (click)="openDataCleaning()">? </button></span></p>
+                    </span>
+
+                    <span>
+                        
+                        <select style="float:right; padding:3px; margin:5px; width: 150px;" [ngModel]="outlier_type" (ngModelChange)="changeOutlier($event)">
+                            <option *ngFor="let out of outlierTypeKeys()" [ngValue]="outlierTypeValues[out]">
+                                {{out}}
+                            </option>
+                        </select>
+
+                        <p style="float:right; padding:5px;">Outlier <span><button id="buttonHelps" (click)="openOutliers()">? </button></span></p>
+                    </span>
+
+
+
+
+                    <div style="float:left;">
+
+                        <span>Problem name </span>
+                        <input style="margin:5px;" placeholder="Problem name" type="text" [(ngModel)]="problem_name">
+
+                    </div>
+                    <div style="clear:both;"></div>
+
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" style="width: 150px !important;" (click)="saveProblem()"><span>Save Problem</span></button>
+                    </div>
+
+                </mat-step>
+
+
+
+            </mat-horizontal-stepper>
+
+
+
+        </mat-step>
+
+
+
+
+
+
+
+
+
+        <mat-step label="Define & train ann">
+
+            <mat-horizontal-stepper #stepper4 class="above" linear>
+                <mat-step label="Choose problem" completed={{phases[6].is_completed}}>
+                    <!-- <h1>ODABIR FAJLA</h1> -->
+
+                    <button (click)="getAllFiles()" *ngIf="false">test</button>
+
+                    <img src="./not_exists" (error)="getAllFiles()" onerror="this.style.display='none'">
+
+
+
+                    <div *ngIf="myProblems?.length">
+
+                        <input style="margin-bottom:10px" type="text" placeholder="Search problem or file" [(ngModel)]="problem_search">
+
+
+                        <table class="table-striped table-dark big-table">
+                            <tr>
+                                <th>Problem name</th>
+                                <th>File name</th>
+                                <th>Create time</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+
+                            <tr *ngFor="let file of myProblems; let i = index">
+                                <ng-container *ngIf="searchProblems(i)">
+                                    <td>{{file}}</td>
+                                    <td>{{problemsCSV[i]}}</td>
+                                    <td>{{problemDates[i]}}</td>
+                                    <td style="width:7%"><button class="btn btn-info" (click)="readProblem(i)" style="width:100%;"><i class="glyphicon glyphicon-ok"></i> Use Problem</button></td>
+                                    <td style="width:7%"><button class="btn btn-danger" (click)="deleteProblem(i)" style="width:100%;"> <i class="glyphicon glyphicon-trash"></i> Delete Problem</button></td>
+                                </ng-container>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                    <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                </mat-step>
+
+                <mat-step label="Correlation matrix" optional>
+                    <p style="margin-left: 20px;">Correlation matrix</p>
+                    <div>
+                        <table style="border: 1px solid black; width: 100%;" class="matrixTable">
+                            <tr *ngFor="let row of corrMat" style="border: 1px solid black; ">
+
+                                <ng-container *ngFor="let col of row">
+                                    <td *ngIf="(!stringToNum(col) && stringToNum(col) != 0) || (stringToNum(col) > 1 || stringToNum(col) < -1)" style="border: 1px solid black;">{{col}}</td>
+                                    <td *ngIf="stringToNum(col) <= 1 && stringToNum(col) > 0.5" style="background-color: #199afb; color: #2c3e50; border: 1px solid black; "><b>{{col}}</b></td>
+                                    <td *ngIf="stringToNum(col) <= 0.5 && stringToNum(col) > 0.0" style="background-color: #78c4fd; color: #2c3e50; border: 1px solid black; "><b>{{col}}</b></td>
+                                    <td *ngIf="stringToNum(col) <= 0.0 && stringToNum(col) > -0.5" style="background-color: #abdafe; color: #2c3e50; border: 1px solid black; "><b>{{col}}</b></td>
+                                    <td *ngIf="stringToNum(col) <= -0.5 && stringToNum(col) >= -1" style="background-color: #e8f5ff; color: #2c3e50; border: 1px solid black; "><b>{{col}}</b></td>
+                                </ng-container>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="above" style="clear: both;"></div>
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+                </mat-step>
+
+                <mat-step label="Inputs/Output" completed=true>
+
+                    <table id="inout">
+                        <tr>
+                            <td class="first">
+                                <h4>Features</h4>
+                            </td>
+                            <td class="first">
+                                <h4>Inputs</h4>
+                            </td>
+                            <td class="first">
+                                <h4>Output</h4>
+                            </td>
+                        </tr>
+
+                        <ng-container *ngFor="let header of lines[0]; let i = index">
+                            <tr>
+                                <td class="first">
+                                    <label style="position:relative; bottom: 5px;"> &nbsp;&nbsp; {{header}}</label>
+                                </td>
+                                <td class="first">
+                                    <input [checked]="checkboxStateFunction(i)" [disabled]="checkboxDisabled(i)" (change)="checkboxChange(i)" type="checkbox" name="header" value="header">
+                                </td>
+
+                                <td class="first">
+                                    <input [checked]="radioStateFunction(i)" [disabled]="radioDisabled(i)" (change)="radioChange(i)" type="radio" name="header" value="header">
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </table>
+
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+
+                </mat-step>
+
+                <mat-step label="Input types">
+                    <div *ngIf="secondPhase==true">
+
+                        <table class="table-striped table-dark fixed big-table">
+
+                            <tr>
+                                <th>Feature</th>
+                                <th>Data type</th>
+                                <th>Encode</th>
+                            </tr>
+
+                            <ng-container *ngFor="let item of checkboxStates; let i = index">
+
+                                <tr *ngIf="item == 1">
+
+                                    <ng-container>
+
+                                        <td>
+
+                                            <span>
+                                            {{lines[0][i]}}
+                                            </span>
+
+                                        </td>
+
+                                        <td *ngIf="dataTypes[i] == typeNumeric">
+                                            Numeric
+                                        </td>
+
+                                        <td *ngIf="dataTypes[i]==typeClass">
+                                            Categorical
+                                        </td>
+
+                                        <td *ngIf="dataTypes[i] == typeClass">
+
+
+
+                                            <select style="width: 100%;" [ngModel]="encodeTypes[i]" (ngModelChange)="changeEncodeType($event, i)">
+                                            <option *ngFor="let enc of encodeTypeKeys()" [ngValue]="encodeTypeValues[enc]">
+                                                {{enc}}
+                                            </option>
+                                        </select>
+
+                                        </td>
+
+                                        <td *ngIf="dataTypes[i] == typeNumeric">
+                                            /
+                                        </td>
+
+                                    </ng-container>
+
+                                </tr>
+
+                            </ng-container>
+
+                        </table>
+
+                    </div>
+
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" mat-button matStepperNext><span>Next</span></button>
+                    </div>
+
+
+                </mat-step>
+
+
+                <mat-step label="Hidden layers" *ngIf="secondPhase == true">
+
+                    <div style="clear:both;"></div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <h3 style="float: left;">{{hiddenLayerText}}</h3>
+                    </div>
+
+                    <div style="clear:both;"></div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <button mat-mini-fab class="buttonHN" style="float: left;" (click)="removeHiddenLayer($event)"><mat-icon id="button-center">remove</mat-icon></button> &nbsp;&nbsp;&nbsp;
+                        <h3 class="hStyle">{{hiddenLayerCounter}}</h3>&nbsp;&nbsp;&nbsp;
+                        <button mat-mini-fab class="buttonHN" style="float: left;" (click)="addHiddenLayer($event)"><mat-icon id="button-center">add</mat-icon></button>&nbsp;
+                    </div>
+
+                    <hr>
+
+                    <div style="clear: both;"></div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <h3 *ngIf="hiddenLayerCounter >= 1" class="hStyle">Neurons</h3>
+                    </div>
+
+                    <div style="clear: both;"></div>
+                    <div>
+
+                        <div style="display: flex; justify-content: center;">
+                            <div>
+                                <p>Inputs:</p>
+                                <div *ngFor="let item of checkboxStates; let i = index">
+                                    <br *ngIf="item == 1">
+                                    <button mat-flat-button disabled *ngIf="item == 1" id="inputButton">
+                                        {{lines[0][i]}}
+                                    </button>
+                                </div>
+                            </div>&nbsp;&nbsp;
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 1">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 1" (click)="removeNeuron(0)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 1" class="hStyle"> &nbsp; {{neuronArray[0]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 1" (click)="addNeuron(0)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br *ngIf="neuronArray[0] >= 1 && hiddenLayerCounter >= 1">
+                                <br *ngIf="neuronArray[0] >= 1 && hiddenLayerCounter >= 1">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 1 && hiddenLayerCounter >= 1" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 1">
+                                    <br *ngIf="neuronArray[0] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 2">
+                                    <br *ngIf="neuronArray[0] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 3">
+                                    <br *ngIf="neuronArray[0] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 4">
+                                    <br *ngIf="neuronArray[0] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 5">
+                                    <br *ngIf="neuronArray[0] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 6">
+                                    <br *ngIf="neuronArray[0] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 7">
+                                    <br *ngIf="neuronArray[0] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[0] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[0] >= 8">
+                                    <br *ngIf="neuronArray[0] >= 8">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 2">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 2" (click)="removeNeuron(1)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 2" class="hStyle"> &nbsp; {{neuronArray[1]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 2" (click)="addNeuron(1)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                </div>
+                                <br *ngIf="neuronArray[1] >= 1 && hiddenLayerCounter >= 2">
+                                <br *ngIf="neuronArray[1] >= 1 && hiddenLayerCounter >= 2">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 1 && hiddenLayerCounter >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 1">
+                                    <br *ngIf="neuronArray[1] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 2">
+                                    <br *ngIf="neuronArray[1] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 3">
+                                    <br *ngIf="neuronArray[1] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 4">
+                                    <br *ngIf="neuronArray[1] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 5">
+                                    <br *ngIf="neuronArray[1] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 6">
+                                    <br *ngIf="neuronArray[1] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 7">
+                                    <br *ngIf="neuronArray[1] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[1] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[1] >= 8">
+                                    <br *ngIf="neuronArray[1] >= 8">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 3">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 3" (click)="removeNeuron(2)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 3" class="hStyle"> &nbsp; {{neuronArray[2]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 3" (click)="addNeuron(2)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br *ngIf="neuronArray[2] >= 1 && hiddenLayerCounter >= 3">
+                                <br *ngIf="neuronArray[2] >= 1 && hiddenLayerCounter >= 3">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 1 && hiddenLayerCounter >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 1">
+                                    <br *ngIf="neuronArray[2] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 2">
+                                    <br *ngIf="neuronArray[2] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 3">
+                                    <br *ngIf="neuronArray[2] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 4">
+                                    <br *ngIf="neuronArray[2] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 5">
+                                    <br *ngIf="neuronArray[2] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 6">
+                                    <br *ngIf="neuronArray[2] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 7">
+                                    <br *ngIf="neuronArray[2] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[2] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[2] >= 8">
+                                    <br *ngIf="neuronArray[2] >= 8">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 4">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 4" (click)="removeNeuron(3)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 4" class="hStyle">&nbsp; {{neuronArray[3]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 4" (click)="addNeuron(3)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br *ngIf="neuronArray[3] >= 1 && hiddenLayerCounter >= 4">
+                                <br *ngIf="neuronArray[3] >= 1 && hiddenLayerCounter >= 4">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 1 && hiddenLayerCounter >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 1">
+                                    <br *ngIf="neuronArray[3] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 2">
+                                    <br *ngIf="neuronArray[3] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 3">
+                                    <br *ngIf="neuronArray[3] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 4">
+                                    <br *ngIf="neuronArray[3] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 5">
+                                    <br *ngIf="neuronArray[3] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 6">
+                                    <br *ngIf="neuronArray[3] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 7">
+                                    <br *ngIf="neuronArray[3] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[3] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[3] >= 8">
+                                    <br *ngIf="neuronArray[3] >= 8">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 5">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 5" (click)="removeNeuron(4)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 5" class="hStyle"> &nbsp; {{neuronArray[4]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 5" (click)="addNeuron(4)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br *ngIf="neuronArray[4] >= 1 && hiddenLayerCounter >= 5">
+                                <br *ngIf="neuronArray[4] >= 1 && hiddenLayerCounter >= 5">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 1 && hiddenLayerCounter >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 1">
+                                    <br *ngIf="neuronArray[4] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 2">
+                                    <br *ngIf="neuronArray[4] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 3">
+                                    <br *ngIf="neuronArray[4] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 4">
+                                    <br *ngIf="neuronArray[4] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 5">
+                                    <br *ngIf="neuronArray[4] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 6">
+                                    <br *ngIf="neuronArray[4] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 7">
+                                    <br *ngIf="neuronArray[4] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[4] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[4] >= 8">
+                                    <br *ngIf="neuronArray[4] >= 8">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="hiddenLayerCounter >= 6">
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 6" (click)="removeNeuron(5)" style="float: left;"><mat-icon id="button-center">remove</mat-icon></button>
+                                    <h3 *ngIf="hiddenLayerCounter >= 6" class="hStyle"> &nbsp; {{neuronArray[5]}} &nbsp;</h3>
+                                    <button mat-mini-fab class="buttonHN" *ngIf="hiddenLayerCounter >= 6" (click)="addNeuron(5)" style="float: left;"><mat-icon id="button-center">add</mat-icon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br *ngIf="neuronArray[5] >= 1 && hiddenLayerCounter >= 6">
+                                <br *ngIf="neuronArray[5] >= 1 && hiddenLayerCounter >= 6">
+                                <div style="position:relative; left:30%;">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 1 && hiddenLayerCounter >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 1">
+                                    <br *ngIf="neuronArray[5] >= 1">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 2" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 2">
+                                    <br *ngIf="neuronArray[5] >= 2">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 3" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 3">
+                                    <br *ngIf="neuronArray[5] >= 3">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 4" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 4">
+                                    <br *ngIf="neuronArray[5] >= 4">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 5" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 5">
+                                    <br *ngIf="neuronArray[5] >= 5">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 6" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 6">
+                                    <br *ngIf="neuronArray[5] >= 6">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 7" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 7">
+                                    <br *ngIf="neuronArray[5] >= 7">
+                                    <img class="neuronImage" *ngIf="neuronArray[5] >= 8" src="../../assets/images/neuron.png">
+                                    <br *ngIf="neuronArray[5] >= 8">
+                                    <br *ngIf="neuronArray[5] >= 8">
+                                </div>
+                            </div>&nbsp;&nbsp;&nbsp;
+                            <div>
+                                <p>Output:</p>
+                                <div *ngIf="radioState >= 0">
+                                    <br>
+                                    <button mat-flat-button disabled id="inputButton">
+                                        {{lines[0][radioState]}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div style="clear: both;"></div>
+                    <!-- <button class="btn next-button" (click)="sendJSON()"><span>Submit</span></button>&nbsp; -->
+
+                    <!-- <br> -->
+
+
+                    <div style="clear: both;"></div>
+                    <button class="btn back-button" at-button matStepperPrevious><span>Back</span></button>&nbsp;
+                    <!-- <button class="btn next-button" (click)="sendJSON()"><span>Submit</span></button>&nbsp; -->
+                    <button class="btn next-button" matStepperNext><span>Next</span></button>&nbsp;
+
+
+
+                    <!-- <button class="btn next-button" *ngIf="phases[5].is_completed" matStepperNext (click)="sendJSON()"><span>TRAIN</span></button>&nbsp; -->
+
+                    <!-- <button class="btn next-button" [disabled]="isLoading" (click)="sendJSON()"><span><img *ngIf="isLoading" style="width:24px;" src="../../assets/gifs/spinner.gif">Submit</span></button>&nbsp; -->
+                    <!-- <button class="btn next-button" *ngIf="phases[5].is_completed" matStepperNext><span>See Chart</span></button>&nbsp; -->
+
+
+                    <mat-progress-bar style="position: relative; z-index: 1000;" *ngIf="isLoading" mode="determinate" [value]="signalRService.progress"></mat-progress-bar>
+
+
+                    <!-- <br>
+                    <button class="btn next-button" (click)="sendJSONTest()"><span>Submit Test</span></button>&nbsp;
+                    <button class="btn next-button" at-button matStepperNext (click)="sendJSONTest()"><span>Charts</span></button>&nbsp; -->
+
+
+                </mat-step>
+
+
+
+                <mat-step label="Hyperparameters" completed={{phases[7].is_completed}}>
+
+                    <div style="margin-left:50px">
+
+
+
+                        <div class="criterium">
+                            <p>Activation<span><button id="buttonHelps" (click)="openActivations()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <div class="select">
+                                <select class="select" [ngModel]="activation_type" (ngModelChange)="changeActivation($event)">
+                                    <option *ngFor="let act of activationTypeKeys(); let index" [ngValue]="activationTypeValues[act]">
+                                        {{act}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="criterium">
+                            <p>Encode<span><button id="buttonHelps" (click)="openEncoders()">?<span class="tooltiptext">Click for help</span> </button>
+                                </span>
+                            </p>
+                            <div class="select">
+                                <select [ngModel]="encode_type" (ngModelChange)="changeEncode($event)">
+                                    <option *ngFor="let enc of encodeTypeKeys()" [ngValue]="encodeTypeValues[enc]">
+                                        {{enc}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div> -->
+
+                        <div class="criterium">
+                            <p>Problem type <span><button id="buttonHelps" (click)="openProblemType()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <div class="select">
+                                <select [ngModel]="problem_type" (ngModelChange)="changeProblemType($event)">
+                                    <option *ngFor="let pt of problemTypeKeys()" [ngValue]="problemTypeValues[pt]">
+                                        {{pt}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="criterium">
+                            <p>Optimizer<span><button id="buttonHelps" (click)="openOptimizerType()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <div class="select">
+                                <select [ngModel]="optimizer_type" (ngModelChange)="changeOptimizer($event)">
+                                    <option *ngFor="let opt of optimizerTypeKeys()" [ngValue]="optimizerTypeValues[opt]">
+                                        {{opt}}
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="criterium">
+                            <p>Loss<span><button id="buttonHelps" (click)="openLossType()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <div class="select">
+                                <select [ngModel]="loss_type" (ngModelChange)="changeLoss($event)">
+                                    <option *ngFor="let l of lossTypeKeys()" [ngValue]="lossTypeValues[l]">
+                                        {{l}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="criterium">
+                            <p>Learning rate<span><button id="buttonHelps" (click)="openLearningRate()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <div class="num-input">
+                                <input type="number" value="0.001" min="0" step="0.001" [(ngModel)]="learning_rate" (ngModelChange)="changeLearningRate($event)">
+                            </div>
+                        </div>
+
+
+
+                        <div class="criterium">
+                            <p>Epoch<span><button id="buttonHelps" (click)=" openEpoche()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                                <p>
+                                    <div class="num-input">
+                                        <input type="number" value="10" min="1" max="1000" [ngModel]="epoch" (ngModelChange)="changeEpoch($event)">
+                                    </div>
+                        </div>
+
+                        <div class="criterium">
+                            <p>Test dataset percentage<span><button id="buttonHelps" (click)="openTestPercentage()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <mat-slider style="width: 285px;" thumbLabel min="10" max="90" step="5" value="25" [(ngModel)]="train_test_ratio" (ngModelChange)="changeTrainTestRatio($event)"></mat-slider>
+                        </div>
+
+
+                        <div class="criterium">
+                            <p>Validation dataset percentage<span><button id="buttonHelps" (click)="openTestPercentage()">?<span class="tooltiptext">Click for help</span></button>
+                                </span>
+                            </p>
+                            <mat-slider style="width: 285px;" thumbLabel min="10" max="90" step="5" value="25" [(ngModel)]="train_validation_ratio" (ngModelChange)="changeTrainValidationRatio($event)"></mat-slider>
+                        </div>
+
+
+
+
+
+                        <div style="clear:both"></div>
+
+                        <div class="criterium">
+                            <p>Enable regularization</p>
+                            <div style="position: relative; top: 10px;">
+                                <input type="checkbox" [(ngModel)]="isCheckedRegresion" (change)="checkValueRegresion(isCheckedRegresion?true:false)" />
+                            </div>
+                        </div>
+
+                        <div style="clear:both"></div>
+
+                        <div class="criterium">
+                            <p *ngIf="showRegRateInput">Regularization</p>
+                            <div class="select" *ngIf="showRegRateInput">
+                                <select [ngModel]="regularization_type" (ngModelChange)="changeRegularization($event)">
+                                    <ng-container  *ngFor="let reg of regularizationTypeKeys()">
+                                    <option *ngIf="regularizationTypeValues[reg] != 0" [ngValue]="regularizationTypeValues[reg]">
+                                        {{reg}}
+                                    </option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="criterium">
+
+                            <p *ngIf="showRegRateInput">Regularization rate</p>
+                            <div class="num-input" style="position: relative; left:15px" *ngIf="showRegRateInput">
+                                <input type="number" min="0" value="0.001" step="0.001" [(ngModel)]="regularization_rate" (ngModelChange)="changeRegularizationRate($event)">
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div style="clear: both;"></div>
+
+                        <div class="criterium" style="float:left;">
+
+                            <span>Model name </span>
+                            <input style="margin:5px;" placeholder="Model name" type="text" [(ngModel)]="model_name">
+
+                        </div>
+
+                        <div style="clear:both;"></div>
+
+                        <br>
+
+                        <button class="btn back-button" at-button matStepperPrevious><span>Back</span></button>&nbsp;
+                        <button class="btn next-button" matStepperNext [disabled]="isLoading" (click)="callSendJSON()"><span><img *ngIf="isLoading" style="width:24px;" src="../../assets/gifs/spinner.gif">Train</span></button>&nbsp;
+                        <button class="btn next-button" *ngIf="this.phases[7].is_completed" style="margin-right:10px" mat-button matStepperNext><span>Last Chart</span></button>
+
+                    </div>
+
+                </mat-step>
+
+
+
+
+                <mat-step label="Chart">
+
+                    <div style="float:left" id="divChart" class="box above">
+                        <canvas id="main-chart" class="above user-chart"></canvas>
+                    </div>
+
+                    <div style="float:left" id="divChart" class="box above">
+                        <canvas id="metric-chart-one" class="above user-chart"></canvas>
+                    </div>
+
+                    <div style="clear:both"></div>
+
+                    <div style="float:left" id="divChart" class="box above">
+                        <canvas id="metric-chart-two" class="above user-chart"></canvas>
+                    </div>
+
+                    <div style="float:left" id="divChart" class="box above">
+                        <canvas id="metric-chart-three" class="above user-chart"></canvas>
+                    </div>
+
+                    <mat-progress-bar style="position: relative; z-index: 1000;" *ngIf="isLoading" mode="determinate" [value]="signalRService.progress"></mat-progress-bar>
+
+                    <button class="btn back-button" at-button matStepperPrevious><span>Back</span></button>&nbsp;
+                    <button class="btn next-button" *ngIf="problem_type == 0" mat-button matStepperNext><span>Next</span></button>
+                    <br>
+
+                </mat-step>
+
+
+                <mat-step label="Confusion matrix" *ngIf="problem_type == 0">
+
+                    <p style="margin-left: 20px;">Confusion matrix</p>
+                    <div class="scrollit-y">
+                        <div style="display: flex; justify-content: center;">
+                            <h3>Predicted</h3>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: center; float: left;">
+                                <h3 style="writing-mode: vertical-rl;">Actual</h3>&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div style="float:left; width: 90%;">
+                                <table style="border: 1px solid black; width: 100%;" *ngIf="problem_type == 0" class="confMatrixTable">
+                                    <tr *ngFor="let row of confMatrix" style="border: 1px solid black; ">
+                                        <ng-container *ngFor="let col of row">
+                                            <td style="border: 1px solid black;">{{col}}</td>
+                                        </ng-container>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="above" style="clear: both;"></div>
+                    <div>
+                        <button class="btn back-button" mat-button matStepperPrevious><span>Back</span></button>&nbsp;
+                    </div>
+
+                </mat-step>
+
+
+            </mat-horizontal-stepper>
+
+        </mat-step>
+
+
+    </mat-horizontal-stepper>
+
+
+
+</div>
+
+<!-- 
+    <nav>
+        <a routerLink="/employees">
+            Add
+        </a>
+        
+        <a routerLink="/" >
+            Remove
+        </a>
+    </nav>
+    
+    
+    <router-outlet></router-outlet>
+
+-->
+
+
+<!-- <table class="table table-bordered table-dark">
+    <thead>
+      
+      <tr>
+        <th *ngFor="let item of lines[0]; let i = index">
+          {{item}}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of linesR[0]; let i = index">
+        <td *ngFor="let itemm of lines[0]; let j = index">
+          {{item[j]}}
+        </td>
+      </tr>
+    </tbody>
+  </table> -->

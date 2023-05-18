@@ -1,0 +1,12 @@
+  <h1 mat-dialog-title>Edit value</h1>
+  <div mat-dialog-content>
+    <p>You wanted to change value of {{data.headers[0][data.j]}}</p>
+    <span>Insert new value: </span><input style="width: 100%;" matInput [(ngModel)]="data.values[0][data.i][data.j]">
+  </div>
+  <div mat-dialog-actions>
+    
+    <button class="btn btn-danger" mat-button mat-dialog-close mat-dialog-close="false">Close</button>
+    <span>&nbsp;&nbsp;</span>
+    <button class="btn btn-primary" mat-button mat-dialog-close mat-dialog-close="true">Save</button>
+    
+  </div>

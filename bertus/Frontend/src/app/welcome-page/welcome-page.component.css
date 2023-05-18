@@ -1,0 +1,98 @@
+
+
+
+
+/*Naslov*/
+
+.container
+{
+    text-align:  center;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Oswald', Helvetica, sans-serif;
+    font-size: 80px;
+    transform: skewY(-10deg);
+    letter-spacing: 4px;
+    word-spacing: -8px;
+    color: #594541;
+    padding-top: 30px;
+    text-shadow: -1px -1px 0 #292428, -2px -2px 0 #292428, -3px -3px 0 #292428, -4px -4px 0 #292428, -5px -5px 0 #292428, -6px -6px 0 #292428, -7px -7px 0 #292428, -8px -8px 0 #292428, -30px 20px 40px dimgrey
+}
+
+
+.main-title {
+    /* position: absolute; */
+    margin: 0;
+    margin-top: 120px;
+    padding: 0;
+    color: #f9f1e9;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Oswald', Helvetica, sans-serif;
+    font-size: 30px;
+    transform: skewY(-10deg);
+    letter-spacing: 4px;
+    word-spacing: -8px;
+    color: #594541;
+    padding-top: 0px;
+    text-shadow: -1px -1px 0 #292428, -2px -2px 0 #292428, -3px -3px 0 #292428, -4px -4px 0 #292428, -5px -5px 0 #292428, -6px -6px 0 #292428, -7px -7px 0 #292428, -8px -8px 0 #292428, -30px 20px 40px dimgrey
+}
+
+.subtitle-title {
+    /* position: absolute; */
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    color: #f9f1e9;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+
+
+
+.button {
+    text-align: center;
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    /* background-color: #292428; */
+    background-color:  #63628d;
+    color: white;
+
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+  }
+
+  .button:hover
+  {
+    background-color:  #3b3b4d;
+  }
+
+  .nav-item
+  {
+      visibility: hidden;
+  }
+
+  ::ng-deep #app
+  {
+      visibility: hidden !important;
+  }

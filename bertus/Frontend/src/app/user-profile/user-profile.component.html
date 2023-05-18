@@ -1,0 +1,218 @@
+
+<div style="margin-top: 20px;" class="col-md-12" id="adminPanel">
+
+  <!-- KORISNIK JE ADMIN -->
+  <div *ngIf="isAdmin" style="margin-top: 20px; margin-bottom: 10px;">
+            
+        <div style="background-color: #573c5e; margin-right: 1000px; margin-bottom: 50px;">
+
+            <div style="margin-right: 1000px; margin-bottom: 50px;" class="card card-container">
+            
+              <h2 style="margin: auto; margin-bottom: 10px;"> ADMIN PANEL </h2>
+
+              <!-- <h3 style="margin: auto; margin-bottom: 10px;">Profile info : @{{usernameProfile}} </h3> -->
+              <!-- <form style="border: 2px solid #573c5e; padding: 10px;">
+                <div class="form-group">
+                  <label for=""> First Name</label>
+                  <input
+                  style="font-size: 20px;"
+                    type="text"
+                    placeholder={{firstNameProfile}}
+                    class="form-control"
+                    name="name"
+                    [(ngModel)]="form.name  "
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    #name="ngModel"
+                  /> 
+                </div>
+      
+                <div class="form-group">
+                  <label for=""> Last Name</label>
+                  <input
+                  style="font-size: 20px;"
+                    type="text"
+                    placeholder={{lastNameProfile}} 
+                    class="form-control"
+                    name="surname"
+                    [(ngModel)]="form.surname"
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    #surname="ngModel"
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for=""> Email </label>
+                    <input
+                      style="font-size: 20px;"
+                      type="email"
+                      placeholder={{emailProfile}}
+                      class="form-control"
+                      name="email"
+                      [(ngModel)]="form.email"
+                      required
+                      email
+                      #email="ngModel"
+                    />
+                </div>
+              </form> -->
+          
+            <br>
+                <span> 
+                  <h4>Search for user  </h4>
+                </span> 
+                
+                <span>
+                  <input (keyup)="allUsers()" id="searchBar" type="text" placeholder="" style="width: 180px;">
+                  <img src="assets\images\search.png" style="width: 40px; margin-left: 10px;" alt="">
+
+                  <span id="numberOfUsers" style="margin-left: 150px;"> Number of users : <span id="numberUsers">  </span> </span>
+                </span>
+            <br>
+
+            <table (load)="allUsers()" id="adminTable">
+              <tr>
+                  <th> ID         </th>
+                  <th> FirstName  </th>
+                  <th> LastName   </th>
+                  <th> Username   </th>
+                  <th> Email      </th>
+                  <th> Options    </th>
+              </tr>
+              <tr *ngFor="let u of users; let index = index">
+                <td> {{ u.id }} </td>
+                <td> {{ u.name }} </td>
+                <td> {{ u.last }} </td>
+                <td> {{ u.user }} </td>
+                <td> {{ u.email }} </td>
+                <td> <button (click)="selectUser(u.user)"  id="selectUser"> Select User </button> </td>                    
+              </tr>
+            </table>
+
+        
+        </div>
+      </div>
+  </div>
+
+   
+  <!-- KORISNIK NIJE ADMIN -->
+  <div *ngIf="!isAdmin" id="userInfo">
+      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <h3 style="margin: auto; margin-bottom: 10px;">Profile info : @{{usernameProfile}} </h3>
+        
+          <div class="form-group">
+            <label for=""> First Name</label>
+            <input
+            style="font-size: 20px;"
+              type="text"
+              placeholder={{firstNameProfile}}
+              class="form-control"
+              name="name"
+              [(ngModel)]="form.name  "
+              required
+              minlength="3"
+              maxlength="20"
+              #name="ngModel"
+            /> 
+          </div>
+
+          <div class="form-group">
+            <label for=""> Last Name</label>
+            <input
+            style="font-size: 20px;"
+              type="text"
+              placeholder={{lastNameProfile}} 
+              class="form-control"
+              name="surname"
+              [(ngModel)]="form.surname"
+              required
+              minlength="3"
+              maxlength="20"
+              #surname="ngModel"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for=""> Email </label>
+              <input
+                style="font-size: 20px;"
+                type="email"
+                placeholder={{emailProfile}}
+                class="form-control"
+                name="email"
+                [(ngModel)]="form.email"
+                required
+                email
+                #email="ngModel"
+              />
+          </div>
+        </form>
+      
+    <button (click)="editUser()" class="btn btn-primary btn-block"
+      style="margin: auto;
+            border: 1px solid black; 
+            background-color: #573c5e; 
+            font-size: 20px; padding: 10px; width: 50%; ">
+            Edit  profile
+      </button>
+
+      <button class="btn btn-primary btn-block" (click)="openDialog()"
+      style="margin: auto; margin-top: 10px; 
+            border: 1px solid black; 
+            background-color: #821818; 
+            font-size: 20px; padding: 10px; width: 50%; ">
+            Delete profile
+      </button>
+  </div>
+
+</div>
+
+        
+
+
+     
+     
+
+
+<!-- NE Admin -->
+            <!-- <div class="form-group">
+            <label for=""> Username </label>
+              <input
+                style="font-size: 20px;"
+                type="text"
+                placeholder={{usernameProfile}}
+                class="form-control"
+                name="username"
+                [(ngModel)]="form.username"
+                required
+                minlength="3"
+                maxlength="20"
+                #username="ngModel"
+              /> 
+              <div class="alert-danger" *ngIf="username.errors && f.submitted">
+              
+              </div>
+          </div> -->
+
+           <!-- <div *ngIf="name.errors['required']">First name is required</div>
+              <div *ngIf="name.errors['minlength']">
+                First name must be at least 3 characters
+              </div>
+              <div *ngIf="name.errors['maxlength']">
+                First name must be at most 20 characters
+              </div> -->
+
+               <!-- <div *ngIf="surname.errors['required']">Last name is required</div>
+              <div *ngIf="surname.errors['minlength']">Last name must be at least 3 characters</div>
+              <div *ngIf="surname.errors['maxlength']">Last name must be at most 20 characters</div> -->
+
+               <!-- <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                <div *ngIf="email.errors['required']">Email is required</div>
+                <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+                </div> -->
+<!-- NE Admin -->
+  

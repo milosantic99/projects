@@ -1,0 +1,12 @@
+
+#divChart{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: block;
+    height: 400px;
+    width: 400px;
+}
+
+p{
+    color : rgba(255, 99, 132, 1);
+}

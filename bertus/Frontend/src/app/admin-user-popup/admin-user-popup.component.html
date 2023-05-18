@@ -1,0 +1,86 @@
+<div style="margin-top: 20px;" class="col-md-12">
+<div id="wrap">
+    <h1 style="color: aliceblue;">ADMIN SETTINGS</h1>
+    <br>
+    <form id="formAdmin" name="form" style="border: 2px solid #573c5e; padding: 10px;">
+        <h2> Edit Profile </h2>
+        <h3> @{{usernameAdmin}}</h3>
+        
+        <div class="form-group">
+            <label for=""> First Name</label>
+            <input
+            style="font-size: 20px;"
+            type="text"
+            placeholder={{firstNameAdmin}}
+            class="form-control"
+            name="name"
+            [(ngModel)]="form.name"
+            required
+            minlength="3"
+            maxlength="20"
+            #name="ngModel"
+            /> 
+        </div>
+
+        <div class="form-group">
+            <label for=""> Last Name</label>
+            <input
+            style="font-size: 20px;"
+            type="text"
+            placeholder={{lastNameAdmin}} 
+            class="form-control"
+            name="surname"
+            [(ngModel)]="form.surname"
+            required
+            minlength="3"
+            maxlength="20"
+            #surname="ngModel"
+            />
+        </div>
+        
+        <div class="form-group">
+            <label for=""> Email </label>
+            <input
+                style="font-size: 20px;"
+                type="email"
+                placeholder={{emailAdmin}}
+                class="form-control"
+                name="email"
+                [(ngModel)]="form.email"
+                required
+                email
+                #email="ngModel"
+            />
+        </div>
+        <br>
+        <p style="font-size: 20px; padding:  0px; background-color: #343a40;">Enter the values you want to change </p>
+        <p style="font-size: 20px; padding: 0px; background-color: #343a40;">After you finish press edit profile to save it</p>
+        <button (click)="editUser()" class="btn btn-primary btn-block"
+        style="margin: auto;
+              border: 1px solid black; 
+              background-color: #573c5e; 
+              font-size: 25 px; padding: 10px; width: 50%; 
+              font-weight: bold;">
+              Edit  profile
+        </button>
+    </form>
+   
+    <br>
+    
+
+    <div style="background-color: #343a40;" class="btn btn-danger">
+        <h2> Delete Profile </h2>
+        <p style="padding:  0px; background-color: #343a40;">Once you delete this account you wont be able to acces it ever again</p>
+        <p style="padding: 0px; background-color: #343a40;">Are you sure you want to procced ?</p>
+        <div>
+            <div (click)="deleteUser()" id="yes" class="btn btn-danger">
+                <h3>Delete</h3>
+            </div>
+            <div (click)="closeDialog()" id="cancel" class="btn btn-danger">
+                <h3>Cancel</h3>
+            </div>
+        </div>
+    </div>
+   
+</div>
+</div>

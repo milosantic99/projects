@@ -1,0 +1,58 @@
+.user-chart{
+    width: 45%;
+    height: 320px;
+    padding:30px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Arial Black ;
+}
+body{
+    min-height: 100vh;
+}
+.box{
+    width: 45%;;
+    height: 650px;
+    position: relative;
+    background: #00000080;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: 30px;
+    opacity: 1;
+}
+.box::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #221864;
+    border-radius: 16px;
+}
+.box::before{
+    content: '';
+    position: absolute;
+    left:350px;
+    bottom: -150px;
+    width: 150px;
+    height: 200%;
+    background: linear-gradient(#00ccff,#d400d4);
+    animation: animate 4s linear infinite;
+}
+@keyframes animate{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+.box h2{
+    position: relative;
+    color: #fff;
+    font-size: 10em;
+    z-index: 10;
+}

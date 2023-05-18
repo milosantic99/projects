@@ -1,0 +1,62 @@
+/* <mat-dialog-container tabindex="-1" aria-modal="true" class="" id="mat-dialog-0" role="dialog" style="transform: none;"><app-delete-user-popup _nghost-nvq-c157="" class="ng-star-inserted"><div _ngcontent-nvq-c157="" id="wrap"><h1 _ngcontent-nvq-c157="">GAS</h1></div></app-delete-user-popup><!--bindings={
+    "ng-reflect-portal": ""
+  }--></mat-dialog-container> */
+
+
+
+  ::ng-deep .mat-dialog-container 
+  {
+      padding: 3px;
+      background-color: #821818 !important ;
+  }
+  
+  .ng-tns-c76-0 ng-trigger ng-trigger-dialogContainer ng-star-inserted 
+  {
+      background-color: #333333;
+  }
+  
+  .body
+  {
+      background-color: #333333;
+  }
+  
+  #wrap
+  {
+      text-align: center;
+      padding: 50px;
+      background-color : #343a40  ;
+  }
+  
+  #warning-title
+  {
+      padding: 5px;
+      padding-bottom: 0px;
+      background-color: #821818;
+      color: white;
+  }
+  
+  .btn-danger 
+  {
+      text-align: center;
+      --btn-color: white;
+      font-size: 20px;
+      --btn-bg: var(--danger-color);
+      --btn-border: 1px solid var(--btn-bg);
+  }
+  
+  #cancel{
+      background-color: #343a40;
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+  #cancel:hover{
+      background-color: #5d5c5c;
+  }
+  
+  #yes{
+      margin-top: 10px;
+  }
+  #yes:hover{
+      background-color: #821818;
+  }
+  

@@ -1,0 +1,41 @@
+<div *ngFor="let data of chartData; let i = index" class="box above" style="float:left">
+    <canvas style="float:left" class="above user-chart"  #pr_chart></canvas>
+    
+    <div style="clear: both;"></div>
+    
+    
+    <div style="position: relative; left: 65px;">
+        <span class="above" style="color:rgba(255, 99, 132, 1)">Filename : {{usersCharts[i]["filename"]}}</span><br>
+        <span class="above" style="color:rgba(255, 99, 132, 1); float: left;">Aktivacion funkcija : {{usersCharts[i]["activation"]}}</span><br>
+        <div *ngFor="let header of usersCharts[i]['inputs']; let j = index">
+            <span style="color:rgba(255, 99, 132, 1); float:left" class="above" *ngIf="j == 0">Inputs : </span>
+            <span style="color:rgba(255, 99, 132, 1); float: left;" class="above"> &nbsp; {{usersCharts[i]['headers'][header]}} </span>
+        </div><br>
+        
+        <span class="above" style="color:rgba(255, 99, 132, 1);">Output : {{usersCharts[i]['headers'][usersCharts[i]['output']]}}</span><br>
+        <span class="above" style="color:rgba(255, 99, 132, 1);">Optimizer : {{usersCharts[i]["optimizer"]}}</span><br>
+        <span class="above" style="color:rgba(255, 99, 132, 1);">Optimizer : {{usersCharts[i]["loss"]}}</span><br>
+        <span class="above" style="color:rgba(255, 99, 132, 1);">Problem type : {{usersCharts[i]["problem_type"]}}</span><br>
+        <span class="above" style="color:rgba(255, 99, 132, 1);">Encoding : {{usersCharts[i]["encode"]}}</span><br>
+        
+    </div>
+</div>
+
+
+
+
+<!-- filename:"filename 2",
+      data:[[86, 378, 106, 306, 507, 111, 133, 221, 283, 1000], 
+            [6, 37, 306, 206, 407, 311, 233, 121, 783, 1000], 
+            [86, 378, 106, 306, 507, 111, 133, 221, 283, 1000], 
+            [6, 37, 306, 206, 407, 311, 233, 121, 783, 1000]],
+      epoch: 10,
+      activation: "Tahm",
+      headers: ["first","second","third","forth","fifth","sixth"],
+      inputs: [1,3],
+      output: 5,
+      optimizer: "SGD",
+      loss: "Categoricalcross",
+      problem_type: "regression",
+      encode: "OneHotEncoding"
+  } -->

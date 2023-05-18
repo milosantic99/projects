@@ -1,0 +1,23 @@
+<br><br>
+
+<h3>Upload -> .net test</h3>
+
+
+
+
+<div>
+  <form [formGroup] = "uploadForm" (click)="sendToBack()">      
+    <div>
+      <input 
+              type="file"
+              name="profile"
+              (change)="onFileSelect($event)"
+              accept=".csv"
+
+              />
+    </div>
+    <div>
+      <button class="btn btn-primary mt-2" type="submit">Upload</button>
+    </div>
+  </form>
+</div>

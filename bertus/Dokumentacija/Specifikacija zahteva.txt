@@ -1,0 +1,35 @@
+Opis projekta
+
+Veb Aplikacija "Igrannonica" je namenjema za izucavanje osnovnih pricipa rada vestackih neuronskih mreza kroz eksperimentisanje i resavanje razlicitih problema masinskog ucenja. Aplikacija je prvenstveno namenjena pocetnicima koji poseduju osnovno poznavanje vestackih neuronskih mreza i njihovu upotrebu, ali moze da zadovolji zahteve eksperata koji zele da rese neke komplikovanije probleme.
+
+Obavezne funkcionalnosti:
+
+* Unos podataka iz .CSV formata 
+* Prikazivanje podataka u tabelarnom obliku
+* Osnovni statisticki pokazatelji (minimum, maksimum, srednja vrednost, medijana,...)
+* Odabir arhitekture (broj slojeva, broj neurona, aktivacione funkcije,... )
+* Izbor enkodiranja kategorijskih velicina (One hot encoding,..)
+* Izbor ulaznih i izlaznih kolona
+* Vizuelizacija obuke mreze (prikazivanje kako se greska smanjuje )
+* Vizuelizacija rezultata (tacke u dve boje, dijagram razlike,...)
+* Izbor metirka za merenje greske (apsolutna, relativna,...)
+* Testiranje (poredjenje rezultata sa testnim skupom)
+
+
+Pozeljne funkcionalnosti:
+
+* Upravljanje korisnicima (logovanje, prikaz eksperimenata korisnika)
+* Mogucnost pravljanje privatnih i javnih eksperimenata
+* Mogucnost cuvanja vise razlicitih eksperimenata
+* Skup za validaciju (mogucnost biranja nacina kako uzimaju podaci za validaciju)
+
+
+
+Opcione funkcionalnosti:
+
+* Unos podataka iz drugih formata osim .CSV-a
+* Kreiranje vise modela za jedan eksperiment 
+* Korekcija podataka direktno u aplikaciji (ispravljanje ociglednih gresaka)
+* Poredjenje rezultata razlicitih modela 
+* Regrasija za numericki izlaz (kodiranje i ulaza i izlaza)
+
