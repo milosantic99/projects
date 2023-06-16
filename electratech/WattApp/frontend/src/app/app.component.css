@@ -1,0 +1,42 @@
+/* a {
+    font-size: large;
+    font-weight: bold;
+} */
+.main-row{
+    display: flex;
+    flex-direction: row;
+}
+/* .main-column{
+    display: flex;
+    flex-direction: column;
+} */
+#hero{
+    width: 100%;
+    
+}
+.page_padding{
+    padding: 30px 50px;
+}
+.position{
+    position: sticky;
+    top: 0px;
+    left: 0px;
+}
+
+@media screen and (max-width: 1400px){
+    #menu:hover ~ #hero{
+        z-index: -3;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        overflow-y: auto;
+        height: 100%;
+    } 
+}
+@media screen and (max-width: 480px) {
+    #hero{
+        padding: 0px;
+        /* overflow-y: auto; */
+        /* height: 100vh; */
+    }
+}

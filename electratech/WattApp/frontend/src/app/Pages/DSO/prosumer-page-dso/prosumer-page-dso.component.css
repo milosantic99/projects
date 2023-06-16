@@ -1,0 +1,220 @@
+p,span{
+    margin: 0px;
+    font-family: var(--font-text);
+}
+#main{
+    display: flex;
+    flex-direction: row;
+}
+.position{
+    position: sticky;
+    top: 0px;
+    left: 0px;
+}
+#element{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+#heder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#heder > div{
+    display: flex;
+}
+
+/* Left */
+.left{
+    column-gap: 20px;
+}
+.image{
+    display: flex;
+}
+.image > img{
+    width: 98px;
+    border-radius: 100%;
+}
+
+.person-info b {
+    color: var(--color-Narandzasta);
+    font-weight: 600;
+}
+
+.person-info{
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+.person-info-1{
+    display: flex;
+    column-gap: 15px;
+}
+.person-info-prosumer{
+    font-size: 30px;
+    color: var(--color-siva);
+}
+.person-info-email{
+    margin-top: 2px;
+    font-size: 20px;
+    color: var(--color-siva);
+}
+.person-info-address{
+    font-size: 20px;
+    color: var(--color-siva);
+}
+/* Right */
+.debt{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+
+}
+.debt-value{
+    font-size: 22px;
+}
+
+.red-debt{
+    color: var(--color-red-debt);
+}
+.green-debt{
+    color: var(--color-green-debt);
+}
+
+/* Graphics */
+#graphics{
+    display: flex;
+    justify-content: space-around;
+}
+
+.line{
+    padding: 20px;
+    box-shadow: var(--box-shadow-div);
+    border-radius: 16px;
+    width: 50%;
+    min-height: 458px;
+}
+#graphics-heder{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.graphics-heder-text{
+    font-size: 20px;
+}
+
+select{
+    border:0px;
+    outline:0px;
+    padding: 10px;
+    padding-bottom: 0xp;
+}
+
+/*  BAR chart */
+.div-bar{
+    padding: 20px;
+    box-shadow: var(--box-shadow-div);
+    border-radius: 16px;
+    width: 40%;
+}
+.bar{
+    width: 100%;
+}
+.div-bar > div{
+    display: flex;
+    width: 100%;
+}
+/* List */
+#list-switch{
+    display: flex;
+    column-gap: 30px;
+    font-family: var(--font-text);
+    font-size: 20px;
+}
+#list-switch>div{
+    cursor: pointer;
+}
+.selected-switch{
+    color: var(--color-Narandzasta);
+}
+#list{
+    box-shadow: var(--box-shadow-div);
+    border-radius: 15px;
+    min-height: 150px;
+}
+#list-heder{
+    display: flex;
+    width: 100%;
+    /* justify-content: space-between; */
+    /* column-gap: 150px; */
+    column-gap: 12%;
+    padding: 20px 30px;
+    font-size: 16px;
+    border-bottom: 1px solid var(--color-Narandzasta);
+}
+.element{
+    padding: 20px 30px;
+    display: flex;
+    column-gap: 12%;
+}
+
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+  .no-border{
+    border:0;
+}
+
+.first{
+    border-bottom: 2px solid var(--color-Narandzasta);
+}
+.first>th{
+    padding: 20px;
+}
+
+td, th {
+border-left: 1px solid #dddddd;
+border-right: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+font-weight: normal;
+text-align: center;
+}
+  
+
+tbody>tr:nth-child(odd) {
+background-color: #FFECB3;;
+}
+
+.loader-map{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:15px;
+}
+
+#obrisi-korisnika > button > fa-icon {
+    font-size: 30px;
+    color: var(--color-siva);
+}
+
+#obrisi-korisnika {
+    display: flex;
+    align-items: center;
+}
+
+
+.invisible {
+    visibility: hidden;
+}

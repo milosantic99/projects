@@ -1,0 +1,104 @@
+p{
+    margin:0px;
+    font-family: var(--font-text);
+}
+.container-tv {
+    
+    display: flex; 
+    background-color: var(--color-logo-bela);
+    flex-direction: column;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    /* width: 175px; */
+    width: 43vw;
+}
+
+
+
+.container-tv> div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: var(--font-text);
+    font-size: 16px;
+  }
+
+.subtitle{
+    font-family: var(--font-text);
+    font-size: 10px;
+    color: var(--color-siva);
+}
+ 
+.icon>fa-icon{
+    color:var(--color-Narandzasta);
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.info{
+
+    flex-direction: column;
+
+}
+
+.info>div{
+    display: flex;
+    justify-content: center;
+}
+
+.televizor{
+    content: url("../../../assets/../assets/images/devices/televizor.png");
+    width: 25vw;
+}
+
+.klima{
+    content: url("../../../assets/../assets/images/devices/klima.png");
+    width: 25vw;
+}
+
+.rerna{
+    content: url("../../../assets/../assets/images/devices/rerna.png");
+    width: 25vw;
+}
+.aspirator{
+    content: url("../../../assets/../assets/images/devices/aspirator.png");
+    width: 25vw;
+}
+
+.aparati{
+    content: url("../../../assets/../assets/images/devices/aparati.png");
+    width: 25vw;
+}
+
+.bojler{
+    content: url("../../../assets/../assets/images/devices/bojler.png");
+    width: 25vw;
+}
+.frizider{
+    content: url("../../../assets/../assets/images/devices/frizider.png");
+    width: 25vw;
+}
+.grejaci{
+    content: url("../../../assets/../assets/images/devices/grejaci.png");
+    width: 25vw;
+}
+.ostalo{
+    content: url("../../../assets/../assets/images/devices/ostalo.png");
+    width: 25vw;
+}
+.proizvodnja{
+    content: url("../../../assets/../assets/images/devices/proizvodnja.png");
+    width: 25vw;
+}
+.vesMasina{
+    content: url("../../../assets/../assets/images/devices/vesMasina.png");
+    width: 25vw;
+}
+

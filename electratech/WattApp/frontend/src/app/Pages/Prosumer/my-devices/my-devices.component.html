@@ -1,0 +1,108 @@
+<div id="element" *ngIf="menuType == 'bottom'">
+
+    <div class="heder">
+        <div>
+            <p>Moji uređaji</p>
+        </div>
+        <div class="type">
+            <div class="selectedButtonDiv" [ngClass]="{'selected' : type=='Potrošač'}" (click)="setType('Potrošač')">
+              <p [ngClass]="{'type-selected' : type=='Potrošač'}">Potrošači</p>
+            </div>
+            <div class="selectedButtonDiv" [ngClass]="{'selected' : type=='Proizvodjač'}"(click)="setType('Proizvodjač')">
+              <p [ngClass]="{'type-selected' : type=='Proizvodjač'}">Proizvođači</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="search">
+        <div class="search-input">
+            <div>
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </div>
+            <div style="width:100%">
+                <input class='search-input-input'type="text" placeholder="Pretraga uređaja po nazivu uređaja" style="font-size: 15px;" [(ngModel)]="name" (keyup)="defaultFilter()">
+            </div>
+        </div>
+        <div class="search-filter">
+            <div class="search-filter-select">
+                <select #select (change)="setSelectFilter(select.value)">
+                    <option selected>Sve kategorije</option>
+                    <option *ngFor="let i of listOfTypes">{{ i }}</option>
+                </select>
+            </div>
+            <div class="search-filter-set-display">
+                <div class="set-display">
+                    <div [ngClass]="{'set-display-selected-left' : displayType=='row'}" (click)="setDisplayType('row')"> 
+                        <fa-icon [icon]="faTableList"></fa-icon>
+                    </div>
+                    <div [ngClass]="{'set-display-selected-center' : displayType=='grid'}" (click)="setDisplayType('grid')" style="border-right: 1px solid var(--color-Narandzasta);border-left: 1px solid var(--color-Narandzasta);">
+                        <fa-icon [icon]="faTableCells"></fa-icon>
+                    </div>
+                    <div [ngClass]="{'set-display-selected-right' : displayType=='table'}" (click)="setDisplayType('table')">
+                        <i class="bi bi-table"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sort">
+            <div class="sort-2">
+                <div (click)="setSortConsumption()">
+                    <p>Potrošnja</p>&nbsp;
+                    <i [ngClass]="{'bi bi-triangle':sortConsumption=='off','bi bi-triangle-fill sort-active':sortConsumption!='off','rotate-180':sortConsumption!='up'}" ></i>
+                </div>
+                <div class="sort-2-2">
+                    <p>Na mesečnom nivou</p>
+                </div>
+            </div>
+            <div class="sort-3">
+               <div class="sort-3-1">
+                 <p>Isključeni</p>
+                <app-three-state-toggle-switch #radio (change)="defaultFilter()"></app-three-state-toggle-switch>
+                <p>Uključeni</p>
+                </div>
+                <div class="sort-2-2"> 
+                    <p>Prikaz trenutno isključenih / uključenih uređaja</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="displayType=='row'" id="list-row">
+        <app-prosumer-device-list-element *ngFor="let i of temporaryList" [info]="i"></app-prosumer-device-list-element>
+    </div>
+    <div *ngIf="displayType=='grid'" id="list-grid">
+        <app-prosumer-device-list-element-grid *ngFor="let i of temporaryList" [info]="i"></app-prosumer-device-list-element-grid>
+    </div>
+    
+    <div *ngIf="displayType=='table'" class="table-responsive">
+
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Ime</th>
+                <th scope="col">Model</th>
+                <th scope="col">Status</th>
+                <th scope="col">Potrošnja</th>
+                <th scope="col">Proizvodnja</th>
+                <th scope="col">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of temporaryList"  (click)="goToUrl(i.deviceId.toString())">
+                <td scope="row">{{i.name}}</td>
+                <td>{{i.originalName}}</td>
+                <td *ngIf="i.status==false">Isključeno</td>
+                <td *ngIf="i.status==true">Uključeno</td>
+                <td>{{i.consumption}}</td>
+                <td>0</td>
+                <td>{{i.percent}}</td>
+              </tr>
+          </table>
+    
+    
+    </div>
+</div>
+<div *ngIf="menuType!='bottom'">
+    <h1>Trenutno dostupno samo za telefon</h1>
+</div>

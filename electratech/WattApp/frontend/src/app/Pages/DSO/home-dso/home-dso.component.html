@@ -1,0 +1,32 @@
+<div id="element">
+    <div *ngIf="isLoading==true" class="loader-map">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div id="heder" *ngIf="isLoading==false">
+        <app-simple-card [info]="simpleCard1"></app-simple-card>
+        <app-simple-card [info]="simpleCard2"></app-simple-card>
+        <app-simple-card [info]="simpleCard4"></app-simple-card>
+        <app-simple-card [info]="simpleCard3"></app-simple-card>
+    </div>
+
+    <div id="graph-and-weather">
+        <div class="place" style="min-height: 390px;">
+            <p>Pregled potrošnje električne energije</p>
+            <app-line-graph></app-line-graph>
+        </div>
+        <div class="place-2">
+            <div>
+                <app-open-weather-widget-today></app-open-weather-widget-today>
+            </div>
+            <div>
+                <app-list-of-requests></app-list-of-requests>
+            </div>
+        </div>
+        
+    </div>
+    <div>
+        <app-mapa></app-mapa>
+    </div>
+</div>

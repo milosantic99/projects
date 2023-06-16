@@ -1,0 +1,69 @@
+<div cdkDropListGroup>
+    <div class="example-container">
+        <div class="img">
+            <div><fa-icon [icon]="faUserCog"></fa-icon></div>
+            <h2>Administratori sistema</h2>
+        </div>
+
+        <div
+        cdkDropList
+        #listAdmins="cdkDropList"
+        [cdkDropListConnectedTo]="listDispatchers"
+        [cdkDropListData]="admins"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of admins" cdkDrag
+            [cdkDragData]="item"
+            [cdkDragDisabled]="item.email === 'electra@gmail.com'">
+                <button mat-icon-button *ngIf="item.email !== 'electra@gmail.com'" (click)="openDialogDeleteDispatcher(item.id)">
+                    <fa-icon [icon]="faTrashCan" />
+                </button>
+                    
+                <div style="font-weight: bold;">{{item.ownerFirstName}} {{item.ownerLastName}}</div>
+
+                <div>{{item.email}}</div>
+                
+                <div>
+                    <button mat-icon-button disabled *ngIf="item.email === 'electra@gmail.com'">
+                        <fa-icon [icon]="faLock" />
+                    </button>
+                    <button mat-icon-button title="Ukloni ulogu admina." (click)="moveItem(item, 'admins')" *ngIf="item.email !== 'electra@gmail.com'">
+                        <fa-icon [icon]="arrowRight" />
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  
+    <div class="example-container">
+        <div class="img">
+            <div><fa-icon [icon]="faUsers"></fa-icon></div>
+            <h2>Dispečeri</h2>
+        </div>
+
+        <div
+        cdkDropList
+        #listDispatchers="cdkDropList"
+        [cdkDropListConnectedTo]="listAdmins"
+        [cdkDropListData]="dispatchers"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of dispatchers" cdkDrag
+            [cdkDragData]="item">
+                <button mat-icon-button title="Daj ulogu admina." (click)="moveItem(item, 'dispatchers')">
+                    <fa-icon [icon]="arrowLeft"/>
+                </button>
+                <div style="font-weight: bold;">{{item.ownerFirstName}} {{item.ownerLastName}}</div>
+                <div>{{item.email}}</div>
+                <div>
+                    <button mat-icon-button (click)="openDialogDeleteDispatcher(item.id)">
+                        <fa-icon [icon]="faTrashCan" />
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

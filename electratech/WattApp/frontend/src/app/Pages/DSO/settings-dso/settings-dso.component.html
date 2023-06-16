@@ -1,0 +1,102 @@
+<div id="element">
+    <div >
+        <p style="font-size: 30px;">Podešavanja</p>
+    </div>
+    <div id="page-content">
+        <div id="main">
+            <div id="iconPage" class="iconPage">
+                <div class="img">
+                    <div>
+                        <img [src]="profilePictue">
+                    </div>
+                    <div class="inputImage">
+                        <label class="buttonImage" for="files">Izaberi sliku</label>
+                        <input type="file" id="files" accept="image/jpeg, image/png" max="1000000" (change)="onFileSelected($event)">
+                    </div>
+                    <div class="errorMessage">
+                        <p class="error">{{errImage}}</p>
+                    </div>
+                </div>
+            </div>
+            <form>
+            <div id="forma">
+                <div class="forma-red">
+                    <div>
+                        <p class="font">Korisničko ime</p>
+                        <input [(ngModel)]="dsoInformation.ownerFirstName" [ngModelOptions]="{standalone:true}" placeholder="Ime" type="text" (change)="testFirstLetterAndLength(dsoInformation.ownerFirstName,'name')">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputName}}</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <p class="font">Korisničko prezime</p>
+                        <input [(ngModel)]="dsoInformation.ownerLastName" [ngModelOptions]="{standalone:true}" placeholder="Prezime" type="text" (change)="testFirstLetterAndLength(dsoInformation.ownerLastName,'surname')">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputSurname}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="forma-red">
+                    <div>
+                        <p class="font">Ime kompanije</p>
+                        <input [(ngModel)]="dsoInformation.companyName" [ngClass]="{'disable':role!='ROLE_DSO'}" [ngModelOptions]="{standalone:true}"  placeholder="Ime kompanije" type="text" (change)="testFirstLetterAndLength(dsoInformation.companyName,'companyName')">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputNameCompany}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font">Email</p>
+                        <input [(ngModel)]="dsoInformation.email" [ngModelOptions]="{standalone:true}" placeholder="email@gmail.com" type="text" (change)="testEmail(dsoInformation.email)">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputEmail}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forma-red-no-flex">
+                    <div>
+                        <p class="font">Adresa </p>
+                        <input [(ngModel)]="dsoInformation.address" [ngModelOptions]="{standalone:true}" placeholder="Radoja Domanovića 12" type="text" (change)="testAddress(dsoInformation.address)">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputAddress}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="forma-red3">
+                    <div>
+                        <p class="font">Da li želite da promenite lozinku?</p>
+                    </div>
+                    <div>
+                        <ng-toggle style="z-index: 0;" (change)="setPasswordChange()" [value]="passwordChange" [color]=toggleColor [fontSize]=8.5 [labels]= toggleLabels [width]=55 [height]=25 ></ng-toggle>
+                    </div>
+                </div>
+                <div class="forma-red2" [style.display]="passwordChange ? 'block' : 'none'">
+                    <div class="forma-red" >
+                        <div>
+                            <p class="font">Lozinka</p>
+                            <input [ngClass]="{'no-input-password':passwordChange==false}" placeholder="********"  #password1 type="password" (change)="testPassword(password1.value)">
+                            <div class="errorMessage">
+                                <p class="error">{{errInputPassword}}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font">Ponovite lozinku</p>
+                            <input [ngClass]="{'no-input-password':passwordChange==false}" placeholder="********"  #password2 type="password" (change)="testPasswordAgain(password1.value,password2.value)">
+                            <div class="errorMessage">
+                                <p class="error">{{errInputPassword2}}</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div>   
+                <div style="margin-top:40px;text-align: center;">
+                    <button (click)="updateDso(password1.value,password2.value)" id="promena-podataka">Promena podatkaka</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    
+</div>

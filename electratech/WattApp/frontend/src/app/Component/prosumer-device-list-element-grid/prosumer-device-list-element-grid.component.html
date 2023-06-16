@@ -1,0 +1,16 @@
+<div id="list-element" (click)="goToUrl()">
+    <div  [ngClass]= info.image >
+      
+    </div>
+    <div class="list-element-title">
+        <p>{{info.name}}</p>
+    </div>
+    <div class="list-element-info">
+        <div>
+            <p [ngClass]="{'on':this.status=='Uključeno','off':this.status=='Isključeno'}">{{this.status}}</p>
+        </div>
+        <div>
+            <p>55kWh</p>
+        <div>
+    </div>
+</div>

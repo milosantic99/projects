@@ -1,0 +1,121 @@
+<div id="bodyRegister">
+    <div id="main">
+        <div style="display: flex; justify-content: center;color:white; ">
+            <app-logo [textcolor]="'white'"></app-logo>
+        </div>
+        <div id="forma">
+        <form>
+            <div class="forma-red">
+                <div>
+                    <p class="font">Ime</p>
+                    <input placeholder="Ime" #input_firstName type="text" (change)="testFirstLetterAndLength(input_firstName.value,'firstName')"
+                    [(ngModel)]="newProsumer.firstName" [ngModelOptions]="{standalone: true}">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputName}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="font">Prezime</p>
+                    <input placeholder="Prezime" #input_lastName type="text" (change)="testFirstLetterAndLength(input_lastName.value,'lastName')"
+                    [(ngModel)]="newProsumer.lastName" [ngModelOptions]="{standalone: true}">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputSurname}}</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="forma-red">
+                <div class="container-input-city">
+                    <p class="font">Grad</p>
+                    <ng-select class="custom" [items]="cities" 
+                        [clearable]="false"
+                        [(ngModel)]="newProsumer.city"
+                        [ngModelOptions]="{standalone: true}"
+                        (change)="search_city()"
+                        placeholder="Grad">
+                    </ng-select>
+                    <div class="errorMessage">
+                        <p class="error">{{errInputCity}}</p>
+                    </div>
+                </div>
+                <div >
+                    <p class="font">Tačna lokacija</p>
+                    <input  id = "adresa" class="input" placeholder="Radoja Domanovića 12" type="text" (keyup)="search_address()" [(ngModel)]="bilosta" [(ngModel)]="newProsumer.address" [ngModelOptions]="{standalone: true}">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputAddress}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="forma-red">
+                <div>
+                    
+                        <p class="font">Broj telefona</p>
+                        <input placeholder="0601234567" #input_phoneNumber type="text" (change)="testPhoneNumber(input_phoneNumber.value)"
+                        [(ngModel)]="newProsumer.phoneNumber" [ngModelOptions]="{standalone: true}">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputNumber}}</p>
+                        </div>
+                </div>
+
+                <div>
+                    <p class="font">Email</p>
+                    <input placeholder="email@gmail.com" #input_email type="text" (change)="testEmail(input_email.value)"
+                    [(ngModel)]="newProsumer.email" [ngModelOptions]="{standalone: true}">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputEmail}}</p>
+                    </div>
+                    
+                </div>
+            </div>    
+              
+            <div class="forma-red">
+                <div class="pass">
+                    <div>
+                        <p class="font">Lozinka</p>
+                    </div>
+                    <div class="pass-eye">
+                        <input type="{{ passwordFieldType }}" placeholder="********"  #input_pass1 type="password" (change)="testPassword(input_pass1.value)"
+                        [(ngModel)]="pass1" [ngModelOptions]="{standalone: true}">
+                        <span class="input-group-addon">
+                            <i class="fa fa-eye" [ngClass]="{'fa-eye-slash': passwordFieldType === 'text'}" style="cursor: pointer; color: white;" (click)="togglePasswordFieldType()"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="errorMessage">
+                        <p class="error">{{errInputPassword1}}</p>
+                    </div>
+                </div>
+                <div class="pass">
+                    <div>
+                        <p class="font">Ponovite lozinku </p>
+                    </div>
+                    <div class="pass-eye">
+                        <input type="{{ passwordFieldTypeTest }}" placeholder="********" #input_pass2 type="password" (change)="testPasswordAgain(input_pass1.value,input_pass2.value)"
+                        [(ngModel)]="newProsumer.password" [ngModelOptions]="{standalone: true}">
+                        <span class="input-group-addon">
+                            <i class="fa fa-eye" [ngClass]="{'fa-eye-slash': passwordFieldTypeTest === 'text'}" style="cursor: pointer; color: white;" (click)="togglePasswordFieldTypeTest()"></i>
+                        </span>
+                    </div>
+                    <div class="errorMessage">
+                        <p class="error">{{errInputPassword2}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 35px;">
+                <button (click)="submit()" id="prijavi-korisnika">Prijavi novog korisnika</button>
+            </div>
+            <div class="formElement" style="margin-top:15px;">
+                <div id="reg">
+                    <div>
+                        <p>Imaš nalog?</p>
+                    </div>
+                    <div>
+                        <p id="link" (click)="goToLogin()">Prijavi se</p>
+                    </div>
+                </div>
+            </div> 
+        </form>
+        </div>
+    </div>
+</div>

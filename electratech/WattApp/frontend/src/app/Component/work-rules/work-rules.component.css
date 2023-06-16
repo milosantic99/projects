@@ -1,0 +1,38 @@
+
+/* ======================== */
+.work-rules{
+    padding: 5% 7%;
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.work-rules-heder{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    font-size: 5vw;
+}
+.work-rules-input{
+    display: flex;
+    flex-direction: column;
+}
+.work-rules-input-value{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.input-width {
+    width: 45vw;
+    height: 25px;
+}
+.input-width-small{
+    width: 30vw;
+    height: 25px;
+}
+.hidden{
+    visibility: hidden;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

@@ -1,0 +1,26 @@
+<div id="element">
+    <!-- PROSUMER VARIJANTA -->
+    <div class="list">
+        <div routerLink="/HomeProsumer" routerLinkActive="selected" (click)="goToLink('HomeProsumer')">
+            <fa-icon [icon]="faHome"></fa-icon><!--Pocetna-->
+            <p>Početna</p>
+        </div>
+        <div [routerLink]="'/MyDevices'" routerLinkActive="selected"  (click)="goToLink('MyDevices')">
+            <a [routerLink]="'/MyDevice'" style="display: none"></a>
+            <fa-icon [icon]="faComputerMouse"></fa-icon> <!--moji uredjaji-->
+            <p>Moji uređaji</p>
+        </div>
+        <div routerLink="/AddDevices" routerLinkActive="selected" (click)="goToLink('AddDevices')">
+            <fa-icon [icon]="faPlusSquare" style="font-size: 33px;"></fa-icon>   <!--dodavanje-->
+            <p>Dodaj uređaj</p>
+        </div>
+        <div routerLink="/Analysis" routerLinkActive="selected" (click)="goToLink('Analysis')">
+            <fa-icon [icon]="faChartLine"></fa-icon><!--analiza-->
+            <p>Analiza</p>
+        </div>
+        <div routerLink="/SettingsProsumer" routerLinkActive="selected" (click)="goToLink('SettingsProsumer')">
+            <fa-icon [icon]="faGear"></fa-icon><!--podesavanja-->
+            <p>Podešavanja</p>
+        </div>
+    </div>
+</div>

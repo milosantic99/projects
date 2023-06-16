@@ -1,0 +1,178 @@
+<div *ngIf="menuType=='bottom' && dsoId=='00000000-0000-0000-0000-000000000000'">
+    <div class="heder">
+        <p>Analiza</p>
+    </div>
+    <div class="padd padd-header">
+        <p>Morate biti prijavljeni kod nekog DSO-a:</p>
+    </div>
+    <div class="padd" (click)="sendRequest()">
+        <div class="img padd-element">
+            <div>
+                <img src="../../../../assets/images/logo.png">
+            </div>
+            <div class="padd-info">
+                <div>
+                    <p class="padd-title">ElectraTech</p>
+                </div>
+                <div>
+                    <p class="padd-sub-title">Pošaljite zahtev</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="element" *ngIf="menuType=='bottom' && dsoId!='00000000-0000-0000-0000-000000000000'">
+    <div class="heder">
+        <p>Analiza</p>
+        <div class="type">
+            <div class="selectedButtonDiv" [ngClass]="{'selected': typeOfDevice=='Potrošač'}" (click)="setType('Potrošač')">
+              <p [ngClass]="{'type-selected' : typeOfDevice=='Potrošač'}">Potrošnja</p>
+            </div>
+            <div class="selectedButtonDiv" [ngClass]="{'selected': typeOfDevice=='Proizvodjač'}" (click)="setType('Proizvodjač')">
+              <p [ngClass]="{'type-selected' : typeOfDevice=='Proizvodjač'}">Proizvodnja</p>
+            </div>
+          </div>
+    </div>
+    <div class="cards">
+        <app-simple-card-analysis [info]="simpleCard1"></app-simple-card-analysis>
+        <app-simple-card-analysis [info]="simpleCard2"></app-simple-card-analysis>
+    </div>
+    <div class="chart">
+        <div class="arrows">
+            
+            <button mat-icon-button (click)="left()"  [ngClass]="{'selected': selectedButton === 'left'}"
+              (click)="setSelectedButton('left','right',selected-1)">
+              <fa-icon [icon]="faArrowLeft"></fa-icon>
+            </button>
+            <button mat-icon-button (click)="right()" [ngClass]="{'selected': selectedButton === 'right'}"
+              (click)="setSelectedButton('left','right',selected+1)">
+              <fa-icon [icon]="faArrowRight" ></fa-icon>
+            </button>
+            
+        </div>
+        <div class="graphic">
+            <div *ngIf="isLoading==true" class="size">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            
+            <div *ngIf="isLoading == false">
+                <p *ngIf="isToday()">Pregled {{ whatItIs }} (danas)</p>
+                <p *ngIf="isWeek()">Pregled {{ whatItIs }} (prošle nedelje)</p>
+                <p *ngIf="isMonth()">Pregled {{ whatItIs }} (mesečno)</p>
+            </div>
+            <app-line-graph-analysis #graph></app-line-graph-analysis>
+        
+        </div>
+        <!-- <div *ngIf="isMonth()" class="graphic">
+            <p>Pregled {{ whatItIs }} (mesečno)</p>
+            <app-bar-chart-analysis #bar></app-bar-chart-analysis>
+        </div> -->
+    </div>
+    <div class="table-responsive" *ngIf="typeConsumption()">
+        <table class="table" *ngIf="isMonth()">
+            <thead>
+                <tr>
+                <th scope="col">Mesec</th>
+                <th scope="col">Potrošnja [kWh]</th>
+                <th scope="col">Predikcija [kWh]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of monthGraph.labels; index as i">
+                    <td scope="row">{{ item }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(monthGraph.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(monthGraph.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" *ngIf="isWeek()">
+            <thead>
+                <tr>
+                <th scope="col">Dan</th>
+                <th scope="col">Potrošnja [W]</th>
+                <th scope="col">Predikcija [W]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of weekGraph.labels; index as i">
+                    <td scope="row">{{ item }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(weekGraph.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(weekGraph.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" *ngIf="isToday()">
+            <thead>
+                <tr>
+                <th scope="col">Sat</th>
+                <th scope="col">Potrošnja [W]</th>
+                <th scope="col">Predikcija [W]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of todayGraph.labels; index as i">
+                    <td scope="row">{{ item }}:00</td>
+                    <td scope="row">{{ isZeroOrEmpty(todayGraph.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(todayGraph.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive" *ngIf="typeProduction()">
+        <table class="table" *ngIf="isMonth()">
+            <thead>
+                <tr>
+                <th scope="col">Mesec</th>
+                <th scope="col">Proizvodnja [kWh]</th>
+                <th scope="col">Predikcija [kWh]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of monthGraph.labels; index as i">
+                    <td scope="row">{{ item }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(monthGraphProduction.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(monthGraphProduction.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" *ngIf="isWeek()">
+            <thead>
+                <tr>
+                <th scope="col">Dan</th>
+                <th scope="col">Proizvodnja [W]</th>
+                <th scope="col">Predikcija [W]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of weekGraph.labels; index as i">
+                    <td scope="row">{{ item }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(weekGraphProduction.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(weekGraphProduction.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" *ngIf="isToday()">
+            <thead>
+                <tr>
+                <th scope="col">Sat</th>
+                <th scope="col">Proizvodnja [W]</th>
+                <th scope="col">Predikcija [W]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of todayGraph.labels; index as i">
+                    <td scope="row">{{ item }}:00</td>
+                    <td scope="row">{{ isZeroOrEmpty(todayGraphProduction.data[i]) }}</td>
+                    <td scope="row">{{ isZeroOrEmpty(todayGraphProduction.prediction[i]) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+</div>
+<div *ngIf="menuType!='bottom'">
+    <h1>Trenutno dostupno samo za telefon</h1>
+</div>

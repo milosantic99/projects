@@ -1,0 +1,82 @@
+
+p{
+    margin: 0px;
+    padding: 0px;
+}
+.prosumer-device-consumption-element{
+    display:flex;
+    justify-content: space-between;
+}
+.image{
+    content: var(--url-devices-klima);
+    width: 100px;
+    height: 100px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 4.8vw;
+    padding: 5%;
+    padding-top: 0%;
+}
+.info>div>span{
+    font-size: 4vw ;
+}
+.consumption-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.5vw;
+    color: var(--color-siva);
+    font-weight: 550;
+    text-align: center;
+}
+.TV{
+    content: var(--url-devices-televizor);
+    width: 25vw;
+}
+
+.Klime{
+    content:var(--url-devices-klima);
+    width: 25vw;
+}
+
+.Šporeti{
+    content: var(--url-devices-sporet);
+    width: 25vw;
+}
+.Aspiratori{
+    content: var(--url-devices-aspirator);
+    width: 25vw;
+}
+
+.Aparati{
+    content: var(--url-devices-aparat);
+    width: 25vw;
+}
+
+.Bojleri{
+    content: var(--url-devices-bojler);
+    width: 25vw;
+}
+.Frižideri{
+    content: var(--url-devices-frizider);
+    width: 25vw;
+}
+.Grejači{
+    content: var(--url-devices-grejac);
+    width: 25vw;
+}
+.Ostalo{
+    content: var(--url-devices-ostalo);
+    width: 25vw;
+}
+.Proizvođači{
+    content: var(--url-devices-proizvodjac);
+    width: 25vw;
+}
+.Mašine{
+    content: var(--url-devices-masina);
+    width: 25vw;
+}

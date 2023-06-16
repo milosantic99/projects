@@ -1,0 +1,73 @@
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<button type="button" id="but" class="btn btn-success"  onclick="httpGet('/generate_users/50')"> generate 50 users</button>
+<button type="button" id="but" class="btn btn-success"  onclick="httpGet('/add_devices')"> generate devices</button>
+<button type="button" id="but" class="btn btn-success"  onclick="httpGet('generate_user_device_link/100')"> generate 100 devices for users</button>
+<button type="button" id="but" class="btn btn-success"  onclick="httpGet('generate_records')"> generate records</button>
+<button type="button" id="but" class="btn btn-danger"   onclick="httpGet('/delete_simulation')">  delete simulated data</button>
+<button type="button" id="but" class="btn btn-primary"  onclick="location.href = '/show_users';">  show users </button>
+<button type="button" id="but" class="btn btn-primary"  onclick="location.href = '/show_linkings';"> show linkings</button>
+<button type="button" id="but" class="btn btn-primary"  onclick="location.href = '/show_records';"> show records</button>
+<br>
+<br>
+<button type="button" id="but2" onclick="fun()" class="btn btn-success btn-lg">Start simulation</button>
+<div id="log"></div>
+
+<lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_3vhjjbex.json" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop  autoplay></lottie-player>
+
+
+</div>
+<!-- <a href="/generate_users/50"> generate 50 users</a> 
+<br> 
+<a href="/generate_user_device_link/100"> generate 100 devices for users</a> 
+<br> 
+<a href="/delete_simulation"> delete simulated data</a>
+<br> 
+<a href="/show_users"> show_users  </a> 
+<br> 
+<a href="/show_devices"> show_devices  </a> -->
+
+<style>
+    #but
+    {
+        margin: 20px;
+        padding: 10px;
+    }
+    #but2
+    {
+     
+        margin-left: 400px;
+        margin-top: 100px;
+    }
+</style>
+
+<script>
+    y=0
+    function fun()
+    {
+        y+=1
+        if(y%2) 
+        {
+            document.getElementById("but2").className = 'btn btn-danger btn-lg'
+            document.getElementById("but2").innerHTML = 'Stop simulation'
+        }
+        else
+        {
+            document.getElementById("but2").className = 'btn btn-success btn-lg'
+            document.getElementById("but2").innerHTML = 'Start simulation'
+        }
+    }
+    function httpGet(theUrl)
+    {
+        document.getElementById("log").innerHTML=document.getElementById("log").innerHTML+"Pozvan "+theUrl+"<br>"
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+</script>

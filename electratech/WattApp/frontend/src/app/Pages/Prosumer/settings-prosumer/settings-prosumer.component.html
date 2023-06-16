@@ -1,0 +1,107 @@
+
+<div id="element">
+    <div class="heder">
+        <div>
+            <p>Podešavanja</p>
+        </div>
+        <div (click)="logout()" class="heder-logout">
+            <div>
+                <fa-icon [icon]="faSignOut" transform="rotate-180"></fa-icon>
+            </div>
+            <div>
+                <p class="logout">Izloguj se</p>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div id="main">
+            <div id="iconPage" style="display: flex; justify-content: center;">
+                <!-- <fa-icon [icon]="faUser"></fa-icon> -->
+                <div class="img">
+                    <div>
+                        <img [src]="profilePictue">
+                    </div>
+                    <div class="inputImage">
+                        <label class="buttonImage" for="files">Izaberi sliku</label>
+                        <input type="file" id="files" accept="image/jpeg, image/png" max="1000000" (change)="onFileSelected($event)">
+                    </div>
+                    <div class="errorMessage">
+                        <p class="error">{{errImage}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="forma">
+                <div class="forma-red">
+                    <div>
+                        <p class="font">Ime </p>
+                        <input placeholder="Ime" #input_name type="text" (change)="testFirstLetterAndLength(input_name.value,'name')"  [(ngModel)]="prosumerInfo.firstName">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputName}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font">Prezime </p>
+                        <input placeholder="Prezime" #input_surname type="text" (change)="testFirstLetterAndLength(input_surname.value,'surname')"  [(ngModel)]="prosumerInfo.lastName">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputSurname}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="forma-red">
+                    <div>
+                        <p class="font">Email</p>
+                        <input placeholder="email@gmail.com" #input_email type="text" (change)="testEmail(input_email.value)"  [(ngModel)]="prosumerInfo.email">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputEmail}}</p>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <p class="font">Broj telefona</p>
+                        <input placeholder="0600203015"  #input_number type="string" (change)="testPhoneNumber(input_number.value)"  [(ngModel)]="prosumerInfo.phoneNumber">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputNumber}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forma-red">
+                    <div>
+                        <p class="font">Da li želite da promenite lozinku</p>
+                    </div>
+                    <div>
+                        <ng-toggle style="position: relative; z-index: 0;"  (change)="setPasswordChange()" [value]="passwordChange" [color]=toggleColor [fontSize]=8.5 [labels]= toggleLabels [width]=55 [height]=25 ></ng-toggle>
+                    </div>
+                </div>
+
+                <div class="forma-red" [style.display]="passwordChange ? 'block' : 'none'">
+                    <div>
+                        <p class="font">Lozinka</p>
+                        <input [ngClass]="{'no-input-password':passwordChange==false}" placeholder="********"  #input_pass1 type="password" (change)="testPassword(input_pass1.value)" [(ngModel)]="pass1">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputPassword1}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font">Ponovite lozinku</p>
+                        <input [ngClass]="{'no-input-password':passwordChange==false}" placeholder="********"  #input_pass2 type="password" (change)="testPasswordAgain(input_pass1.value,input_pass2.value)" [(ngModel)]="pass2">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputPassword2}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                    <div id="buttonDiv" >
+                    <button (click)="updateDataProsumer()"  id="promena-podataka">Promena podataka</button>
+                </div>
+                
+            </div>
+
+        </div>
+    
+    </div>
+    
+</div>

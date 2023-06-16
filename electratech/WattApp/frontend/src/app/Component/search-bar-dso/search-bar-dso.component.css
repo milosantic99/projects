@@ -1,0 +1,71 @@
+p{
+    margin: 0px;
+}
+#container{
+    background-color: var(--color-siva);
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    justify-content: space-around;
+    
+}
+.container-1{
+    background-color: var(--color-logo-bela);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 10px;
+    column-gap: 15px;
+}
+
+.container-1>div>input {
+    border:0;
+    outline:0;
+    min-width: 350px;
+}
+input:focus {outline:none!important;}
+
+.container-1>div>fa-icon{
+    color: var(--color-siva);
+}
+
+.container-2{
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    color: var(--color-logo-bela);
+}
+.container-2-2{
+    display: flex;
+    column-gap: 8px;
+}
+
+.selected{
+    color: var(--color-Narandzasta);
+}
+.container-size{
+    padding: 5px;
+}
+.container-size>div>input{
+    min-width: 200px !important;
+}
+
+.container-3{
+    background-color: var(--color-Narandzasta);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 8px;
+}
+.container-3>div>fa-icon{
+    color: var(--color-siva);
+    font-size: 22px;
+}

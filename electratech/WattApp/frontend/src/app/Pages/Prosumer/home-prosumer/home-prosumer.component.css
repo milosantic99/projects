@@ -1,0 +1,146 @@
+p {
+    padding: 0px;
+    margin: 0px;
+    color: var(--color-siva);
+    font-family: var(--font-text);
+}
+
+#element {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5%;
+    padding-bottom: 100px;
+    padding-top: 0px;
+    row-gap: 35px;
+}
+
+/* HEDER */
+.heder {
+    color: var(--color-siva);
+    font-size: 8vW;
+    /* padding: 10% 5%; */
+    padding-top: 10%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.heder-2 {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.heder-2-name {
+    font-size: 6vw;
+    margin-bottom: 8px;
+    color: var(--color-siva);
+}
+
+.heder-2-address {
+    font-size: 4.5vw;
+}
+
+.img>img {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+/* slieder-information */
+.slieder-information {
+    display: -webkit-inline-box;
+    overflow-x: scroll;
+    column-gap: 20px;
+    padding: 10px 0px 30px 0px;
+    scrollbar-color: var(--color-Narandzasta);
+}
+
+.slieder-information>div {
+    padding-left: 13vw;
+    padding-right: 13vw;
+}
+
+/* For webkit-based browsers (e.g. Chrome, Safari) */
+.slieder-information::-webkit-scrollbar-thumb {
+    background-color: var(--color-Narandzasta);
+    border-radius: 10px;
+}
+
+/* For Firefox and some other non-webkit based browsers */
+.slieder-information::-webkit-scrollbar {
+    height: 3px;
+    /*adjust width as needed */
+    color: var(--color-Narandzasta);
+}
+
+.slieder-information::-webkit-scrollbar-thumb {
+    color: var(--color-Narandzasta);
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5% 2%;
+}
+/* Graph */
+
+.chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+    /* margin: 5%; */
+}
+
+.graphic {
+    text-align: center;
+}
+
+/* Debt */
+
+.debt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.debt-title {
+    font-size: 6.5vw;
+}
+
+.debt-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5vw;
+    font-weight: bold;
+    column-gap: 15px;
+    color: var(--color-siva);
+}
+
+.debt-info-circle-red {
+    background-color: var(--color-red-debt);
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+}
+.debt-info-circle-green {
+    background-color: var(--color-green-debt);
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+}
+/* top-three-consumer */
+.top-three-consumer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.top-three-consumer-title{
+    font-size: 6vw;
+}

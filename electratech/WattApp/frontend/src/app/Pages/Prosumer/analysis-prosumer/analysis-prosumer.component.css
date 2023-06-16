@@ -1,0 +1,135 @@
+#element{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px;
+}
+.type-selected{
+    color: var(--color-Narandzasta);
+    font-weight: 600;
+}
+.type {
+    display: flex;
+    flex-direction: row;
+    row-gap: 10px;
+}
+.type>div > p {
+    font-family: var(--font-text);
+    font-size: medium;
+    margin: auto;
+}
+
+.type>.selectedButtonDiv {
+    padding: 3px;
+    width: 80%;
+    margin: auto;
+}
+
+.type>.selectedButtonDiv.selected {
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-family: var(--font-text);
+    font-size: medium;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+.selected{
+    color: white;
+    cursor:none;
+    --mat-mdc-button-persistent-ripple-color: transparent; 
+    --mat-mdc-button-ripple-color: transparent;
+
+}
+.chart {
+    padding: 5% 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+    margin: 5%; 
+    /* da se sredi margina */
+}
+.heder{
+    color: var(--color-siva);
+    font-size: 8vW;
+    padding: 10% 5%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    row-gap: 10px;
+    justify-content: space-between;
+}
+.heder > button {
+    border-radius: 10px;
+    border: none;
+    background-color: var(--color-Narandzasta);
+    padding: 7px;
+    color: var(--color-siva);
+    font-size: medium;
+}
+.arrows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.graphic {
+    text-align: center;
+}
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5% 2%;
+}
+tbody, td, tfoot, th, thead, tr{
+    min-width: 150px;
+}
+th,td{
+    text-align: center;
+}
+/* ===================== */
+
+.padd{
+    padding: 0% 5%;
+}
+.padd-header{
+    font-size: 4.5vw;
+    margin-bottom: 20px;
+}
+.img>div>img{
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.padd-element{
+    display: flex;
+    column-gap: 10px;
+    box-shadow: var(--box-shadow-div);
+    border-radius: 8px;
+    padding: 10px;
+}
+.padd-element>div{
+    display: flex;
+    align-items: center;
+}
+.padd-title{
+    padding: 0px;
+    margin: 0px;
+    font-size: 6vw;
+    color: black;
+}
+.padd-sub-title{
+    padding: 0px;
+    margin: 0px;
+}
+.padd-info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    color: gray;
+}

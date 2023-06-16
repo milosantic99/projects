@@ -1,0 +1,24 @@
+<div id="graphics-heder" *ngIf="isLoading == false">
+    <div *ngIf="select.value == 'month'">
+        <p class="graphics-heder-text">Potrošnja u mesec dana</p>
+    </div>
+    <div *ngIf="select.value == 'prediction'">
+        <p class="graphics-heder-text">Proizvodnja u mesec dana</p>
+    </div>
+    <div>
+        <select #select (change)="metod(select.value)">
+            <option value="month" selected>Potrošnja u mesec dana</option>
+            <option value="prediction">Proizvodnja u mesec dana</option>
+        </select>
+    </div>
+</div>
+<div style="width: 100%;">
+    <div id="divChart">
+        <canvas id="my-line-chart" (window:resize)="onResized()"></canvas>
+    </div>
+</div>
+<div *ngIf="isLoading == true" class="position">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

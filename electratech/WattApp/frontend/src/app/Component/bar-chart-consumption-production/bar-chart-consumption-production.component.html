@@ -1,0 +1,24 @@
+<div *ngIf="isLoading == true" class="position">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div style="width: 100%;">
+    <div id="divChart">
+        <canvas id="my-bar-chart" (window:resize)="onResized()"></canvas>
+    </div>
+</div>
+<div  *ngIf="isLoading == false">
+    <div class="bar-info">
+        <div>
+            <i class="bi bi-triangle-fill" [ngClass]="{'bad rotate':consumption_triangle=='bad', 'good':consumption_triangle=='good'}"></i>
+            <p>{{consumption_triangle_value}}kWh potrošnje u odnosu na period od prosle godine</p>
+        </div>
+        <div>
+            <i class="bi bi-triangle-fill" [ngClass]="{'bad rotate':produce_triange=='bad', 'good':produce_triange=='good'}"></i>
+            <p>{{produce_triange_value}}kWh proizvodnje u odnosu na period od prosle godine</p>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,26 @@
+
+  <div *ngIf="auth==false">
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="(role=='ROLE_DSO' || role=='ROLE_DISPATCHER') && menu=='left' && auth==true " class="main-row">
+    <div id="menu">
+      <app-left-meni *ngIf="menu=='left'" class="position"></app-left-meni>  
+    </div>
+    <div id="hero" class="page_padding">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div *ngIf="(role=='ROLE_DSO' || role=='ROLE_DISPATCHER') && menu!='left' && auth==true">
+    <h1>Trenutno dostupno samo na racunaru</h1>
+  </div>
+
+  <div *ngIf="role=='ROLE_PROSUMER' || role=='ROLE_PROSUMER_DEMO' && auth==true">
+    <div *ngIf="menu!='bottom'">
+      <h1>Trenutno dostupno samo na telefonu</h1>
+    </div>
+    <router-outlet></router-outlet>
+    <app-bottom-meni *ngIf="menu=='bottom'" class="position-bottom"></app-bottom-meni>
+  </div>
+
+

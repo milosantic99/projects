@@ -1,0 +1,91 @@
+<div class="work-rules">
+    <div class="work-rules-heder">
+        <div>
+            <p>Definisanje pravila rada</p>
+        </div>
+        <div>
+            <ng-toggle style="z-index: 0; position: relative;" 
+            #toggle
+            (change)="turnOnOffDevice(toggle)"
+            [(ngModel)] = "work_rule"
+            [color]=toggleColor 
+            [fontSize]=8.5 
+            [labels]= toggleLabels 
+            [width]=55 
+            [height]=25>
+        </ng-toggle>
+        </div>
+    </div>
+    <div class="work-rules-input">
+        <div>
+            <p>Uključiti uređaj</p>
+        </div>
+        <div class="work-rules-input-value">
+            <div>
+                <input (change)="clearError()" type="date" class="input-width" [ngClass]="{'disabled':work_rule==true}" [(ngModel)]="work_rule_def.dateOn"  [min]="minDate">
+            </div>
+            <div>
+                <select class="disabled input-width-small" *ngIf="work_rule_def.dateOn==''">
+                    <option>0:00</option>
+                </select>
+                <select [ngClass]="{'disabled':work_rule==true}" (change)="setHour_1()"  class="input-width-small" [(ngModel)]="work_rule_def.timeOn" *ngIf="minDate != work_rule_def.dateOn && work_rule_def.dateOn!=''">
+                    <option *ngFor="let i of hours_0_next" value="{{i}}">
+                        0{{i}}:00
+                    </option>
+                    <option *ngFor="let i of hours_1_next" value="{{i}}">
+                        {{i}}:00
+                    </option>
+                </select>
+                <select [ngClass]="{'disabled':work_rule==true}" (change)="setHour_1()" class="input-width-small" [(ngModel)]="work_rule_def.timeOn" *ngIf="minDate == work_rule_def.dateOn && work_rule_def.dateOn!=''">
+                    <option *ngIf="work_rule_def.timeOn!= null && work_rule_def.timeOn>=10" [value]="work_rule_def.timeOn" hidden>{{work_rule_def.timeOn}}:00</option>
+                    <option *ngIf="work_rule_def.timeOn!= null && work_rule_def.timeOn<10" [value]="work_rule_def.timeOn" hidden>0{{work_rule_def.timeOn}}:00</option>
+                    <option *ngFor="let i of hours_0" value="{{i}}">
+                        0{{i}}:00
+                    </option>
+                    <option *ngFor="let i of hours_1" value="{{i}}">
+                        {{i}}:00
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <p>Isključiti uređaj</p>
+        </div>
+        <div class="work-rules-input-value">
+            <div *ngIf="work_rule_def.dateOn!=''">
+                <input [ngClass]="{'disabled':work_rule==true}" (change)="clearError()" type="date" class="input-width" [(ngModel)]="work_rule_def.dateOff" [min]="work_rule_def.dateOn">
+            </div>
+            <div *ngIf="work_rule_def.dateOn==''">
+                <input [ngClass]="{'disabled':work_rule==true}" (change)="clearError()" type="date" class="input-width" [min]="minDate" [(ngModel)]="work_rule_def.dateOff">
+            </div>
+            <div>
+                <select class="disabled input-width-small" *ngIf="work_rule_def.dateOff==''">
+                    <option>0:00</option>
+                </select>
+            <select [ngClass]="{'disabled':work_rule==true}" (change)="setHour_1()" class="input-width-small" [(ngModel)]="work_rule_def.timeOff" *ngIf="work_rule_def.dateOn != work_rule_def.dateOff && work_rule_def.dateOff!=''">
+                <option *ngFor="let i of hours_0_next" value="{{i}}">
+                    0{{i}}:00
+                </option>
+                <option *ngFor="let i of hours_1_next" value="{{i}}">
+                    {{i}}:00
+                </option>
+            </select>
+            <select [ngClass]="{'disabled':work_rule==true}" (change)="setHour_1()" class="input-width-small" [(ngModel)]="work_rule_def.timeOff" *ngIf="work_rule_def.dateOn == work_rule_def.dateOff && work_rule_def.dateOff!=''">
+                <option *ngIf="work_rule_def.timeOn!= null && work_rule_def.timeOn>=10" [value]="work_rule_def.timeOn" hidden>{{work_rule_def.timeOn}}:00</option>
+                <option *ngIf="work_rule_def.timeOn!= null && work_rule_def.timeOn<10" [value]="work_rule_def.timeOn" hidden>0{{work_rule_def.timeOn}}:00</option>    
+                <option *ngFor="let i of hours_0_same_date" value="{{i}}">
+                        0{{i}}:00
+                    </option>
+                    <option *ngFor="let i of hours_1_same_date" value="{{i}}">
+                        {{i}}:00
+                    </option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{'hidden':errMessage==false}">
+        <p style="text-align: center; color:var(--color-Error-message)">Morate definisati datum</p>
+    </div>
+</div>

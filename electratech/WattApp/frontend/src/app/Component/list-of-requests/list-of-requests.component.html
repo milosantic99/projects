@@ -1,0 +1,48 @@
+<div id="list-of-requests-element">
+    <div>
+        <p class="heder">Notifikacije</p>
+    </div>
+    <div *ngIf="listNotification.length > 0" class="elements" >
+        <div *ngFor="let element of listNotification">
+            <div class="element">
+                <div>
+                    <!-- <img class="element-img" src="../../../assets/images/person.jpg"> -->
+                    <img class="element-img" [src]="element.imageUrl">
+                </div>
+                <div class="element-info">
+                    <div>
+                        <p class="element-info-name">{{element.prosumerName}}</p>
+                    </div>
+                    <div *ngIf="element.notificationType == 'Delete request'">
+                        Zahtev za brisanje naloga
+                    </div>
+                    <div *ngIf="element.notificationType == 'Access request'">
+                        Zahtev za dodavanje naloga
+                    </div>
+                </div>
+                <div *ngIf="element.notificationType == 'Delete request'" class="element-set">
+                    <div (click)="approveTypeRemoveAccountNotification(element.notificationId)">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <div (click)="declineTypeRemoveAccountNotification(element.notificationId)">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                </div>
+                <div *ngIf="element.notificationType == 'Access request'" class="element-set">
+                    <div (click)="approveTypeAddAccountNotification(element.notificationId)">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <div (click)="declineTypeAddAccountNotification(element.notificationId)">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="listNotification.length == 0" class="empty-list">
+        <div>
+            <p>Nemate novih notifikacija</p>
+        </div>
+    </div>
+</div>

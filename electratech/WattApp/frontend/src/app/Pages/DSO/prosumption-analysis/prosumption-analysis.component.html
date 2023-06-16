@@ -1,0 +1,111 @@
+<div id="element">
+    <div class="header">
+        <h1>Analiza potrošnje i proizvodnje</h1>
+    </div>
+
+
+    <div class="flex_row">
+        <!-- Line chart -->
+        <div class="card flex_column flex_column-50 height-card">
+            <div class="my-header" [ngClass]="{'display-none': isLoadingLine==true}">
+                <div>
+                    <p>Pregled potrošnje i proizvodnje za period {{daysOfYear[0]}} - {{daysOfYear[daysOfYear.length-1]}}</p>
+                </div>
+                <div id="datePicker">
+                    <app-date-range-picker (changeEvent)="changeChartDateRange($event)"></app-date-range-picker>
+                </div>
+            </div>
+            <div style="position: relative;">
+                <div [ngClass]="{invisible: isLoadingLine==true}" id="divChart">
+                    <canvas id="my-line-chart-analysis"></canvas>
+                </div>
+                <div *ngIf="isLoadingLine==true" class="loader-map" style="margin-top: 50px;">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bar chart -->
+        <div class="card flex_column flex_column-45 height-card">
+            <div *ngIf="isLoading==true" class="loader-map">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+            </div>
+            <div class="my-header-margin" *ngIf="isLoading==false">
+                <div class="my-header my-header-margin">
+                    <p>Pregled potrošnje / proizvodnje</p>
+                </div>
+                <div class="flex_row" style="align-items: center;">
+                    <button mat-icon-button [ngClass]="{'selected': selectedButton === 'left'}"  
+                    (click)="setSelectedButton('left',selected-1)">
+                    <fa-icon [icon]="arrowLeftIco"></fa-icon>
+                    </button>
+                    <div style="font-weight: bold; min-width: 85px; text-align: center;">{{tabs[selected]}}</div>
+                    <button mat-icon-button [ngClass]="{'selected': selectedButton === 'right'}" 
+                    (click)="setSelectedButton('right',selected+1)">
+                    <fa-icon [icon]="arrowRightIco"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div [ngClass]="{hidden: isLoading==true}">
+                <div [ngClass]="{hidden: selected!=0}">
+                    <div id="barChart">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+                <div [ngClass]="{hidden: selected!=1}">
+                    <div id="barChart2">
+                        <canvas id="bar-chart2"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="flex_row-2">
+        <div class="flex_column">
+            <div class="my-header2">Pregled realizacije</div>
+            <div class="card table-card">
+                <div *ngIf="isLoadingTable==true" class="loader-map">
+                    <div class="spinner-border" role="status" >
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <table class="table table-striped" *ngIf="isLoadingTable==false">
+                    <thead>
+                        <tr>
+                          <th scope="col">Vreme</th>
+                          <th scope="col">Potrošnja [kWh]</th>
+                          <th scope="col">Prediktovana potrošnja [kWh]</th>
+                          <th scope="col">Proizvodnja [kWh]</th>
+                          <th scope="col">Prediktovana proizvodnja [kWh]</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="dataSource.length > 0">
+                        <tr *ngFor="let i of dataSource">
+                          <td>{{i.month}}</td>
+                          <td>{{i.consumption}}</td>
+                          <td>{{i.predictedConsumption}}</td>
+                          <td>{{i.production}}</td>
+                          <td>{{i.predictedProduction}}</td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="flex_column" style="width: 30%;">
+            <div class="my-header2">Predikcija</div>
+            <app-simple-card [info]="simpleCard3"></app-simple-card>
+            <app-simple-card [info]="simpleCard4"></app-simple-card>
+        </div>
+        <div class="flex_column" style="width: 35%;">
+            <div class="my-header2">Vremenska prognoza za narednih 5 dana</div>
+            <!-- <div class="my-header2">Pregled realizacije</div> -->
+            <div class = 'card' style="padding-right: 0px">
+                <app-open-weather-widget></app-open-weather-widget>
+            </div>
+        </div>
+    </div> 
+</div>

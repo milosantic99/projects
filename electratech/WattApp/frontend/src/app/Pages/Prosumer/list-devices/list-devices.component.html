@@ -1,0 +1,29 @@
+<div id="element" *ngIf="menuType=='bottom'">
+    <div class="heder">
+        <div class="heder-1">
+            <div>
+                <p>Dodavanje uređaja</p>
+            </div>
+            <div (click) = "goBack()">
+                <i class="bi bi-arrow-left-short"></i>
+            </div>
+        </div>
+    </div>
+    <div class="sub-title">
+        <div>
+            <p>Konačna potvrda za dodavanje</p>    
+        </div>
+        <div (click)="addDevice()">
+            <button>Dodaj !</button>
+        </div>
+    </div>
+
+    <div class="list" *ngIf="cart.length>0">
+        <div *ngFor="let p of cart" (click)="removeFromStorage(p)">
+            <app-device-image [info]="p"></app-device-image>
+        </div>
+    </div>
+    <div class="empty-list" *ngIf="cart.length==0">
+        <p>Lista uredjaja za dodavanje je prazna</p>
+    </div>
+</div>

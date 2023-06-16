@@ -1,0 +1,84 @@
+p{
+    margin: 0px;
+    padding: 0px;
+}
+#list-element{
+    border-radius: 15px;
+    box-shadow: var(--box-shadow-div);
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    align-items: center;
+    column-gap: 10px;
+    min-height: 164px;
+}
+
+
+.list-element-title{
+    font-size: 4.0vw;
+    margin-bottom: 10px;
+}
+.list-element-info{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.on{
+    color:var(--color-green-debt);
+}
+.off{
+    color:var(--color-red-debt);
+}
+
+.televizor{
+    content: url("../../../assets/../assets/images/devices/televizor.png");
+    width: 80%
+}
+
+.klima{
+    content: url("../../../assets/../assets/images/devices/klima.png");
+    width: 80%
+}
+
+.rerna{
+    content: url("../../../assets/../assets/images/devices/rerna.png");
+    width: 80%
+}
+.aspirator{
+    content: url("../../../assets/../assets/images/devices/aspirator.png");
+    width: 80%
+}
+
+.aparati{
+    content: url("../../../assets/../assets/images/devices/aparati.png");
+    width: 80%
+}
+
+.bojler{
+    content: url("../../../assets/../assets/images/devices/bojler.png");
+    width: 80%
+}
+.frizider{
+    content: url("../../../assets/../assets/images/devices/frizider.png");
+    width: 80%
+}
+.grejaci{
+    content: url("../../../assets/../assets/images/devices/grejaci.png");
+    width: 80%
+}
+.ostalo{
+    content: url("../../../assets/../assets/images/devices/ostalo.png");
+    width: 80%
+}
+.proizvodnja{
+    content: url("../../../assets/../assets/images/devices/proizvodnja.png");
+    width: 80%
+}
+.vesMasina{
+    content: url("../../../assets/../assets/images/devices/vesMasina.png");
+    width: 80%
+}

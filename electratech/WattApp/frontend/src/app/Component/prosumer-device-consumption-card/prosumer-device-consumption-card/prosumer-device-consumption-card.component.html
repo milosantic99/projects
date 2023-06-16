@@ -1,0 +1,26 @@
+<div class="prosumer-device-consumption-element">
+    <div class="image {{info.subType}}" (click)="goToUrl(info.deviceId.toString())"></div>
+    <div class="info">
+        <div>
+            <p>{{info.name}}</p>
+        </div>
+        <div>
+            <span>Status:&nbsp;</span> 
+            <ng-toggle style="position: relative; z-index: 0;" 
+                        #toggle
+                        [value]="info.status" 
+                        [color]=toggleColor 
+                        [fontSize]=8.5 
+                        [labels]= toggleLabels 
+                        [width]=55 
+                        [height]=25
+                        (change)="turnOnOffDevice(toggle)"></ng-toggle>
+        </div>
+    </div>
+    <div class="consumption-info">
+        <div>
+            <p>{{info.consumption}}</p>
+            <p>kWh</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div id="bodyContainer">
+    
+    <div id="mainContainer">
+
+        <div id="small" class="logo">
+            <p>ElectraTech<i class="bi bi-lightning-fill"></i> </p>
+        </div>
+
+        <div class="containerItem left">
+            <div>
+                <div class="logo">
+                    <p>ElectraTech<i class="bi bi-lightning-fill"></i> </p>
+                </div>
+            </div>
+            <div class="text">
+                <p>ElectraTech pruža integrirana rešenja za pametne gradove,
+                    što omogućuje DSO-ovima da se prilagode novim trendovima 
+                    u urbanom razvoju i pruže bolju uslugu građanima. Naša
+                    rešenja uključuju nadzor i upravljanje mrežama, pametna 
+                    merenja, upravljanje potrošačkim uređajima,
+                    i druge usluge koje će pomoći DSO-ovima 
+                    da stvore sigurnije mreže, smanje upotrebu resursa a samim tim i smanje potrošnju.</p>
+            </div>
+        </div>
+        <div class="lineV"></div>
+        <div>
+            <div class="lineH"></div>
+        </div>
+        
+        <div class="containerItem" >
+                <form id="formContainer" *ngIf="isLoading == false">
+                    <h1>Prijavi se</h1>
+                    <div class="formElement">
+                        <p>Email</p>
+                        <input type="email" placeholder="email@gmail.com"  class="" [(ngModel)]="loginModel.email" name="input_email" type="text">
+                        <div class="errorMessage">
+                            <p class="error">{{errInputEmail}}</p>
+                        </div>
+                    </div>
+                    <div class="formElement">
+                        <p>Lozinka</p>
+                        <div class="input-group">
+                            <input type="{{ passwordFieldType }}" placeholder="**********"  class="input-field" [(ngModel)]="loginModel.password" name="input_pass" type="password">
+                            <span class="input-group-addon">
+                                <i class="fa fa-eye" [ngClass]="{'fa-eye-slash': passwordFieldType === 'text'}" style="cursor: pointer;" (click)="togglePasswordFieldType()"></i>
+                            </span>
+                        </div>  
+                        <div class="errorMessage">
+                            <p class="error">{{errInputPassword}}</p>
+                        </div>
+                    </div>
+                    <div class="formElement">
+                        <button class="butt" type="submit" (click)="submit()">Prijavi se</button> 
+                    </div> 
+                    <div class="formElement">
+                        <div id="reg">
+                            <div>
+                                <p>Nemaš nalog?</p>
+                            </div>
+                            <div>
+                                <p id="link" (click)="goToLogin()">Registruj se</p>                           
+                            </div>
+                        </div>
+                    </div>  
+                </form>
+                <div *ngIf="isLoading==true" class="loader-map">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div id="container">
+    <div class ="container-1">
+        <div>
+            <fa-icon [icon]="faSearch"></fa-icon>
+        </div>
+        <div>
+            <input type="text" #name (keyup)="searchByName(name.value)" placeholder="Unesite ime korisnika">
+        </div>
+        <div>
+            <i class="bi bi-x-lg"></i>
+        </div>
+    </div>
+    <div class = "container-2">
+        <div>
+            <p>Sortiraj prema:</p>
+        </div>
+        <div class = "container-2-2">
+            <p class="selected">Potrošnji</p><p> / </p><p>Proizvodnji</p>
+        </div>
+    </div>
+    <div class="container-1 container-size">
+        <div>
+            <fa-icon [icon]="faSearch"></fa-icon>
+        </div>
+        <div>
+            <input type="text" placeholder="Unesite željeni grad">
+        </div>
+        <div>
+            <i class="bi bi-x-lg"></i>
+        </div>
+    </div>
+    <div class="container-3" (click)="callDownloadCsv()">
+        <div>
+            <fa-icon [icon]="faFileExport"></fa-icon>
+        </div>
+        <div>
+            <p>Export</p>
+        </div>
+    </div>
+</div>

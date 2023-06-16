@@ -1,0 +1,11 @@
+<div class="divWeatherMain"> 
+    <div>Trenutna prognoza</div>
+    <div class="weatherWidgetRow">
+        <img src="../../../assets/images/weather/{{WeatherData.weather[0].icon}}@2x.png"  alt="">
+    </div>
+    <div class="weatherWidgetRow" style="font-size: 40px;margin-top: 10px;">{{WeatherData.main.temp}}°</div>
+    <div class="weatherWidgetRow" style="font-size: 20px;">{{WeatherData.main.temp_min}}° / {{WeatherData.main.temp_max}}°</div>
+    <div class="weatherWidgetRow" style="font-size: 20px;">Realni osećaj: {{WeatherData.main.feels_like}}°</div>
+    <div class="weatherWidgetRow" style="font-size: 34px;margin-top: 10px;">{{WeatherData.name}}</div>
+    <div class="weatherWidgetRow" style="font-size: 20px;">Vlažnost vazduha: {{WeatherData.main.humidity}}%</div>
+</div>

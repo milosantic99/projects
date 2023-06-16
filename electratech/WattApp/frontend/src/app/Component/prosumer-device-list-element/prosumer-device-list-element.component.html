@@ -1,0 +1,52 @@
+<div id="list-element">
+    <div (click)="goToUrl()">
+        <img class="{{info.image}}">
+    </div>
+    <div class="list-element-info">
+        <div class="list-element-info-1">
+            <div class="list-element-info-1-title" *ngIf="editTitle==false">
+                <div (click)="goToUrl()">
+                    <p>{{info.name}}</p>
+                </div>
+                <div (click)="setEditTitle()">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </div>
+            </div>
+            <div class="list-element-info-1-edit" *ngIf="editTitle==true">
+                <div class="edit-input">
+                    <input minlength="3" #input_title type="text" value={{info.name}}>
+                </div>
+                <div (click)="changeTitle(input_title.value)">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                </div>
+                <div (click)="setEditTitle()">
+                    <fa-icon [icon]="faBan"></fa-icon>
+                </div>
+            </div>
+            <div class="list-element-info-1-subtitle">
+                <p>{{info.originalName}}</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div>
+                <p>{{info.consumption}}W ~ {{info.percent}}%</p>
+            </div>
+            <div class="list-element-info-2">
+                <ng-toggle style="z-index: 0;" 
+                    #toggle
+                    (change)="turnOnOffDevice(toggle)" 
+                    [(ngModel)]="info.status" 
+                    [value]="toggleStatus" 
+                    [color]=toggleColor 
+                    [fontSize]=8.5 
+                    [labels]= toggleLabels 
+                    [width]=55 
+                    [height]=25>
+                </ng-toggle>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="list-element-arrow" (click)="goToUrl()">
+        <fa-icon [icon]="faArrowRight"></fa-icon>
+    </div> -->
+</div>

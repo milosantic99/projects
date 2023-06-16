@@ -1,0 +1,17 @@
+<div id="element">
+    <div class="element-legend">
+        <div *ngIf="consumerProducer=='consumer'">
+           <p>Max potrošnja {{minMax.max}} kWh</p>
+           <p>Min potrošnja {{minMax.min}} kWh</p> 
+        </div>
+        <div *ngIf="consumerProducer=='producer'">
+            <p>Min proizvodnja {{minMax.min}} kWh</p> 
+            <p>Max proizvodnja {{minMax.max}} kWh</p>
+         </div>
+        <div class="gradient">
+        </div>
+    </div>
+    <div id="map-prosumers"></div>
+</div>
+
+

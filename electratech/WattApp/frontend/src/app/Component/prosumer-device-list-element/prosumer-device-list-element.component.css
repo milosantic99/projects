@@ -1,0 +1,133 @@
+p,h1{
+    margin: 0px;
+    padding: 0px;
+}
+#list-element{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--color-siva);
+    /* border-bottom: 1px solid var(--color-siva); */
+    padding: 2% 3%;
+}
+.list-element-info{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-right: 10px;
+}
+.list-element-info-1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+.list-element-info-1-title{
+    display: flex;
+    width: 100%;
+    column-gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-element-info-1-edit{
+    display: flex;
+    flex-direction: row;
+    font-size: 5vw;
+    justify-content: space-between;
+    width: 100%;
+}
+.edit-input{
+    width: 70%;
+}
+.edit-input>input{
+    border:0;
+    border-bottom: 1px solid black;
+    outline:0;
+    font-size: 4vw;
+}
+.edit-input{
+    outline:none!important;
+    font-size: 4vw;
+}
+
+.list-element-info-1-title>div>p{
+    font-size: 5vw;
+}
+.list-element-info-1-title>div>fa-icon{
+    color: var(--color-Disable);
+    font-size: 5.5vw;
+}
+
+.list-element-info-1-subtitle>p{
+    font-size: 2.5vw;
+    color: var(--color-siva);
+}
+.list-element-info-2{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 10px;
+}
+.list-element-info-2>p{
+    font-size: 3.7vw;
+}
+/* .list-element-arrow{
+    height: 100%;
+} */
+.bottom{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.televizor{
+    content: url("../../../assets/../assets/images/devices/televizor.png");
+    width: 25vw;
+}
+
+.klima{
+    content: url("../../../assets/../assets/images/devices/klima.png");
+    width: 25vw;
+}
+
+.rerna{
+    content: url("../../../assets/../assets/images/devices/rerna.png");
+    width: 25vw;
+}
+.aspirator{
+    content: url("../../../assets/../assets/images/devices/aspirator.png");
+    width: 25vw;
+}
+
+.aparati{
+    content: url("../../../assets/../assets/images/devices/aparati.png");
+    width: 25vw;
+}
+
+.bojler{
+    content: url("../../../assets/../assets/images/devices/bojler.png");
+    width: 25vw;
+}
+.frizider{
+    content: url("../../../assets/../assets/images/devices/frizider.png");
+    width: 25vw;
+}
+.grejaci{
+    content: url("../../../assets/../assets/images/devices/grejaci.png");
+    width: 25vw;
+}
+.ostalo{
+    content: url("../../../assets/../assets/images/devices/ostalo.png");
+    width: 25vw;
+}
+.proizvodnja{
+    content: url("../../../assets/../assets/images/devices/proizvodnja.png");
+    width: 25vw;
+}
+.vesMasina{
+    content: url("../../../assets/../assets/images/devices/vesMasina.png");
+    width: 25vw;
+}

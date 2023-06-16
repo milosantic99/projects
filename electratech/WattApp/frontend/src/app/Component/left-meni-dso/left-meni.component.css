@@ -1,0 +1,210 @@
+p{
+    margin: 0px;
+}
+#leftMeni{
+    display: flex;
+    /* height: 900px; */
+    /* height: 110ch; */
+    height: 100vh;
+    border-radius: 0px 0px 20px 0px;
+    box-shadow: 0px 4.18px 27.53px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    /* gap:50px; */
+    gap:5%;
+    justify-content: space-between;
+    min-width: 300px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    background-color: white;
+}
+
+/* logo */
+
+.logo{
+    font-family: var(--font-logo);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    /* padding: 50px 30px; */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.logo p{
+    color: black;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 38px;
+}
+.logo i{
+    color: var(--color-logo-lightning);
+    -webkit-text-stroke: 1px white; /* For Safari/Chrome */
+    text-stroke: 1px black; /* For other browsers */
+}
+
+
+/* Imgage */
+.img{
+    width: 100%;
+    justify-content: center;
+}
+
+.img>div{
+    display: flex;
+    justify-content: center;
+}
+
+.img>div>img{
+    width: 107px;
+    height: 107px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+/* List */
+.list{
+    display: flex;
+    flex-direction: column;
+}
+.element{
+    width: 100%;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    padding-left: 38px;
+    /* padding-right: 35px; */
+    color:var(--color-siva);
+    cursor: pointer;
+}
+.element>div{
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.element>p{
+    font-size: 16px;
+}
+.element>fa-icon{
+    font-size: 26px; 
+}
+
+/* footer */
+.footer>div{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.footer>div>h1{
+    font-family: var(--font-meni);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 58px;
+    color:var(--color-Narandzasta);
+    margin-bottom: 0px;
+}
+/* logout */
+.logout{
+    padding-right: 38px;
+}
+/* selected */
+.selected{
+    background: linear-gradient(270deg, rgba(213, 168, 8, 0.3) 0%, rgba(217, 217, 217, 0) 89.3%);
+    border-right: 10px solid var(--color-Narandzasta);
+}
+.selected>fa-icon{
+    color:var(--color-Narandzasta);
+}
+.selected>div{
+    color: var(--color-TamnoNarandzasta);
+}
+
+.disp{
+    display: none;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 1400px){
+    #leftMeni{
+        min-width: 0px;
+        width: 80px;
+        transition: all .1s linear;
+    }
+    .disp{
+        display: block;
+        font-size: 30px;
+        transition: all .1s linear;
+    }
+    .img>div>img{
+        width: 60px;
+        height: 60px;
+        transition: all .1s linear;
+        object-fit: cover;
+    }
+    .disp-none{
+        display: none;
+        transition: all .1s linear;
+    }
+    .element{
+        padding-left: 25px;
+        width: 100%;
+        justify-content: center;
+        transition: all .1s linear;
+    }
+    .list{
+        row-gap: 10px;
+        transition: all .1s linear;
+    }
+    .logout{
+        padding-right: 25px;
+        transition: all .1s linear;
+    }
+    /*  */
+    #leftMeni:hover{
+        transition: all .1s linear;
+        min-width: 300px;
+        height: 100vh;
+        position: relative;
+        z-index: 2;
+        left: 0px;
+    }
+    
+    #leftMeni:hover .disp{
+        display: none;
+        transition: all .1s linear;
+    }
+    
+    #leftMeni:hover .img>div>img{
+        width: 107px;
+        height: 107px;
+        transition: all .1s linear;
+        object-fit: cover;
+    }
+    
+    #leftMeni:hover .disp-none{
+        display: inherit;
+        transition: all .1s linear;
+    }
+    #leftMeni:hover .element{
+        width: 100%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        padding-left: 38px;
+        color:var(--color-siva);
+        transition: all .1s linear;
+    }
+    #leftMeni:hover .list{
+        row-gap: 0px;
+        transition: all .1s linear;
+    }
+    #leftMeni:hover .logout{
+        padding-right: 38px;
+        transition: all .1s linear;
+    }
+}

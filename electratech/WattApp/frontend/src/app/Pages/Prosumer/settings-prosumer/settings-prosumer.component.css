@@ -1,0 +1,226 @@
+p{
+    margin:0px;
+    padding: 0px ;
+}
+#element{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding-bottom: 40px;
+}
+
+/* HEDER */
+.heder{
+    color: var(--color-siva);
+    font-size: 8vW;
+    padding: 10% 5%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    row-gap: 20px;
+}
+.heder-logout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.heder-logout>div>fa-icon{
+    font-size: 6vw;
+}
+.logout{
+    font-size: 3vw;
+    color: var(--color-siva);
+}
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+/* Imgage */
+.img{
+    width: 100%;
+    justify-content: center;
+}
+
+.img>div{
+    display: flex;
+    justify-content: center;
+}
+
+.img>div>img{
+    width: 33vw;
+    height: 33vw;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.buttonImage{
+    /* font-size: 16px; */
+    font-size: 4vw;
+    color: var(--color-logo-bela);
+    background: var(--color-Narandzasta);
+    padding: 10px 20px;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.inputImage>label{
+    cursor: pointer;
+}
+.inputImage>input{
+    /* opacity: 0; */
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#main{
+    width: 900px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow-div);
+}
+
+#iconPage{
+    display: flex;
+    padding: 30px 0px 0px 0px;
+    justify-content: center;
+    font-size: 90px;
+}
+
+.font{
+    font-family: var(--font-text);
+    color: var(--color-siva);
+    font-size: 18px;
+}
+
+
+#forma{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 50px 100px;
+    flex-direction: column;
+}
+
+.forma-red{
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-red input{
+    border: none;
+    background: transparent;
+    color: black;
+    border-bottom: 2px solid var(--color-siva);
+    min-width: 250px;
+    max-width: 300px;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.forma-red input:focus{
+    outline: none;
+}
+
+#buttonDiv{
+    display: flex;
+    justify-content: center;
+}
+
+#promena-podataka{
+    text-align:  center;
+    background: var(--color-Narandzasta);
+    max-width: 300px;
+    padding: 15px 35px;
+    /* margin-top: 20px; */
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    /* font-size: 18px; */
+    font-size:  5vw;
+    color: var(--color-logo-bela);
+    border-radius: 15px;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+}
+
+.error{
+    color:var(--color-Error-message);
+    font-size: 14px;
+    font-family: var(--font-text);
+}
+
+.errorMessage{
+    height: 10px;
+}
+
+.no-input-password{
+    pointer-events: none;
+}
+
+@media screen and (max-width: 880px){
+    
+    
+    #main{
+        background-attachment: scroll;
+        background-position: top center;
+        padding: 0px 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 70px;
+    }
+    #forma{
+        padding: 20px 20px;
+    } 
+    #forma{
+        overflow: scroll;
+    }
+    .forma-red{
+        flex-direction: column;
+        row-gap: 20px;
+        /* padding-left: 20px; */
+        /* padding-right: 20px; */
+    }
+    .forma-red input{
+        min-width: 100%;
+        
+    }
+    .import-img{
+        font-size: 60px;
+    }
+}
+
+@media screen and (max-height: 1000px) {
+    #main{
+        overflow-y:scroll ;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    #page-content{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    #main {
+        padding: 15px;
+        
+        margin-bottom: 60px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 70px;
+    }
+    #forma{
+        padding: 30px 25px;
+        
+    }
+    
+}
+

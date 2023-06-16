@@ -1,0 +1,44 @@
+p{
+    margin: 0px;
+}
+#card{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow-div);
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 25px;
+
+    font-family: var(--font-text);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+
+    row-gap: 25px;
+}
+#card > div{
+    display: flex;
+    justify-content: center;
+}
+.image{
+    flex-direction: column;
+    min-width: 230px;
+    max-width: 300px;
+    justify-content: center;
+    row-gap: 15px;
+}
+.image > div{
+    display: flex;
+    justify-content: center;
+}
+
+.date{
+    font-size: 24px;
+}
+
+.temperature{
+    font-size: 30px;
+}

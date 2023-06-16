@@ -1,0 +1,61 @@
+<div id="leftMeni">
+
+    
+    <div class="logo">
+        <p>ElectraTech<i class="bi bi-lightning-fill"></i></p>
+    </div>
+
+    <div class="img">
+        <div>
+            <img src="../../../assets/images/Slika.png">
+        </div>
+        <div>
+            <p>Email/ Ime Prezime</p>
+        </div>
+    </div>
+
+    <div class="list">
+        <div class="element selected" (click)="setSelected('Pocetna')" [ngClass]="{'selected': selected === 'Pocetna'}" >
+            <fa-icon [icon]="faComputerMouse"></fa-icon>
+            <div>
+                <p>Moji uređaji</p>
+            </div>
+        </div>
+        <div class="element"  (click)="setSelected('Predikcija')" [ngClass]="{'selected': selected === 'Predikcija'}">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+            <div>
+                <p>Predikcija</p>
+            </div>
+        </div>
+        <div class="element"   (click)="setSelected('PregledRealizacije')" [ngClass]="{'selected': selected === 'PregledRealizacije'}" >
+            <fa-icon [icon]="faClockRotateLeft"></fa-icon>
+            <div>
+                <p>Pregled realizacije</p>
+            </div>
+        </div>
+        
+        <div class="element" style="font-size: 24px;"  (click)="setSelected('Dodavanje')" [ngClass]="{'selected': selected === 'Dodavanje'}" >
+            <fa-icon [icon]="faPlusSquare"></fa-icon>
+            <div>
+                <p>Dodavanje uređaja</p>
+            </div>
+        </div>
+        
+        <div class="element" (click)="setSelected('Podesavanja')" [ngClass]="{'selected': selected === 'Podesavanja'}" >
+            <fa-icon [icon]="faGear"></fa-icon>
+            <div>
+                <p>Podesavanja</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="element" style="padding-right: 38px; padding-bottom: 20px;" (click)="logOut()">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+    <div>
+        <p>Izloguj se</p>
+    </div>
+</div>
+
+    
+
+</div>

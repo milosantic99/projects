@@ -1,0 +1,95 @@
+<div id="element" *ngIf="menuType=='bottom'">
+    <div class="heder">
+        <div (click) = "goBack()">
+            <i class="bi bi-arrow-left-short"></i>
+        </div>
+        <div class="naziv">
+            <div class="list-element-info-1-title" *ngIf="editTitle==false">
+                <div>
+                    <p>{{ device.imeUredjaja }}</p><br>
+                </div>
+            </div>
+            <div class="list-element-info-1-edit" *ngIf="editTitle==true">
+                <div class="edit-input">
+                    <input minlength="3" #input_title type="text" value={{device.imeUredjaja}}>
+                </div>
+                <div (click)="changeTitle(input_title.value)">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                </div>
+                <div (click)="setEditTitle()">
+                    <fa-icon [icon]="faBan"></fa-icon>
+                </div>
+            </div>
+            <div class="type">
+                <p>Tip uređaja: {{ device.proizvodjac }}</p>
+            </div>    
+        </div>
+        <div (click)="setEditTitle()" *ngIf="editTitle==false">
+            <fa-icon [icon]="faEdit"></fa-icon>
+        </div>
+    </div>
+
+    <div class="search">
+        <div [style.background-color]="danas" class="circle" (click)="click('Danas')">
+            <p>Danas</p>
+        </div>
+        <div [style.background-color]="proslaNedelja" class="circle" (click)="click('Prosla nedelja')">
+            <p>Prošla nedelja</p>
+        </div>
+        <div [style.background-color]="tekuciMesec" *ngIf="rola != 'ROLE_PROSUMER_DEMO'" class="circle" (click)="click('Tekuci mesec')">
+            <p>Tekući mesec</p>
+        </div>
+    </div>
+
+    <app-device-sum-consumption [info]="prod"></app-device-sum-consumption>
+
+    <div class="chart">
+        <div *ngIf="isLoading==true" class="size">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <app-line-graph-prosumer [info]="graphInfo" #graph></app-line-graph-prosumer>
+    </div>
+    <app-work-rules #rule [linkerId]="device.linkerId"></app-work-rules>
+
+    <div class="toggle">
+        <div class="status" style="z-index: 0">
+            <div>
+                <p style="font-size: large;">Status</p>
+            </div>
+            <div>
+                <button class="deviceButton" (click)="openModalStatus()" [style.background-color]="statusColor">{{ status }}</button>
+            </div>
+        </div>
+        <div class="status" style="z-index: 0;">
+            <div>
+                <p style="font-size: large;">Pristup</p>
+            </div>
+            <div>
+                <button class="deviceButton" [disabled]="isDemo" (click)="openModalPristup()" [style.background-color]="pristupColor">{{ pristup }}</button>
+            </div>
+        </div>
+        <div class="status" style="z-index: 0;">
+            <div>
+                <p style="font-size: large;">Kontrola</p>
+            </div>
+            <div>
+                <button class="deviceButton" [disabled]="isDemo" (click)="openModalKontrola()" [style.background-color]="kontrolaColor">{{ kontrola }}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="delete">
+        <div>
+            <p>Uklonite uređaj:</p>
+        </div>
+        <div>
+            <button (click)="deleteDevice()">Obriši uređaj</button>
+        </div>
+    </div>
+    
+</div>
+<div *ngIf="menuType!='bottom'">
+    <h1>Trenutno dostupno samo za telefon</h1>
+</div>

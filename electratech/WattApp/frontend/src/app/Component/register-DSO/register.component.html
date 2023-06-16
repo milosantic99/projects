@@ -1,0 +1,73 @@
+<div id="bodyRegister">
+    <div id="main">
+        <div style="display: flex; justify-content: center;">
+            <app-logo></app-logo>
+        </div>
+        <div id="forma">
+
+            <div class="forma-red">
+                <div>
+                    <p class="font">Ime vlasnika</p>
+                    <input placeholder="Ime" #input_name type="text" (change)="testFirstLetterAndLength(input_name.value,'name')">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputName}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="font">Prezime vlasnika</p>
+                    <input placeholder="Prezime" #input_surname type="text" (change)="testFirstLetterAndLength(input_surname.value,'surname')">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputSurname}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="forma-red">
+                <div>
+                    <p class="font">Email vlasnika firme</p>
+                    <input placeholder="email@gmail.com" #input_email type="text" (change)="testEmail(input_email.value)">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputEmail}}</p>
+                    </div>
+                    
+                </div>
+                <div>
+                    <p class="font">Ime firme</p>
+                    <input placeholder="ElectraTech" #input_company_name type="text" (change)="testFirstLetterAndLength(input_company_name.value,'companyName')">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputCompanyName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="forma-red">
+                <div style="width:100%;">
+                    <p class="font">Tačna lokacija</p>
+                    <input placeholder="Kragujevac, Radoja Domanovica 12" #input_address style="max-width: 100%; width:100%;" (change)="testAddress(input_address.value)">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputAddress}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="forma-red">
+                <div>
+                    <p class="font">Lozinka</p>
+                    <input placeholder="********"  #ipnut_pass1 type="password" (change)="testPassword(ipnut_pass1.value)">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputPassword1}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="font">Ponovite lozinku </p>
+                    <input placeholder="********" #input_pass2 type="password" (change)="testPasswordAgain(ipnut_pass1.value,input_pass2.value)">
+                    <div class="errorMessage">
+                        <p class="error">{{errInputPassword2}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button (click)="submit(input_name.value,input_surname.value,input_email.value,input_company_name.value,input_address.value,ipnut_pass1.value,input_pass2.value)"id="prijavi-novi-dso">Prijavi novi DSO</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

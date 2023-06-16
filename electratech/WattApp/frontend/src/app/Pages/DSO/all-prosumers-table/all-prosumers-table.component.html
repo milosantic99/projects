@@ -1,0 +1,118 @@
+<div id="hero">
+    <div class="hero-heder">
+        <div>
+            <h1>Svi korisnici</h1>
+        </div>
+    </div>
+    <div>
+        <div id="container">
+            <div class ="container-1">
+                <div>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </div>
+                <div>
+                    <input type="text" #name [(ngModel)]="searchNameInput" (keyup.enter)="serchWithParameter()" placeholder="Unesite ime korisnika">
+                </div>
+                <div (click)="clearName()" style="cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </div>
+            </div>
+            <div class = "container-2">
+                <div>
+                    <p>Sortiraj prema:</p>
+                </div>
+                <div class = "container-2-2">
+                    <div (click)="sortConsumption()" [ngClass]="{'selected': isConsumptionSelected, 'not-selected': !isConsumptionSelected}" style="cursor: pointer;">Potrošnji</div><p> / </p><div (click)="sortProduction()" [ngClass]="{'selected': isProductionSelected, 'not-selected': !isProductionSelected}" style="cursor: pointer;">Proizvodnji</div>
+                </div>
+            </div> 
+            <div class="container-1 container-size">
+                <div>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </div>
+                <div class="container-input-city">
+                    <ng-select class="custom" [items]="cities" 
+                        [clearable]="false"
+                        [(ngModel)]="searchCityInput"
+                        (change)="callProsumerTableFillByCity()"
+                        placeholder="Grad">
+                    </ng-select>
+                </div>
+                <div (click)="clearCity()" style="cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </div>
+            </div>
+            <div class="container-3" (click)="callDownloadCsv()" style="cursor: pointer;">
+                <div>
+                    <fa-icon [icon]="faFileExport"></fa-icon>
+                </div>
+                <div>
+                    <p>Export</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="isLoading==false" class="table-map">
+        <div style="width: 55%;" class="hero-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Ime korisnika</th>
+                    <th scope="col">Grad</th>
+                    <th scope="col">Adresa</th>
+                    <th scope="col">Potrošnja</th>
+                    <th scope="col">Proizvodnja</th>
+                    <th scope="col">Zaduženja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of list" id={{i.prosumerId}} [routerLink]="['/ProsumerPageDso',i.prosumerId]" [queryParams]="{'prosumerId': i.prosumerId}">
+                    <td scope="row">{{i.prosumerName}}</td>
+                    <td>{{i.city}}</td>
+                    <td>{{i.adress}}</td>
+                    <td>{{i.consumption}} kWh</td>
+                    <td>{{i.product}} kWh</td>
+                    <td>{{i.debit}} din.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="position" *ngIf="list.length == 0">
+                <div>
+                    <p>Nema više informacija</p>
+                </div>
+            </div>
+        </div>
+        <div style="width: 40%;">
+            <app-map-prosumers #MapProsumersComponent [prosumers]="list" [minMax]="minMax" [consumerProducer]="consumerProducer"></app-map-prosumers>
+        </div> 
+    </div>
+    <div *ngIf="isLoading==true" class="loader-map">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div id="paging" *ngIf="isLoading==false" >
+        <div class="num-of-paging">
+            <div>
+                <i class="fa fa-chevron-left" [ngClass]="{ 'inactive': !isEnabledBack }" (click)="back()"></i>
+            </div>
+            <div *ngFor="let e of maxPage"><div><p class="clicable-num" (click)="callProsumerTableFill(e)" [ngClass]="{'curent-num':e==page}">{{e}}</p></div></div>
+            <div>
+                <i class="fa fa-chevron-right" [ngClass]="{ 'inactive': !isEnabledNext }" (click)="next()"></i>
+            </div>
+        </div>
+        <div class = "users-per-page">
+            <div>
+                <p>Broj korisnika po strani: </p>
+            </div>
+            <div>
+                <select [ngModel]="pageSize" (ngModelChange)="changeRowsNumber($event);prosumerTableFill()" style="cursor: pointer;">
+                    <option [value]="10">10</option>
+                    <option [value]="50">50</option>
+                    <option [value]="100">100</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div> 

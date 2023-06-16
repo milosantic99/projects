@@ -1,0 +1,38 @@
+<!-- <div class="cards_container">
+    <div *ngFor="let i of [0,1,2,3,4]" class="divWeatherMain"> 
+        <div *ngIf="i==0">Danas</div>
+        <div *ngIf="i!=0">{{WeatherData.list[i].dt_txt}}</div>
+        <div class="weatherWidgetRow">
+            <img src="../../../assets/images/weather/{{WeatherData.list[i].weather[0].icon}}@2x.png"  alt="">
+        </div>
+        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{WeatherData.list[i].main.temp}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 12px;">{{WeatherData.list[i].main.temp_min}}° / {{WeatherData.list[i].main.temp_max}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 12px;">Realni osećaj: {{WeatherData.list[i].main.feels_like}}°</div>
+        <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px;">{{WeatherData.city.name}}</div>
+        <div class="weatherWidgetRow" style="font-size: 12px;">Vlažnost vazduha: {{WeatherData.list[i].main.humidity}}%</div>
+    </div>
+</div> -->
+
+<div class="cards_container">
+    <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px; margin-bottom: 15px;">{{WeatherData.city.name}}</div>
+    <div *ngFor="let i of [0,1,2,3,4]" class="divWeatherMain">
+        <div>
+            <div *ngIf="i==0">Danas</div>
+            <div *ngIf="i!=0">{{WeatherData.list[i].dt_txt}}</div>
+            <div class="weatherWidgetRow">
+                <img src="../../../assets/images/weather/{{WeatherData.list[i].weather[0].icon}}@2x.png"  alt="">
+            </div>
+        </div>
+        <div class="gap">
+            <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{WeatherData.list[i].main.temp}}°</div>
+            <div class="weatherWidgetRow" style="font-size: 16px;">{{WeatherData.list[i].main.temp_min}}° / {{WeatherData.list[i].main.temp_max}}°</div>    
+        </div>
+        <div>
+            <div class="weatherWidgetRow" style="font-size: 16px;">Realni osećaj: {{WeatherData.list[i].main.feels_like}}°</div>
+            <div class="weatherWidgetRow" style="font-size: 16px;">Vlažnost vazduha: {{WeatherData.list[i].main.humidity}}%</div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>

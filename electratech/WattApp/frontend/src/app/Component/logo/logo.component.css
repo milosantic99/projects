@@ -1,0 +1,39 @@
+.logo{
+    font-family: var(--font-logo);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 64px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    
+    display: flex;
+    /* justify-content: center; */
+
+    margin: 28px 0px;
+
+}
+.logo p{
+    font-size: 50px;
+}
+.white {
+    color: white;
+}
+.gray {
+    color: #393939;
+}
+.logo i{
+    color: var(--color-logo-lightning);
+    -webkit-text-stroke: 1px white; /* For Safari/Chrome */
+    text-stroke: 1px white; /* For other browsers */
+}
+
+@media screen and (max-width: 500px) {
+    .logo p{
+        font-size: 30px;
+    }
+    .logo i{
+        font-size: 30px;
+    }
+  }

@@ -1,0 +1,76 @@
+<div id="leftMeni">
+
+    <div class="logo">
+        <p class="disp-none">ElectraTech<i class="bi bi-lightning-fill"></i></p>
+        <i class="bi bi-lightning-fill disp"></i>
+    </div>
+
+    <div class="img">
+        <div>
+            <img [src]="profilePictue">
+        </div>
+        <div>
+            <p class="disp-none">{{dsoInformation.firstName}} {{dsoInformation.lastName}}</p>
+        </div>
+        <div>
+            <p class="disp-none">{{dsoInformation.email}}</p>
+        </div>
+    </div>
+
+    <div class="list">
+        <div class="element" (click)="setSelected('Pocetna')" routerLink="/HomeDso" routerLinkActive="selected">
+            <fa-icon [icon]="faHouse"></fa-icon>
+            <div>
+                <p class="disp-none">Početna</p>
+            </div>
+        </div>
+        <div class="element" (click)="setSelected('SviKorisnici')" routerLink="/AllProsumersTable" routerLinkActive="selected">
+            <a [routerLink]="'/ProsumerPageDso'" style="display: none"></a>
+            <fa-icon [icon]="faUsers" style="font-size: 25px;" ></fa-icon>
+            <div>
+                <p class="disp-none">Svi korisnici</p>
+            </div>
+        </div>
+        <div class="element" (click)="setSelected('ProsumptionAnalysis')" routerLink="/ProsumptionAnalysis" routerLinkActive="selected">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+            <div>
+                <p class="disp-none">Analiza</p>
+            </div>
+        </div>
+        <div class="element" style="font-size: 24px;" (click)="setSelected('DodavanjeKorisnika')"  routerLink="/RegisterProsumer" routerLinkActive="selected">
+            <fa-icon [icon]="faUserPlus"></fa-icon>
+            <div>
+                <p class="disp-none">Dodavanje korisnika</p>
+            </div>
+        </div>
+        <div class="element" *ngIf="role=='ROLE_DSO'" (click)="setSelected('Administracija')" routerLink="/UserAdministration" routerLinkActive="selected">
+            <fa-icon [icon]="faScrewdriverWrench"></fa-icon>
+            <div>
+            <p class="disp-none">Administracija</p>
+            </div>
+        </div>
+        <div class="element" (click)="setSelected('Podesavanja')" routerLink="/SettingsDso" routerLinkActive="selected">
+            <fa-icon [icon]="faGear"></fa-icon>
+            <div>
+                <p class="disp-none">Podešavanja</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <h1 class="disp-none">DSO</h1>
+        </div>
+        <div>
+            <p class="disp-none">Distribution System Operator</p>
+        </div>
+    </div>
+
+    <div class="element logout" (click)="logOut()">
+            <fa-icon [icon]="faRightFromBracket"></fa-icon>
+        <div>
+            <p class="disp-none">Izloguj se</p>
+        </div>
+    </div>
+
+</div>

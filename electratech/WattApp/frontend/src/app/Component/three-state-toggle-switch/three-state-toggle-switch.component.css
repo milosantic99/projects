@@ -1,0 +1,131 @@
+
+.container {
+  display: flex;
+  transform: translate(0%, 0%);
+  padding:2px;
+}
+
+.radio-wrapper {
+    width: 90px;
+    height: 38px;
+    display: inline-block;
+    vertical-align: middle;
+    border:2px solid rgba(150, 149, 149, 0.4);
+    background: rgba(150, 149, 149, 0.4);
+    border-radius: 30px;
+    position: relative;
+    margin-left: 1%;
+   
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+i { 
+  z-index: 99;
+  font-size: 18px;
+}
+.neutral-icon i {
+  font-size: 10px;
+}
+.neutral + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    position: absolute;
+    left: 31%;
+    transition: transform 1s;
+}
+
+.neutral:checked + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;  
+    background: rgb(255, 255, 255);
+}
+
+.yes + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    position: absolute;
+    left: 2%;
+    text-align: center;
+}
+
+.yes:checked + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgb(230, 108, 103);
+    animation-duration: 0.4s;
+    animation-name: slidein;
+}
+
+
+.no + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    position: absolute;
+    right: 1%;
+    text-align: center;
+}
+
+.no:checked + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgb(110, 156, 12);
+    animation-duration: 0.4s;
+    animation-name: slideno;
+    
+}
+
+
+@keyframes slidein {
+    from {
+        transform: translate(50px, 0);
+    }
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+
+@keyframes slideno {
+    from {
+      transform: translate(-50px,0);
+    }
+    to {
+        transform: translate( 0px, 0px);
+    }
+}
+
+@keyframes returnLeft {
+    from {
+        transform: translate(-50px,0);
+    }
+    to {
+        transform: translate(0px,0);
+    }
+}
+
+@keyframes returnRight {
+    from {
+        transform: translate(50px,0);
+    }
+    to {
+        transform: translate(0px,0);
+    }
+}
+
+
+

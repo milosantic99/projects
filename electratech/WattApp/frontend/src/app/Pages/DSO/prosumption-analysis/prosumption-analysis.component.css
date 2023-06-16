@@ -1,0 +1,160 @@
+p,h1{
+    padding: 0px;
+    margin: 0px;
+}
+#element{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header > h1 {
+    font-size: 30px;
+    color: var(--color-siva);
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow-div);
+    padding: 15px;
+}
+
+#bar-chart,#bar-chart2, #my-line-chart-analysis {
+    min-height:330px;
+}
+
+.size{
+    height: 70px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.flex_row-2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    align-items: flex-start;
+}
+.flex_column {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.flex_column-45{
+    width: 45%;
+}
+.flex_column-50{
+    width: 50%;
+}
+
+.my-header {
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.my-header-margin{
+    margin-bottom: 5px;
+}
+
+/* .my-header2 {
+    color: var(--color-Narandzasta);
+    font-size: x-large;
+    font-weight: bold;
+} */
+
+.my-header2 {
+    color: var(--color-Narandzasta);
+    font-size: large;
+    /* margin: 0 auto; */
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.prediction_card {
+    gap: 30px;
+}
+
+.selected {
+    color: white;
+    cursor:none;
+    --mat-mdc-button-persistent-ripple-color: transparent; 
+    --mat-mdc-button-ripple-color: transparent;
+  }
+
+/* .spiner_div {
+    position: relative;
+} */
+.spiner_div > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disabled_text {
+    color: var(--color-Disable);
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.display-none{
+    display: none;
+}
+
+.height-card{
+    min-height: 453px;
+}
+
+.table-card{
+    width: 610px;
+    min-height: 320px;
+    overflow-y: auto;
+}
+.table-card-loader{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-map{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

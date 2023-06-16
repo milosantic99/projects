@@ -1,0 +1,215 @@
+
+#bodyRegister{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--url-background-image-light);
+    /* background-image:  */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    overflow-y: auto;
+
+}
+
+#main{
+    width: 768px;
+    height: 750px;
+    background: var(--background-login-div);
+    border-radius: 15px;
+}
+
+.font{
+    font-family: var(--font-text);
+    color: var(--color-logo-bela);
+    font-size: 20px;
+}
+
+.import-img{
+    font-size: 80px;
+}
+
+#forma{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 50px 100px;
+    flex-direction: column;
+}
+
+.forma-red{
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-red input{
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid var(--color-logo-bela);
+    min-width: 250px;
+    max-width: 300px;
+    color: var(--color-logo-bela);
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.forma-red input:focus{
+    outline: none;
+}
+
+#prijavi-korisnika{
+    text-align:  center;
+    background: var(--color-Narandzasta);
+    max-width: 300px;
+    padding: 15px 35px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+    color: var(--color-logo-bela);
+    border-radius: 15px;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+}
+
+.formElement{
+    display: flex;
+    flex-direction: column;
+    /* max-width: 350px; */
+}
+.formElement > p{
+    font-size: 20px;
+}
+
+#reg{
+    color:white;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 5px;
+    font-size: 18px;
+}
+
+
+.error{
+    color:var(--color-Error-message);
+    font-size: 14px;
+    font-family: var(--font-text);
+}
+
+.errorMessage{
+    height: 10px;
+}
+
+@media screen and (max-width: 810px){
+    
+    #main{
+        height: 1150px;
+    }
+
+    #bodyRegister{
+        overflow-y:scroll ;
+    }
+    #forma{
+        padding: 20px 50px;
+    } 
+    #forma{
+        /* overflow-y: scroll; */
+    }
+    .forma-red{
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .forma-red input{
+        min-width: 100%;
+    }
+    .import-img{
+        font-size: 60px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #bodyRegister {
+      background-attachment: scroll;
+      background-position: top center;
+        padding: 25px;
+    }
+    .forma-red{
+        flex-direction: column;
+        row-gap: 10px;
+    }
+  }
+
+@media screen and (max-width: 480px) {
+    #prijavi-korisnika{
+        font-size: 17px;
+    }
+    #bodyRegister {
+        padding: 15px;
+    }
+    #forma{
+        padding: 20px 25px 40px 25px;
+
+    }
+    #reg{
+        margin-bottom: 50px;
+    }
+    .forma-red{
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+#link{
+    color:var(--color-Narandzasta);
+    cursor: pointer;
+    text-decoration: underline;
+}
+/* ================================ */
+.custom{
+    min-width: 200px;
+    max-width: 250px;  
+  }
+  .ng-select.custom {
+    border:0px;
+    min-height: 0px;
+    border-radius: 0;
+    border-style: none;
+    outline:none!important;
+  }
+  
+  
+  .ng-select.custom ::ng-deep .ng-select-container  {            
+    min-height: 0px;
+    border-radius: 0;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 2px solid var(--color-siva);
+    outline:none!important;
+  
+  }
+  
+  .ng-select.custom:focus , .ng-select-container:focus{
+    outline:none!important;
+  }
+
+  .container-input-city{
+    width: 100%;
+  }
+  /*  */
+  .pass{
+    display: flex;
+    flex-direction: column;
+  }
+  .pass-eye{
+    display: flex;
+    flex-direction: row;
+  }

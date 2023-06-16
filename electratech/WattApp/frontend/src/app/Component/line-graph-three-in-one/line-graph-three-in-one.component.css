@@ -1,0 +1,22 @@
+.position{
+    position: relative;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    margin-top:30px;
+}
+
+#graphics-heder{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.graphics-heder-text{
+    font-size: 20px;
+}
+select{
+    border:0px;
+    outline:0px;
+    padding: 10px;
+    padding-bottom: 0xp;
+}

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap'); /*Font za logo*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+@import "~@ng-select/ng-select/themes/default.theme.css"; 
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --font-logo : 'Audiowide';
+    --font-text : "Inter", sans-serif;
+    --font-meni : "Faster One";
+
+    --color-logo-bela: white;
+    --color-logo-lightning: #FFB61E;
+    --color-Narandzasta: #D4A708;
+    --color-Error-message: red;
+    --color-red-debt: #CF2F2F;
+    --color-green-debt: #6E9C0C;
+    --color-siva: #393939;
+    --color-TamnoNarandzasta: #735900;
+    --color-Disable:#898989;
+    --color-simple-component-lifght:#00C6D0;
+
+    --background-login-div : rgba(16, 16, 16, 0.6);
+    
+    --box-shadow-div: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+    
+    --url-background-image-dark: url('assets/images/background-login-register.jpg');
+    --url-background-image-light: url("assets/images/background-light.jpg");
+
+    --url-devices-klima: url("assets/images/devices/klima.png");
+    --url-devices-televizor: url("assets/images/devices/televizor.png");
+    --url-devices-frizider: url("assets/images/devices/frizider.png");
+    --url-devices-grejac: url("assets/images/devices/grejaci.png");
+    --url-devices-masina: url("assets/images/devices/vesMasina.png");
+    --url-devices-aspirator: url("assets/images/devices/aspirator.png");
+    --url-devices-sporet: url("assets/images/devices/rerna.png");
+    --url-devices-bojler: url("assets/images/devices/bojler.png");
+    --url-devices-ostalo: url("assets/images/devices/ostalo.png");
+    --url-devices-aparat: url("assets/images/devices/aparati.png");
+    --url-devices-proizvodjac: url("assets/images/devices/proizvodnja.png");
+
+    --button-hover-color: #FFB61E;
+}

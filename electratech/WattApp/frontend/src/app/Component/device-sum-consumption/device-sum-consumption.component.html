@@ -1,0 +1,15 @@
+<div class="main">
+    <div class="sum">
+        <p>Ukupna {{ info.tip }} za <span class="date">{{ info.vreme }}</span></p>
+    </div>
+    <div class="price">
+        <div class="bigger">
+            <p>{{ info.price }}</p>
+            <p>{{ info.consumption }}</p>
+        </div>
+        <div class="smaller">
+            <p>{{ info.pricePlus }}  <span [style.color]="checkColor(info.pricePercentage)">{{ info.pricePercentage }}</span></p>
+            <p>{{ info.consumptionPlus }}  <span [style.color]="checkColor(info.consumptionPercentage)">{{ info.consumptionPercentage }}</span></p>
+        </div>
+    </div>
+</div>

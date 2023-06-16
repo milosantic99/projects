@@ -1,0 +1,277 @@
+p{
+    margin:0px;
+}
+#element{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+#page-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0px 30px;
+
+}
+
+/* Imgage */
+.img{
+    width: 100%;
+    justify-content: center;
+}
+
+.img>div{
+    display: flex;
+    justify-content: center;
+}
+
+.img>div>img{
+    width: 107px;
+    height: 107px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+
+#main{
+    width: 768px;
+    /* height: 750px; */
+    border-radius: 15px;
+    box-shadow: 0px 4.18px 27.53px rgba(0, 0, 0, 0.15);
+}
+
+.iconPage>div>fa-icon{
+    font-size: 90px;
+}
+
+.iconPage{
+    display: flex;
+    padding: 30px 100px 0px 100px;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+.iconPage>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.inputImage>label{
+    cursor: pointer;
+}
+.inputImage>input{
+    /* opacity: 0; */
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.font{
+    font-family: var(--font-text);
+    color: var(--color-siva);
+    font-size: 18px;
+}
+
+
+#forma{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 50px 100px;
+    padding-top: 30px;
+    flex-direction: column;
+}
+
+.forma-red{
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-red-no-flex>div>input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: black;
+    border-bottom: 2px solid var(--color-siva);
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+.forma-red-no-flex>div>input:focus{
+    outline: none;
+}
+
+.forma-red input{
+    border: none;
+    background: transparent;
+    color: black;
+    border-bottom: 2px solid var(--color-siva);
+    min-width: 250px;
+    max-width: 300px;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.forma-red input:focus{
+    outline: none;
+}
+
+.no-input-password{
+    pointer-events: none;
+}
+
+#delete{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-right: 40px;
+}
+
+#promena-podataka{
+    text-align:  center;
+    background: var(--color-Narandzasta);
+    max-width: 300px;
+    padding: 15px 35px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+    color: var(--color-logo-bela);
+    border-radius: 15px;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+}
+
+#promena-podataka:hover{
+    background: var(--button-hover-color);
+}
+
+.buttonImage{
+    font-size: 16px;
+    color: var(--color-logo-bela);
+    background: var(--color-Narandzasta);
+    padding: 10px 20px;
+    box-shadow: 0px 9.18px 27.53px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.buttonImage:hover{
+    background: var(--button-hover-color);
+}
+
+.forma-red2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-red2-no-flex>div>input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: black;
+    border-bottom: 2px solid var(--color-siva);
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+.forma-red3{
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-red3-no-flex>div>input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: black;
+    border-bottom: 2px solid var(--color-siva);
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.forma-red3 , .forma-red3-no-flex{
+    flex-direction: row;
+    padding-right: 20px;
+}
+
+.disable{
+    pointer-events: none;
+    color: gray;
+}
+
+.error{
+    color:var(--color-Error-message);
+    font-size: 14px;
+    font-family: var(--font-text);
+}
+
+.errorMessage{
+    height: 10px;
+}
+
+@media screen and (max-width: 880px){
+    
+    
+    #main{
+        background-attachment: scroll;
+        background-position: top center;
+        padding: 0px 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #forma{
+        padding: 20px 20px;
+    } 
+    #forma{
+        overflow: scroll;
+    }
+    .forma-red , .forma-red-no-flex{
+        flex-direction: column;
+        row-gap: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .forma-red input{
+        min-width: 100%;
+        
+    }
+    .import-img{
+        font-size: 60px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    p{
+        margin-top:15px;
+    }
+}
+
+
+@media screen and (max-width: 390px) {
+    #page-content{
+        padding-left:20px;
+        padding-right:20px;
+        padding-bottom: 20px;
+    }
+
+    #main {
+        padding: 15px;
+        
+        margin-bottom: 60px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #forma{
+        padding: 20px 25px;
+        
+    }
+    p{
+        margin-top: 15px;
+    }
+    
+}

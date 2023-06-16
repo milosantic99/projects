@@ -1,0 +1,43 @@
+p{
+    margin: 0px;
+    padding: 0px;
+}
+#element{
+    padding-top: 10px;
+}
+#map-prosumers { height: 500px; }
+#lightning
+{
+    font-size: 30px;
+    -webkit-text-stroke: 1px white; /* For Safari/Chrome */
+    text-stroke: 1px black; /* For other browsers */
+    color:var(--color-logo-lightning);
+}
+.element-legend{
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    max-width: 40%;
+}
+.element-legend>div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+    font-family: var(--font-text);
+    color: var(--color-siva);
+}
+
+#map { height: 380px; }
+#lightning
+{
+    font-size: 30px;
+    -webkit-text-stroke: 1px white; /* For Safari/Chrome */
+    text-stroke: 1px black; /* For other browsers */
+    color:var(--color-logo-lightning);
+}
+.gradient{
+    height: 18px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, red,yellow,green);
+}

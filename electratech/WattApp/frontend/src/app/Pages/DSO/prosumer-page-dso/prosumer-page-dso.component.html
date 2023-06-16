@@ -1,0 +1,126 @@
+<div id="element">
+    <div id="heder">
+        <div class="left" [ngClass]="{invisible: isLoadingProsumerInfo==true}">
+            <div class="image" *ngIf="profilePictue==null">
+                <img src="../../../assets/images/user.png">
+            </div>
+            <div class="image" *ngIf="profilePictue!=null">
+                <img [src]="profilePictue">
+            </div>
+            <div class="person-info">
+                
+                <div>
+                    <p class="person-info-prosumer"><b>Korisnik</b>: {{prosumerInformation.firstName}} {{prosumerInformation.lastName}} </p>
+                </div>
+                <div>
+                    <p class="person-info-email"><b>Email</b>: {{prosumerInformation.email}} </p>
+                </div>
+                
+                <div>
+                    <p class="person-info-address"> <b>Lokacija</b>: {{prosumerInformation.city}}, {{prosumerInformation.adress}}</p>
+                </div>
+            </div>
+            <div id="obrisi-korisnika" *ngIf="role=='ROLE_DSO'">
+                <button mat-icon-button title="Obriši korisnika" (click)="openDialogDeleteProsumer()">
+                    <fa-icon [icon]="faTrashCan" />
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <div class="debt">
+                <div>
+                <p>Zaduženja: <span [ngClass]="classDebt" class="debt-value">{{prosumerInformation.debit}} din.</span></p>
+                </div>
+        </div>
+        </div>
+        
+    </div>
+    <div id="graphics">
+        <div class="line">
+            <app-line-graph-three-in-one [prosumerId]="prosumerId" #graph></app-line-graph-three-in-one>
+        </div>
+        <div class="div-bar">
+            <div>
+                <app-bar-chart-consumption-production [prosumerId]="prosumerId" class="bar"></app-bar-chart-consumption-production>
+            </div>
+        </div>
+    </div>
+    <div id="list-switch" *ngIf="isLoading == false">
+        <div (click)="setViewDeviceAccess()" [ngClass]="{'selected-switch': selectedViewDeviceAccess}">
+            <p>Svi uređaji</p>
+        </div>
+        <div (click)="setViewDeviceControl()" [ngClass]="{'selected-switch': selectedViewDeviceControl}">
+            <p>Uređaji kojima možemo upravljati</p>
+        </div>
+    </div>
+    <div id="list" *ngIf="isLoading == false">
+        <table>
+            <thead>
+                <tr class="first">
+                    <th class="no-border">Kategorija uređaja</th>
+                    <th>Uređaj</th>
+                    <th>Potrosnja (kW/h)</th>
+                    <th>Proizovdnja</th>
+                    <th>Status</th>
+                    <th class="no-border">Uključi/Isključi</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="listProducts.length == 0 && message!=''" >
+                <tr>
+                    <td colspan="6">{{message}}</td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="viewDevice=='svi_uredjaji' && listProducts.length > 0">
+                <tr *ngFor="let product of listProducts">
+                    <td>{{product.type}}</td>
+                    <td>
+                    <div>
+                        <p>{{product.manufacturer}}</p>
+                        <p style="color: var(--color-siva);">{{product.model}}</p>
+                    </div>
+                    </td>
+                    <td>{{product.consumption}} kWh</td>
+                    <td>{{product.production}} kWh</td>
+                    <td *ngIf="product.access == true && product.work == true" class="green-debt" style="font-weight: bold;">Uključeno</td>
+                    <td *ngIf="product.access == true && product.work == false" class="red-debt" style="font-weight: bold;">Isključeno</td>
+                    <td *ngIf="product.access == false">Nemaš pristup informacijama</td>
+                    <td *ngIf="product.control == true">
+                        <ng-toggle #toggle style="z-index: 0;" (change)="openDialog(product, toggle)" [value]="product.work" [color]=toggleColor [fontSize]=8.5 [labels]= toggleLabels [width]=55 [height]=25></ng-toggle>
+                    </td>
+                    <td *ngIf="product.control == false">Nemaš pristup informacijama</td>
+                
+                </tr>
+            </tbody>
+            <tbody *ngIf="viewDevice=='urdjaji_za_upravljanje' && listProducts.length > 0">
+                <tr *ngFor="let product of listOfControlProducts">
+                    <td>{{product.type}}</td>
+                    <td>
+                    <div>
+                        <p>{{product.manufacturer}}</p>
+                        <p style="color: var(--color-siva);">{{product.model}}</p>
+                    </div>
+                    </td>
+                    <td>{{product.consumption}} kWh</td>
+                    <td> {{product.production}} kWh</td>
+                    <td *ngIf="product.access == true && product.work == true" class="green-debt" style="font-weight: bold;">Uključeno</td>
+                    <td *ngIf="product.access == true && product.work == false" class="red-debt" style="font-weight: bold;">Isklučeno</td>
+                    <td *ngIf="product.access == false">Nemaš pristup informacijama</td>
+                    <td *ngIf="product.control == true">
+                        <ng-toggle style="z-index: 0;" (change)="setStatusOfDevice(product)" [value]="product.work" [color]=toggleColor [fontSize]=8.5 [labels]= toggleLabels [width]=55 [height]=25></ng-toggle>
+                    </td>
+                    <td *ngIf="product.control == false">Nemaš pristup informacijama</td>
+                
+                </tr>
+            </tbody>
+          </table>
+
+    </div>
+
+    <div *ngIf="isLoading==true" class="loader-map">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    
+</div>

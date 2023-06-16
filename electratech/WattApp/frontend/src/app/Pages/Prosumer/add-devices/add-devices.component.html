@@ -1,0 +1,53 @@
+<div id="element" *ngIf="menuType=='bottom'">
+    <div class="heder">
+        <div class="heder-1">
+            <div>
+                <p>Dodavanje uređaja</p>
+            </div>
+            <div style="display: flex;" (click)="goToViewList()">
+                <div class="num-of-device">
+                    <p>{{numInCart}}</p>
+                </div>
+                <div>
+                    <i class="bi bi-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="type">
+            <div class="selectedButtonDiv" [ngClass]="{'selected' : type=='Potrošač'}" (click)="setType('Potrošač')">
+              <p [ngClass]="{'type-selected' : type=='Potrošač'}">Potrošači</p>
+            </div>
+            <div class="selectedButtonDiv" [ngClass]="{'selected' : type=='Proizvodjač'}"(click)="setType('Proizvodjač')">
+              <p [ngClass]="{'type-selected' : type=='Proizvodjač'}">Proizvođači</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="search">
+        <div class="search-input">
+            <div>
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </div>
+            <div style="width:100%">
+                <input class='search-input-input' type="text" [(ngModel)]="name" (keyup)="defaultFilter()" placeholder="Pretraga uređaja po proizvođaču" style="font-size: 15px;">
+            </div>
+        </div>
+        <div>
+            <select #select (change)="setSelectFilter(select.value)">
+                <option selected value="all">Svi tipovi</option>
+                <option *ngFor="let type of typesOfDevices" value="{{ type }}">{{ type }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="list">
+        <div *ngFor="let p of temporaryList">
+            <app-device-image [info]="p" (click)="addToSession(p)"></app-device-image>
+        </div>
+    </div>
+
+
+</div>
+<div *ngIf="menuType!='bottom'">
+    <h1>Trenutno dostupno samo za telefon</h1>
+</div>

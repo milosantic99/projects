@@ -1,0 +1,194 @@
+
+
+
+<div id="element">
+
+ 
+   
+  
+    <div id="page-content">
+        <div id="main">
+            <div style="display: flex; justify-content: center;">
+                <app-logo [textcolor]="'gray'"></app-logo>
+            </div>
+            <mat-tab-group dynamicHeight >
+                <mat-tab label="Registruj prosumera">
+                    <form action="">
+                    <div id="forma">
+    
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="Ime" class="input" type="text" (change)="testFirstLetterAndLength(prosumer.firstName,'name',0)" [(ngModel)]="prosumer.firstName" [ngModelOptions]="{standalone: true}">
+                                <label class="label">Ime</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputName[0]}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <input placeholder="Prezime" class="input" type="text" (change)="testFirstLetterAndLength(prosumer.lastName,'surname',0)" [(ngModel)]="prosumer.lastName" [ngModelOptions]="{standalone: true}">
+                                <label class="label">Prezime</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputSurname[0]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="email@gmail.com" class="input" type="text" (change)="testEmail(prosumer.email,0)" [(ngModel)]="prosumer.email" [ngModelOptions]="{standalone: true}">
+                                <label class="label">Email</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputEmail[0]}}</p>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                <input placeholder="060 1234567" class="input" type="text" (change)="testPhoneNumber(prosumer.phoneNumber)" [(ngModel)]="prosumer.phoneNumber" [ngModelOptions]="{standalone: true}">
+                                <label class="label">Broj telefona</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errPhoneNumber}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forma-red">
+                            <div class="container-input-city">
+                                <ng-select class="custom" [items]="cities" 
+                                    [clearable]="false"
+                                    [(ngModel)]="prosumer.city"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (change)="search_city()"
+                                    placeholder="Odaberite grad">
+                                </ng-select>
+                                <label class="label">Grad</label>
+                            </div>
+                            <div>
+                                <input  id = "adresa" class="input" placeholder="Radoja Domanovića 12" type="text" (keyup)="search_address()" [(ngModel)]="bilosta" [(ngModel)]="prosumer.address"  [ngModelOptions]="{standalone: true}">
+                                <label class="label">Adresa </label>
+                                <!-- <input placeholder="Radoja Domanovića 12" type="text" (change)="testAddress(prosumer.address,0)" [(ngModel)]="prosumer.address" [ngModelOptions]="{standalone: true}"> -->
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputAddress[0]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="********" type="{{ hidePassword ? 'password' : 'text' }}" class="input" #password1 (change)="testPassword(password1.value,0)">
+                                <label class="label">Lozinka</label>
+                                <button type="button" 
+                                class="btn-toggle1" 
+                                (click)="togglePasswordVisibility()">
+                          <i class="fa" [ngClass]="{'fa-eye': hidePassword, 'fa-eye-slash': !hidePassword}"></i>
+                        </button>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputPassword1[0]}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <input placeholder="********" type="{{ hidePassword2 ? 'password' : 'text' }}" class="input" #password2 (change)="testPasswordAgain(password1.value,password2.value,0)">
+                                <label class="label">Ponovite lozinku </label>
+                                <button type="button" 
+                                class="btn-toggle2" 
+                                (click)="togglePasswordVisibility2()">
+                          <i class="fa" [ngClass]="{'fa-eye': hidePassword2, 'fa-eye-slash': !hidePassword2}"></i>
+                        </button>
+                               
+                                <div class="errorMessage" name="password2">
+                                    <p class="error">{{errInputPassword2[0]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" (click)="registerProsumer(password1.value,password2.value)" id="prijavi-novog-korisnika">Registruj novog korisnika</button>
+                        </div>
+                    </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Registruj dispečera" *ngIf="role == 'ROLE_DSO'">
+                    <form action="">
+                    <div id="forma">
+    
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="Ime" class="input" #firstNameDisp type="text" 
+                                (change)="testFirstLetterAndLength(firstNameDisp.value, 'name', 1)"
+                                [(ngModel)]="dispatcher.firstName" name="firstNameDisp">
+                                <label class="label">Ime</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputName[1]}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <input placeholder="Prezime" class="input" #lastNameDisp type="text" 
+                                (change)="testFirstLetterAndLength(lastNameDisp.value, 'surname', 1)"
+                                [(ngModel)]="dispatcher.lastName" name="lastNameDisp">
+                                <label class="label">Prezime</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputSurname[1]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="email@gmail.com" class="input" #emailDisp type="text" 
+                                (change)="testEmail(emailDisp.value, 1)"
+                                [(ngModel)]="dispatcher.email" name="emailDisp">
+                                <label class="label">Email</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputEmail[1]}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <input placeholder="Kragujevac, Radoja Domanovića 12" class="input" #addressDisp type="text" 
+                                (change)="testAddress(addressDisp.value, 1)"
+                                [(ngModel)]="dispatcher.address" name="addressDisp">
+                                <label class="label">Adresa</label>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputAddress[1]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forma-red">
+                            <div>
+                                <input placeholder="********" type="{{ hidePassword3 ? 'password' : 'text' }}" class="input"  #password1Disp type="password" 
+                                (change)="testPassword(password1Disp.value, 1)"
+                                [(ngModel)]="pass1[1]" name="password1Disp">
+                                <label class="label">Lozinka</label>
+                                <button type="button" 
+                                class="btn-toggle1" 
+                                (click)="togglePasswordVisibility3()">
+                          <i class="fa" [ngClass]="{'fa-eye': hidePassword3, 'fa-eye-slash': !hidePassword3}"></i>
+                        </button>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputPassword1[1]}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <input placeholder="********" type="{{ hidePassword4 ? 'password' : 'text' }}" class="input" #password2Disp type="password" 
+                                (change)="testPasswordAgain(password2Disp.value, password1Disp.value, 1)"
+                                [(ngModel)]="dispatcher.password" name="password2Disp">
+                                <label class="label">Ponovite lozinku </label>
+                                <button type="button" 
+                                class="btn-toggle2" 
+                                (click)="togglePasswordVisibility4()">
+                          <i class="fa" [ngClass]="{'fa-eye': hidePassword4, 'fa-eye-slash': !hidePassword4}"></i>
+                        </button>
+                                <div class="errorMessage">
+                                    <p class="error">{{errInputPassword2[1]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" (click)="registerDispatcher()" id="prijavi-novog-korisnika">Registruj novog dispečera</button>
+                        </div>
+                        <!-- <div style="text-align: center;">
+                            <button mat-raised-button type="submit" (click)="registerDispatcher()" id="prijavi-novog-korisnika">Registruj novog dispečera</button>
+                        </div> -->
+                    </div>
+                    </form>
+                </mat-tab>
+              </mat-tab-group>
+            
+            
+        </div>
+    </div>
+    
+</div>

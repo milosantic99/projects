@@ -1,0 +1,45 @@
+Dnevna soba ggggg TV ggggg 25" colour TV ggggg 150
+Dnevna soba ggggg TV ggggg 42 Inch LED TV ggggg 58
+Dnevna soba ggggg TV ggggg 42 Inch Plasma TV ggggg 450
+Dnevna soba ggggg TV ggggg 46 Inch LED TV ggggg 60
+Dnevna soba ggggg TV ggggg 49 Inch LED TV ggggg 85
+Dnevna soba ggggg TV ggggg 55 Inch LED TV ggggg 116
+Dnevna soba ggggg TV ggggg 65 Inch LED TV ggggg 120
+Dnevna soba ggggg TV ggggg 82 Inch LED TV ggggg 228
+Kuhinja ggggg Frižideri ggggg Američki frižider ggggg 40
+Kupatilo ggggg Grejači ggggg Grejač peškira ggggg 60
+Kupatilo ggggg Mašine ggggg Sušilica za veš ggggg 100
+Kuhinja ggggg Aspiratori ggggg Aspirator ggggg 200
+Kuhinja ggggg Frižideri ggggg Zamrzivač ggggg 190
+Kupatilo ggggg Mašine ggggg Mašina za pranje veša ggggg 120
+Kuhinja ggggg Bojleri ggggg Električni grejač vode ggggg 400
+Kuhinja ggggg Grejači ggggg Grejni ventilator ggggg 200
+Kuhinja ggggg Aparati ggggg Električni čajnik ggggg 120
+Kuhinja ggggg Šporeti ggggg Električni šporet ggggg 200
+Kuhinja ggggg Bojleri ggggg Bojler ggggg 660
+Kuhinja ggggg Grejači ggggg Električni termalni radijator ggggg 500
+Ostalo ggggg Ostalo ggggg Kućni punjač za auto ggggg 160
+Kuhinja ggggg Aparati ggggg Blender ggggg 300
+Kuhinja ggggg Frižideri ggggg Zamrzivač ggggg 30
+Kuhinja ggggg Frižideri ggggg Frižider ggggg 100
+Kuhinja ggggg Frižideri ggggg Frižider/Zamrzivač ggggg 150
+Ostalo ggggg Klime ggggg Klima uređaj ggggg 100
+Ostalo ggggg Ostalo ggggg Kućni muzički stub ggggg 95
+Ostalo ggggg Bojleri ggggg Grejač vode na struju ggggg 300
+Ostalo ggggg Šporeti ggggg Indukciona ploča ggggg 140
+Ostalo ggggg Klime ggggg Klima sa inveterom ggggg 130
+Ostalo ggggg Ostalo ggggg Pegla ggggg 100
+Kupatilo ggggg Ostalo ggggg Đakuzi ggggg 300
+Kuhinja ggggg Šporeti ggggg Mikrotalasna ggggg 600
+Kuhinja ggggg Šporeti ggggg Šporet sa rernom ggggg 215
+Gameing ggggg Ostalo ggggg Playstation 4 ggggg 85
+Gameing ggggg Ostalo ggggg Playstation 5 ggggg 160
+Kuhinja ggggg Frižideri ggggg Hladnjak/Frižider ggggg 100
+Ostalo ggggg Grejači ggggg Grejalica ggggg 200
+Ostalo ggggg Ostalo ggggg Pegla na paru ggggg 220
+Dnevna soba ggggg TV ggggg TV 19" colour ggggg 40
+Kupatilo ggggg Mašine ggggg Mašina za veš ggggg 500
+Gameing ggggg Ostalo ggggg Xbox One ggggg 50
+Proizvođač ggggg Proizvođači ggggg Solarni panel mini ggggg -250
+Proizvođač ggggg Proizvođači ggggg Solarni panel medium ggggg -300
+Proizvođač ggggg Proizvođači ggggg Solarni panel extra ggggg -400

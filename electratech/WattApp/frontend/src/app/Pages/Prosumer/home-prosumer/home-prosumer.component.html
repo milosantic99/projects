@@ -1,0 +1,59 @@
+<div id="element" *ngIf="menuType=='bottom'">
+    <div class="heder">
+        <div>
+            <p>Početna</p>
+        </div>
+        <div class="heder-2">
+            <div class="img">
+                <img [src]="profilePicture">
+            </div>
+            <div>
+                <p class="heder-2-name">{{ prosumerInformation.firstName }} {{ prosumerInformation.lastName }}</p>
+                <p class="heder-2-address">Ulica: {{ prosumerInformation.adress }}<p>
+            </div>
+        </div>
+    </div>
+    <div class="debt">
+        <div>
+            <p class="debt-title">Zaduženja<p>
+        </div>
+        <div class="debt-info">
+            <div [ngClass]="{'debt-info-circle-red':debt<0 , 'debt-info-circle-green':debt>0}"></div>
+            <div>
+                <p>{{debt}} din.</p>
+            </div>
+        </div>  
+    </div>
+    <!-- <div class="slieder-information">
+        <div>
+            <app-simple-card [info]="simpleCard2"></app-simple-card>
+        </div>
+        <div>
+            <app-simple-card [info]="simpleCard1"></app-simple-card>
+        </div>
+    </div> -->
+    <div class="cards">
+        <app-simple-card-analysis [info]="simpleCard1"></app-simple-card-analysis>
+        <app-simple-card-analysis [info]="simpleCard2"></app-simple-card-analysis>
+    </div>
+    <!-- Grafik -->
+    <div class="chart">
+        <div *ngIf="isLoadingGraph==true" style="display: flex; justify-content: center;" class="size">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div>
+            <app-line-graph-home-prosumer #graph></app-line-graph-home-prosumer>
+        </div>
+    </div>
+    <div class="top-three-consumer">
+        <div>
+            <p class="top-three-consumer-title">Najveći potrošači<p>
+            <p>Ovog meseca</p>
+        </div>
+        <div *ngFor="let i of listOfTopThreeDevices">
+            <app-prosumer-device-consumption-card [info]="i"></app-prosumer-device-consumption-card>
+        </div>
+    </div>
+</div>
